@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
+import { Input } from "./components";
 
 function App() {
   return (
@@ -22,21 +23,8 @@ function App() {
         </div>
 
         <div className="Form-container">
-
-          <div className="Input-container">
-            <label className="Font-17 Font-medium">
-              Tài khoản
-              <span className="Form-required">*</span>
-            </label>
-            <div style={{ marginBottom: "7px" }}></div>
-            <input className="Input"></input>
-          </div>
-
-          <label className="Font-17 Font-medium">
-            Mật khẩu
-            <span className="Form-required">*</span>
-          </label>
-          <input className="Input"></input>
+          <Input />
+          <Input isPassword={true} />
 
           <div className="Forget-password">
             <div className="Container-check">
