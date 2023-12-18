@@ -6,17 +6,37 @@ function App() {
   return (
     <div className="App">
       <div className="Box-Container">
-        <div className="Logo-container">
+        <div className="Header-container">
           <img src={logo} className="App-logo" alt="logo" />
+          <div style={{ marginBottom: "14px" }}></div>
+
+          <span className="Text-welcome Font-medium">
+            Chào mừng bạn đến với Login Page
+          </span>
+          <div style={{ marginBottom: "14px" }}></div>
+          <span className="Text-login Font-14 Font-medium">
+            Đăng nhập để tiếp tục
+          </span>
+
+          <div style={{ marginBottom: "28px" }}></div>
         </div>
-        <div className="Text-welcome">Chào mừng bạn đến với Login Page</div>
-        <div>Đăng nhập để tiếp tục</div>
 
         <div className="Form-container">
-          <label>Tài khoản</label>
-          <input></input>
-          <label>Mật khẩu</label>
-          <input></input>
+
+          <div className="Input-container">
+            <label className="Font-17 Font-medium">
+              Tài khoản
+              <span className="Form-required">*</span>
+            </label>
+            <div style={{ marginBottom: "7px" }}></div>
+            <input className="Input"></input>
+          </div>
+
+          <label className="Font-17 Font-medium">
+            Mật khẩu
+            <span className="Form-required">*</span>
+          </label>
+          <input className="Input"></input>
 
           <div className="Forget-password">
             <div className="Container-check">

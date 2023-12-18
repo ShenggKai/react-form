@@ -9,9 +9,36 @@
   color: black;
 }
 
-.Logo-container {
+.Form-required {
+  color: red;
+}
+
+.Font-medium {
+  font-weight: 500;
+}
+
+.Font-14 {
+  font-size: 14px;
+}
+
+.Font-17 {
+  font-size: 17.5px;
+}
+
+.Box-Container {
+  background-color: white;
+  width: auto;
+  height: 500px;
+  border-radius: 53px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 70px;
+}
+
+.Header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -21,26 +48,32 @@
   align-items: center;
 }
 
-.Box-Container {
-  background-color: white;
-  width: 574px;
-  height: 700px;
-  border-radius: 53px;
-
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-}
-
 .Text-welcome {
   font-size: 24.5px;
-  font-weight: 500;
+  color: #212121;
+}
+
+.Text-login {
+  color: #495057;
 }
 
 .Form-container {
   display: flex;
   flex-direction: column;
   text-align: left;
+}
+
+.Input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+}
+
+.Input {
+  padding: 10.5px;
+  border-radius: 6px;
+  border-width: 1px;
+  border: 1px solid #ced4da;
 }
 
 .Forget-password {
