@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text } from "./components";
+import { Input, Text, CheckBox } from "./components";
 
 function App() {
+  const [checked, setChecked] = useState(false);
+
   return (
     <div className="App">
       <div className="Box-Container">
@@ -23,10 +25,11 @@ function App() {
           <Input isPassword={true} />
 
           <div className="Forget-password">
-            <div className="Container-check">
-              <div className="Check-Box" />
-              <label>Ghi nhớ mật khẩu</label>
-            </div>
+            <CheckBox
+              label={"Ghi nhớ mật khẩu"}
+              onClick={() => setChecked(!checked)}
+              checked={checked}
+            />
             <Text color={"#6366F1"} onClick={() => console.log("forgot")}>
               Quên mật khẩu
             </Text>

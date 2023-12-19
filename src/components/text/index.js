@@ -11,9 +11,9 @@ const Text = (props) => {
   };
 
   return (
-    <span style={textStyle} onClick={onClick}>
+    <label style={textStyle} onClick={onClick}>
       {props.children}
-    </span>
+    </label>
   );
 };
 
