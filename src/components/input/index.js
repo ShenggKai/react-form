@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import "./style.css";
+import { Text } from "../../components";
 import { HideIcon, ShowIcon } from "../../assets/icons";
 
 const Input = ({ isPassword = false }) => {
@@ -12,10 +13,10 @@ const Input = ({ isPassword = false }) => {
 
   return (
     <div className="Container">
-      <label className="Font-17 Font-medium">
+      <Text size={17.5}>
         {isPassword ? "Mật khẩu" : "Tài khoản"}
         <span className="Form-required">*</span>
-      </label>
+      </Text>
       <div style={{ marginBottom: "7px" }}></div>
 
       {isPassword ? (

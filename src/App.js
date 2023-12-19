@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input } from "./components";
+import { Input, Text } from "./components";
 
 function App() {
   return (
@@ -11,13 +11,9 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <div style={{ marginBottom: "14px" }}></div>
 
-          <span className="Text-welcome Font-medium">
-            Chào mừng bạn đến với Login Page
-          </span>
+          <Text size={24.5}>Chào mừng bạn đến với Login Page</Text>
           <div style={{ marginBottom: "14px" }}></div>
-          <span className="Text-login Font-14 Font-medium">
-            Đăng nhập để tiếp tục
-          </span>
+          <Text color={"#495057"}>Đăng nhập để tiếp tục</Text>
 
           <div style={{ marginBottom: "28px" }}></div>
         </div>
@@ -31,19 +27,30 @@ function App() {
               <div className="Check-Box" />
               <label>Ghi nhớ mật khẩu</label>
             </div>
-            <a>Quên mật khẩu</a>
+            <Text color={"#6366F1"} onClick={() => console.log("forgot")}>
+              Quên mật khẩu
+            </Text>
           </div>
         </div>
 
-        <div>hoặc sử dụng</div>
-        {/* <div>hoặc sử dụng</div> */}
+        <Text color={"#495057"} fontWeight={400}>
+          hoặc sử dụng
+        </Text>
 
         <button>Đăng nhập bằng tài khoản google</button>
         <button>Đăng nhập</button>
 
         <div>
-          <label>Bạn chưa có tài khoản?</label>
-          <a>Đăng ký tại đây</a>
+          <Text color={"#495057"} fontWeight={400}>
+            Bạn chưa có tài khoản?
+          </Text>
+          <Text
+            color={"#6366F1"}
+            fontWeight={400}
+            onClick={() => console.log("Sign")}
+          >
+            Đăng ký tại đây
+          </Text>
         </div>
       </div>
     </div>
