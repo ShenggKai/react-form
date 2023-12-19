@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text, CheckBox } from "./components";
+import { Input, Text, CheckBox, Line } from "./components";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -36,9 +36,13 @@ function App() {
           </div>
         </div>
 
-        <Text color={"#495057"} fontWeight={400}>
-          hoặc sử dụng
-        </Text>
+        <div className="Divider">
+          <Line />
+          <Text color={"#495057"} fontWeight={400} width={"100%"}>
+            hoặc sử dụng
+          </Text>
+          <Line />
+        </div>
 
         <button>Đăng nhập bằng tài khoản google</button>
         <button>Đăng nhập</button>

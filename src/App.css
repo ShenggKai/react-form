@@ -45,3 +45,10 @@
   align-items: center;
   padding-right: 7px;
 }
+
+.Divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
