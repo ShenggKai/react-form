@@ -11,12 +11,10 @@
 
 .Box-Container {
   background-color: white;
-  width: auto;
-  height: 500px;
   border-radius: 53px;
   display: flex;
   flex-direction: column;
-  padding: 70px;
+  padding: 50px 70px 50px 70px ;
 }
 
 .Header-container {

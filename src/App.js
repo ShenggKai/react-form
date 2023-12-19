@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text, CheckBox, Line, Button } from "./components";
+import { Input, Text, CheckBox, Line, Button, Space } from "./components";
+import { GoogleIcon, UserIcon } from "./assets/icons";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -11,13 +12,13 @@ function App() {
       <div className="Box-Container">
         <div className="Header-container">
           <img src={logo} className="App-logo" alt="logo" />
-          <div style={{ marginBottom: "14px" }}></div>
+          <Space height={14} />
 
           <Text size={24.5}>Chào mừng bạn đến với Login Page</Text>
-          <div style={{ marginBottom: "14px" }}></div>
-          <Text color={"#495057"}>Đăng nhập để tiếp tục</Text>
+          <Space height={14} />
 
-          <div style={{ marginBottom: "28px" }}></div>
+          <Text color={"#495057"}>Đăng nhập để tiếp tục</Text>
+          <Space height={28} />
         </div>
 
         <div className="Form-container">
@@ -34,7 +35,11 @@ function App() {
               Quên mật khẩu
             </Text>
           </div>
+          <Space height={20} />
+
+          <Button haveIcon={false}>Đăng nhập</Button>
         </div>
+        <Space height={20} />
 
         <div className="Divider">
           <Line />
@@ -43,9 +48,17 @@ function App() {
           </Text>
           <Line />
         </div>
+        <Space height={20} />
 
-        <Button haveIcon={true}>Đăng nhập bằng tài khoản google</Button>
-        <Button haveIcon={false}>Đăng nhập</Button>
+        <Button haveIcon={true} Icon={<GoogleIcon />}>
+          Đăng nhập bằng tài khoản google
+        </Button>
+        <Space height={16} />
+
+        <Button haveIcon={true} Icon={<UserIcon />}>
+          Đăng nhập bằng tài khoản MobiFone
+        </Button>
+        <Space height={30} />
 
         <div>
           <Text color={"#495057"} fontWeight={400}>

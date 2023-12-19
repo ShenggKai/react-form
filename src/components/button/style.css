@@ -6,6 +6,7 @@
   padding: 8px;
   border: 1px solid rgba(204, 204, 204, 0.8);
   background-color: white;
+  cursor: pointer;
 }
 
 .Button-container {
@@ -14,10 +15,11 @@
   justify-content: center;
   border-radius: 6px;
   padding: 14px;
-  border: 1px solid #6366F1;
-  background: #6366F1;
+  border: 1px solid #6366f1;
+  background: #6366f1;
+  cursor: pointer;
 }
 
-.Label-icon {
+.Label {
   flex-grow: 1;
 }
