@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text, CheckBox, Line } from "./components";
+import { Input, Text, CheckBox, Line, Button } from "./components";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -44,8 +44,8 @@ function App() {
           <Line />
         </div>
 
-        <button>Đăng nhập bằng tài khoản google</button>
-        <button>Đăng nhập</button>
+        <Button haveIcon={true}>Đăng nhập bằng tài khoản google</Button>
+        <Button haveIcon={false}>Đăng nhập</Button>
 
         <div>
           <Text color={"#495057"} fontWeight={400}>
