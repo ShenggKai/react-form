@@ -31,7 +31,11 @@ function App() {
               onClick={() => setChecked(!checked)}
               checked={checked}
             />
-            <Text color={"#6366F1"} onClick={() => console.log("forgot")}>
+            <Text
+              color={"#6366F1"}
+              cursor={"pointer"}
+              onClick={() => console.log("forgot")}
+            >
               Quên mật khẩu
             </Text>
           </div>
@@ -62,11 +66,13 @@ function App() {
 
         <div>
           <Text color={"#495057"} fontWeight={400}>
-            Bạn chưa có tài khoản?
+            {/* &nbsp; is the space*/}
+            Bạn chưa có tài khoản? &nbsp;
           </Text>
           <Text
             color={"#6366F1"}
             fontWeight={400}
+            cursor={"pointer"}
             onClick={() => console.log("Sign")}
           >
             Đăng ký tại đây

@@ -16,8 +16,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-    box-shadow 0.2s;
+  /* transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s; */
+  cursor: pointer;
+
+  &:hover {
+    border-color: #6366f1;
+  }
 }
 
 .fill {

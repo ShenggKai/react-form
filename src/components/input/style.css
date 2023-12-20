@@ -14,6 +14,10 @@
   border: 1px solid #ced4da;
   border-radius: 6px;
   padding-right: 10.5px;
+
+  &:hover {
+    border: 1px solid #6366f1;
+  }
 }
 
 .Input {
