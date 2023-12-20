@@ -21,6 +21,9 @@
   padding: 10.5px;
   border-width: 0px;
   border-radius: 6px;
+  color: #495057;
+  font-size: 14px;
+  outline: none;
 }
 
 .Icon {
@@ -31,8 +34,7 @@
   justify-content: center;
 }
 
-input[type=password]::-ms-reveal,
-input[type=password]::-ms-clear
-{
-    display: none;
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }
