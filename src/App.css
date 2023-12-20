@@ -6,11 +6,53 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: black;
+}
+
+.Gradient-border {
+  padding: 4px;
+  border-radius: 56px;
+  background: linear-gradient(180deg, #6366f1 10%, rgba(33, 150, 243, 0) 30%);
+}
+
+.Box-Container {
+  background-color: white;
+  border-radius: 53px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 70px 50px 70px;
+}
+
+.Header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
   width: 66px;
   height: 64px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Form-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.Forget-password {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 7px;
+}
+
+.Divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
