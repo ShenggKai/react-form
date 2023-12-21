@@ -2,6 +2,7 @@ bằng
 chưa
 Đăng
 dụng
+đúng
 được
 Fone
 hoặc
@@ -12,5 +13,6 @@ Mobi
 mừng
 Quên
 tiếp
+toastify
 trống
 TTFB

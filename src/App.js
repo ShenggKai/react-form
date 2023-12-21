@@ -3,6 +3,8 @@ import logo from "./assets/images/logo_runner.png";
 import "./App.css";
 import { Input, Text, CheckBox, Line, Button, Space } from "./components";
 import { GoogleIcon, UserIcon } from "./assets/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [values, setValues] = useState({
@@ -54,6 +56,7 @@ function App() {
     setSubmitted(true);
 
     let error = false;
+    let wrongPass = false;
 
     if (values.email.trim() === "") {
       setIsError((values) => ({
@@ -82,11 +85,23 @@ function App() {
       error = true;
     }
 
-    if (error) {
-      alert("Error");
-    } else {
-      alert("Success");
+    if (values.email !== "user1@gmail.com" && values.password !== "1234_demo") {
+      wrongPass = true;
     }
+
+    if (!error && wrongPass) {
+      toast.error("Tên đăng nhập hoặc mật khẩu không đúng", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (error) return;
+    else alert("Success");
   };
 
   return (
@@ -171,6 +186,7 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
