@@ -5,7 +5,89 @@ import { Input, Text, CheckBox, Line, Button, Space } from "./components";
 import { GoogleIcon, UserIcon } from "./assets/icons";
 
 function App() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [isError, setIsError] = useState({
+    invalidEmail: false,
+    emptyEmail: false,
+    emptyPassword: false,
+  });
   const [checked, setChecked] = useState(false);
+
+  const handleEmailInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      email: event.target.value,
+    }));
+
+    setIsError((values) => ({
+      ...values,
+      invalidEmail: false,
+      emptyEmail: false,
+    }));
+  };
+
+  const handlePasswordInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      password: event.target.value,
+    }));
+
+    setIsError((values) => ({
+      ...values,
+      emptyPassword: false,
+    }));
+  };
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    let error = false;
+
+    if (values.email.trim() === "") {
+      setIsError((values) => ({
+        ...values,
+        emptyEmail: true,
+      }));
+
+      error = true;
+    }
+
+    if (values.password.trim() === "") {
+      setIsError((values) => ({
+        ...values,
+        emptyPassword: true,
+      }));
+
+      error = true;
+    }
+
+    if (!isEmailValid(values.email)) {
+      setIsError((values) => ({
+        ...values,
+        invalidEmail: true,
+      }));
+
+      error = true;
+    }
+
+    if (error) {
+      alert("Error");
+    } else {
+      alert("Success");
+    }
+  };
 
   return (
     <div className="App">
@@ -21,8 +103,17 @@ function App() {
           </div>
 
           <div className="Form-container">
-            <Input />
-            <Input isPassword={true} />
+            <Input
+              value={values}
+              isError={isError}
+              onChangeEmail={handleEmailInputChange}
+            />
+            <Input
+              isPassword={true}
+              value={values}
+              isError={isError}
+              OnchangePassword={handlePasswordInputChange}
+            />
 
             <div className="Forget-password">
               <CheckBox
@@ -40,7 +131,9 @@ function App() {
             </div>
             <Space height={20} />
 
-            <Button haveIcon={false}>Đăng nhập</Button>
+            <Button haveIcon={false} onClick={handleSubmit}>
+              Đăng nhập
+            </Button>
           </div>
           <Space height={20} />
 
