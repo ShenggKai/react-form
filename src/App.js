@@ -10,7 +10,7 @@ import {
   Space,
   GoogleLoginButton,
 } from "./components";
-import { GoogleIcon, UserIcon } from "./assets/icons";
+import { UserIcon } from "./assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     function start() {
-      gapi.client.init({
+      gapi.auth2.init({
         clientId: clientId,
         scope: "",
       });
@@ -168,9 +168,15 @@ function App() {
             </div>
             <Space height={20} />
 
-            <Button haveIcon={false} onClick={handleSubmit}>
-              Đăng nhập
-            </Button>
+            <div
+              style={{
+                padding: "0px 7px 0px 7px",
+              }}
+            >
+              <Button haveIcon={false} onClick={handleSubmit}>
+                Đăng nhập
+              </Button>
+            </div>
           </div>
           <Space height={20} />
 
@@ -183,10 +189,7 @@ function App() {
           </div>
           <Space height={20} />
 
-          {/* <Button haveIcon={true} Icon={<GoogleIcon />}>
-            Đăng nhập bằng tài khoản google
-          </Button> */}
-          <GoogleLoginButton />
+          <GoogleLoginButton>Đăng nhập bằng tài khoản Google</GoogleLoginButton>
           <Space height={16} />
           <Button haveIcon={true} Icon={<UserIcon />}>
             Đăng nhập bằng tài khoản MobiFone
