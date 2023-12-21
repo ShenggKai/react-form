@@ -23,6 +23,7 @@ function App() {
           <div className="Form-container">
             <Input />
             <Input isPassword={true} />
+
             <div className="Forget-password">
               <CheckBox
                 label={"Ghi nhớ mật khẩu"}
@@ -38,6 +39,7 @@ function App() {
               </Text>
             </div>
             <Space height={20} />
+
             <Button haveIcon={false}>Đăng nhập</Button>
           </div>
           <Space height={20} />

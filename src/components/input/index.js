@@ -32,7 +32,7 @@ const Input = ({ isPassword = false }) => {
         </div>
       ) : (
         <div className="Input-container">
-          <input className="Input" placeholder="Username" />
+          <input type="email" className="Input" placeholder="Email" />
         </div>
       )}
     </div>
