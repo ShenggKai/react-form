@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text, CheckBox, Line, Button, Space } from "./components";
+import {
+  Input,
+  Text,
+  CheckBox,
+  Line,
+  Button,
+  Space,
+  GoogleLoginButton,
+} from "./components";
 import { GoogleIcon, UserIcon } from "./assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { gapi } from "gapi-script";
 
 function App() {
+  const clientId =
+    "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -18,6 +29,17 @@ function App() {
     emptyPassword: false,
   });
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  });
 
   const handleEmailInputChange = (event) => {
     event.persist();
@@ -161,9 +183,10 @@ function App() {
           </div>
           <Space height={20} />
 
-          <Button haveIcon={true} Icon={<GoogleIcon />}>
+          {/* <Button haveIcon={true} Icon={<GoogleIcon />}>
             Đăng nhập bằng tài khoản google
-          </Button>
+          </Button> */}
+          <GoogleLoginButton />
           <Space height={16} />
           <Button haveIcon={true} Icon={<UserIcon />}>
             Đăng nhập bằng tài khoản MobiFone
