@@ -1,11 +1,140 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./assets/images/logo_runner.png";
 import "./App.css";
-import { Input, Text, CheckBox, Line, Button, Space } from "./components";
-import { GoogleIcon, UserIcon } from "./assets/icons";
+import {
+  Input,
+  Text,
+  CheckBox,
+  Line,
+  Button,
+  Space,
+  GoogleLoginButton,
+  Modal,
+} from "./components";
+import { UserIcon } from "./assets/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { gapi } from "gapi-script";
 
 function App() {
+  const clientId =
+    "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [isError, setIsError] = useState({
+    invalidEmail: false,
+    emptyEmail: false,
+    emptyPassword: false,
+  });
   const [checked, setChecked] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    function start() {
+      gapi.auth2.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  });
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleEmailInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      email: event.target.value,
+    }));
+
+    setIsError((values) => ({
+      ...values,
+      invalidEmail: false,
+      emptyEmail: false,
+    }));
+  };
+
+  const handlePasswordInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      password: event.target.value,
+    }));
+
+    setIsError((values) => ({
+      ...values,
+      emptyPassword: false,
+    }));
+  };
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    let error = false;
+    let wrongPass = false;
+
+    if (values.email.trim() === "") {
+      setIsError((values) => ({
+        ...values,
+        emptyEmail: true,
+      }));
+
+      error = true;
+    }
+
+    if (values.password.trim() === "") {
+      setIsError((values) => ({
+        ...values,
+        emptyPassword: true,
+      }));
+
+      error = true;
+    }
+
+    if (!isEmailValid(values.email)) {
+      setIsError((values) => ({
+        ...values,
+        invalidEmail: true,
+      }));
+
+      error = true;
+    }
+
+    if (values.email !== "user1@gmail.com" && values.password !== "1234_demo") {
+      wrongPass = true;
+    }
+
+    if (!error && wrongPass) {
+      toast.error("Tên đăng nhập hoặc mật khẩu không đúng", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (error) return;
+    else alert("Success");
+  };
 
   return (
     <div className="App">
@@ -21,24 +150,39 @@ function App() {
           </div>
 
           <div className="Form-container">
-            <Input />
-            <Input isPassword={true} />
+            <Input
+              value={values}
+              isError={isError}
+              onChangeEmail={handleEmailInputChange}
+            />
+            <Input
+              isPassword={true}
+              value={values}
+              isError={isError}
+              OnchangePassword={handlePasswordInputChange}
+            />
+
             <div className="Forget-password">
               <CheckBox
                 label={"Ghi nhớ mật khẩu"}
                 onClick={() => setChecked(!checked)}
                 checked={checked}
               />
-              <Text
-                color={"#6366F1"}
-                cursor={"pointer"}
-                onClick={() => console.log("forgot")}
-              >
+              <Text color={"#6366F1"} cursor={"pointer"} onClick={openModal}>
                 Quên mật khẩu
               </Text>
             </div>
             <Space height={20} />
-            <Button haveIcon={false}>Đăng nhập</Button>
+
+            <div
+              style={{
+                padding: "0px 7px 0px 7px",
+              }}
+            >
+              <Button haveIcon={false} onClick={handleSubmit}>
+                Đăng nhập
+              </Button>
+            </div>
           </div>
           <Space height={20} />
 
@@ -51,11 +195,13 @@ function App() {
           </div>
           <Space height={20} />
 
-          <Button haveIcon={true} Icon={<GoogleIcon />}>
-            Đăng nhập bằng tài khoản google
-          </Button>
+          <GoogleLoginButton>Đăng nhập bằng tài khoản Google</GoogleLoginButton>
           <Space height={16} />
-          <Button haveIcon={true} Icon={<UserIcon />}>
+          <Button
+            haveIcon={true}
+            Icon={<UserIcon />}
+            onClick={() => alert("Feature is under development")}
+          >
             Đăng nhập bằng tài khoản MobiFone
           </Button>
           <Space height={30} />
@@ -76,6 +222,8 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer />
+      <Modal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </div>
   );
 }
