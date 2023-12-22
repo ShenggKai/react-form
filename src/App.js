@@ -9,6 +9,7 @@ import {
   Button,
   Space,
   GoogleLoginButton,
+  Modal,
 } from "./components";
 import { UserIcon } from "./assets/icons";
 import { ToastContainer, toast } from "react-toastify";
@@ -29,6 +30,7 @@ function App() {
     emptyPassword: false,
   });
   const [checked, setChecked] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     function start() {
@@ -40,6 +42,14 @@ function App() {
 
     gapi.load("client:auth2", start);
   });
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const handleEmailInputChange = (event) => {
     event.persist();
@@ -158,11 +168,7 @@ function App() {
                 onClick={() => setChecked(!checked)}
                 checked={checked}
               />
-              <Text
-                color={"#6366F1"}
-                cursor={"pointer"}
-                onClick={() => console.log("forgot")}
-              >
+              <Text color={"#6366F1"} cursor={"pointer"} onClick={openModal}>
                 Quên mật khẩu
               </Text>
             </div>
@@ -191,7 +197,11 @@ function App() {
 
           <GoogleLoginButton>Đăng nhập bằng tài khoản Google</GoogleLoginButton>
           <Space height={16} />
-          <Button haveIcon={true} Icon={<UserIcon />}>
+          <Button
+            haveIcon={true}
+            Icon={<UserIcon />}
+            onClick={() => alert("Feature is under development")}
+          >
             Đăng nhập bằng tài khoản MobiFone
           </Button>
           <Space height={30} />
@@ -213,6 +223,7 @@ function App() {
         </div>
       </div>
       <ToastContainer />
+      <Modal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </div>
   );
 }

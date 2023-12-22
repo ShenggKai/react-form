@@ -5,6 +5,7 @@ import { ReactComponent as Show } from "./eye_show.svg";
 import { ReactComponent as Check } from "./check.svg";
 import { ReactComponent as Google } from "./google.svg";
 import { ReactComponent as User } from "./user.svg";
+import { ReactComponent as Close } from "./close.svg";
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
   return <Hide width={width} height={height} />;
@@ -24,4 +25,8 @@ export const GoogleIcon = ({ width = 20, height = 20 }) => {
 
 export const UserIcon = ({ width = 20, height = 20 }) => {
   return <User width={width} height={height} />;
+};
+
+export const CloseIcon = ({ width = 14, height = 14 }) => {
+  return <Close width={width} height={height} />;
 };
