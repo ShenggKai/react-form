@@ -1,12 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { LoginPage, HomePage } from "../pages";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { LoginPage, HomePage, NotFound } from "../pages";
 
-const AppRoutes = () => {
+const AppRoutes = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/home" element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

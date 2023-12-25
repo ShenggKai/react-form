@@ -1,10 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Button, Text, Space } from "../../components";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-const HomePage = () => {
+const HomePage = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.setItem("isLoggedIn", "false");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
   return (
     <main className="Home-main">
@@ -19,7 +26,7 @@ const HomePage = () => {
         </Text>
         <Space height={50} />
 
-        <Button onClick={() => navigate("/")}>Đăng xuất</Button>
+        <Button onClick={handleLogout}>Đăng xuất</Button>
       </section>
     </main>
   );

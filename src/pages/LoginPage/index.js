@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/images/logo_runner.png";
 import "./style.css";
@@ -17,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const clientId =
     "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
@@ -137,7 +138,9 @@ const LoginPage = () => {
     } else if (error) {
       return;
     } else {
-      navigate("/home");
+      setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', 'true');
+      navigate("/");
     }
   };
 
