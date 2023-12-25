@@ -135,7 +135,7 @@ const LoginPage = () => {
         theme: "light",
       });
     } else if (error) return;
-    else navigate('/home');
+    else navigate("/home");
   };
 
   return (
