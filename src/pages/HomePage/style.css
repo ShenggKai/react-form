@@ -1,0 +1,14 @@
+.Home-main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eff3fa;
+}
+
+.Home-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}

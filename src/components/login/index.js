@@ -14,11 +14,10 @@ const GoogleLoginButton = (props) => {
   };
 
   const onFailure = (response) => {
-    console.log("Login Failed! Response:", response);
+    console.log("Login Failed! Response:", response.error);
   };
 
   return (
-    // document.getElementsByClassName('google-button')[0].click()
     <GoogleLogin
       clientId={clientId}
       buttonText="Login demo"
