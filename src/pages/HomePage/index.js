@@ -4,13 +4,13 @@ import { Button, Text, Space } from "../../components";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-const HomePage = ({ setIsLoggedIn }) => {
+const HomePage = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.setItem("isLoggedIn", "false");
-    setIsLoggedIn(false);
-    navigate("/login");
+    // setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (

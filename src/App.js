@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import AppRoutes from "./routes";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LoginPage, HomePage, NotFound } from "./pages";
+import { ProtectedRoute } from "./components";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    if (storedIsLoggedIn === true) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
   return (
-    <Router>
-      <AppRoutes isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        {/* Public Routes*/}
+        <Route path="/" element={<LoginPage />} />
+        <Route path="*" element={<NotFound />} />
+
+        {/* Protected Routes*/}
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/home" element={<HomePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

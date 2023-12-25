@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = ({ setIsLoggedIn }) => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const clientId =
     "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
@@ -120,7 +120,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
       error = true;
     }
 
-    if (values.email !== "user1@gmail.com" || values.password !== "1234_demo") {
+    if (values.email !== "user1@gmail.com" || values.password !== "a") {
       wrongPass = true;
     }
 
@@ -138,9 +138,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
     } else if (error) {
       return;
     } else {
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
       localStorage.setItem('isLoggedIn', 'true');
-      navigate("/");
+      navigate("/home");
     }
   };
 
