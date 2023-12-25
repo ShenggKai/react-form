@@ -119,7 +119,7 @@ const LoginPage = () => {
       error = true;
     }
 
-    if (values.email !== "user1@gmail.com" && values.password !== "1234_demo") {
+    if (values.email !== "user1@gmail.com" || values.password !== "1234_demo") {
       wrongPass = true;
     }
 
@@ -134,8 +134,11 @@ const LoginPage = () => {
         progress: undefined,
         theme: "light",
       });
-    } else if (error) return;
-    else navigate("/home");
+    } else if (error) {
+      return;
+    } else {
+      navigate("/home");
+    }
   };
 
   return (
