@@ -6,7 +6,7 @@ import { ProtectedRoute, AutoLogout } from "./components";
 function App() {
   return (
     <BrowserRouter>
-      <AutoLogout />
+      {/* <AutoLogout /> */}
       <Routes>
         {/* Public Routes*/}
         <Route path="/" element={<LoginPage />} />
