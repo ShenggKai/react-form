@@ -8,7 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100%; */
   background-color: #374957;
 }
 
@@ -28,9 +27,9 @@
 .menu-link {
   text-decoration: none;
   color: white;
-  width: 80px;
+  min-width: 90px;
   height: 25px;
-  padding: 10px 0px 10px 0px;
+  padding: 10px;
   border-radius: 5px;
   border: 2px solid transparent;
   display: flex;

@@ -138,7 +138,6 @@ const LoginPage = () => {
     } else if (error) {
       return;
     } else {
-      // setIsLoggedIn(true);
       localStorage.setItem('isLoggedIn', 'true');
       navigate("/home");
     }

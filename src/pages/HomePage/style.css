@@ -1,6 +1,6 @@
 .Home-main {
   display: flex;
-  min-height: 100vh;
+  height: 88vh;
   flex-direction: column;
   align-items: center;
   background-color: #eff3fa;

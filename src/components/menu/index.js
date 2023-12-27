@@ -19,7 +19,12 @@ const Menu = () => {
           <li key={index} className="menu-item">
             <Link to={item.path} className="menu-link">
               {item.icon}
-              <Text size={18} color={"white"} fontWeight={400}>
+              <Text
+                size={18}
+                color={"white"}
+                fontWeight={400}
+                cursor={"pointer"}
+              >
                 {item.label}
               </Text>
             </Link>

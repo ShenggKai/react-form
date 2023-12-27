@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Navigate } from "react-router-dom";
-import { HomePage } from "../../pages";
+import { Navigate, Outlet } from "react-router-dom";
 
 const isLoggedIn = () => {
   const logged = localStorage.getItem("isLoggedIn");
@@ -15,7 +14,7 @@ const isLoggedIn = () => {
 const ProtectedRoute = () => {
   const auth = isLoggedIn();
 
-  return auth ? <HomePage /> : <Navigate to="/" />;
+  return auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
