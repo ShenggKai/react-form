@@ -8,3 +8,4 @@ export { default as GoogleLoginButton } from "./login";
 export { default as Modal } from "./modal";
 export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as AutoLogout } from "./AutoLogout";
+export { default as Menu } from "./menu";
