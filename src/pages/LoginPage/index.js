@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/images/logo_runner.png";
 import "./style.css";
@@ -119,7 +120,7 @@ const LoginPage = () => {
       error = true;
     }
 
-    if (values.email !== "user1@gmail.com" || values.password !== "1234_demo") {
+    if (values.email !== "user1@gmail.com" || values.password !== "a") {
       wrongPass = true;
     }
 
@@ -137,6 +138,7 @@ const LoginPage = () => {
     } else if (error) {
       return;
     } else {
+      localStorage.setItem('isLoggedIn', 'true');
       navigate("/home");
     }
   };

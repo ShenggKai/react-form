@@ -3,14 +3,21 @@ import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { Text } from "../../components";
 import { GoogleIcon } from "../../assets/icons";
+import { saveToken } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const GoogleLoginButton = (props) => {
+  const navigate = useNavigate();
+
   const clientId =
     "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
 
   const onSuccess = (response) => {
     console.log("Login Success! Response:", response);
+    localStorage.setItem("isLoggedIn", "true");
+    saveToken(response.tokenId);
+    navigate("/home");
   };
 
   const onFailure = (response) => {

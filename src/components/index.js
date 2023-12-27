@@ -6,3 +6,7 @@ export { default as Button } from "./button";
 export { default as Space } from "./space";
 export { default as GoogleLoginButton } from "./login";
 export { default as Modal } from "./modal";
+export { default as ProtectedRoute } from "./ProtectedRoute";
+export { default as AutoLogout } from "./AutoLogout";
+export { default as Menu } from "./menu";
+export { default as Layout } from "./layout";
