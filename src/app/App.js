@@ -7,8 +7,8 @@ import {
   BlogPage,
   AboutPage,
   NotFound,
-} from "./pages";
-import { ProtectedRoute, AutoLogout } from "./components";
+} from "../pages";
+import { ProtectedRoute, AutoLogout } from "../components";
 
 function App() {
   return (
