@@ -1,20 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Button, Text, Space, Layout } from "../../components";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { userLogout } from "../../actions/userActions";
+import { Text, Space, Layout } from "../../components";
 import "./style.css";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(userLogout());
-    navigate("/login");
-  };
-
   return (
     <Layout>
       <main className="Home-main">
@@ -28,8 +17,6 @@ const HomePage = () => {
             Đăng nhập thành công
           </Text>
           <Space height={50} />
-
-          <Button onClick={handleLogout}>Đăng xuất</Button>
         </section>
       </main>
     </Layout>
