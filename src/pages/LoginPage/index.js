@@ -17,8 +17,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../actions/userActions";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const clientId =
     "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
@@ -138,7 +141,7 @@ const LoginPage = () => {
     } else if (error) {
       return;
     } else {
-      localStorage.setItem('isLoggedIn', 'true');
+      dispatch(userLogin());
       navigate("/home");
     }
   };
