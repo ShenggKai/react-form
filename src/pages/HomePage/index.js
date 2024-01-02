@@ -2,13 +2,16 @@
 import React from "react";
 import { Button, Text, Space, Layout } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../actions/userActions";
 import "./style.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.setItem("isLoggedIn", "false");
+    dispatch(userLogout());
     navigate("/login");
   };
 
