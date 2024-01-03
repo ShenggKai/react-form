@@ -9,6 +9,7 @@ import { ReactComponent as Home } from "./home.svg";
 import { ReactComponent as User } from "./user.svg";
 import { ReactComponent as About } from "./about.svg";
 import { ReactComponent as Blog } from "./blog.svg";
+import { ReactComponent as Add } from "./add.svg";
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
   return <Hide width={width} height={height} />;
@@ -44,4 +45,8 @@ export const AboutIcon = ({ width = 18, height = 18 }) => {
 
 export const BlogIcon = ({ width = 18, height = 18 }) => {
   return <Blog width={width} height={height} />;
+};
+
+export const AddIcon = ({ width = 35, height = 35 }) => {
+  return <Add width={width} height={height} />;
 };
