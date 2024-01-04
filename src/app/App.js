@@ -1,13 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  LoginPage,
-  HomePage,
-  UserPage,
-  BlogPage,
-  AboutPage,
-  NotFound,
-} from "../pages";
+import { LoginPage, HomePage, UserPage, BlogPage, AboutPage, NotFound } from "../pages";
 import { ProtectedRoute, AutoLogout } from "../components";
 
 function App() {

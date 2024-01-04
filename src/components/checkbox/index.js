@@ -9,10 +9,7 @@ const CheckBox = (props) => {
 
   return (
     <div className="Container-check">
-      <div
-        className={checked ? "Check-Box fill" : "Check-Box"}
-        onClick={onClick}
-      >
+      <div className={checked ? "Check-Box fill" : "Check-Box"} onClick={onClick}>
         {checked && <CheckIcon />}
       </div>
       <Text color={"#495057"} fontWeight={400}>

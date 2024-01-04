@@ -4,13 +4,7 @@ import "./style.css";
 import { Text } from "../../components";
 import { HideIcon, ShowIcon } from "../../assets/icons";
 
-const Input = ({
-  isPassword = false,
-  value,
-  onChangeEmail,
-  OnchangePassword,
-  isError,
-}) => {
+const Input = ({ isPassword = false, value, onChangeEmail, OnchangePassword, isError }) => {
   const [showPass, setShowPass] = useState(true);
 
   const handleShow = () => {

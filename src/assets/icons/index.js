@@ -64,7 +64,7 @@ export const RadioIcon = ({ width = 25, height = 25 }) => {
 };
 
 export const CheckboxIcon = ({ width = 25, height = 25 }) => {
-  return <CheckboxIcon width={width} height={height} />;
+  return <Checkbox width={width} height={height} />;
 };
 
 export const DropdownIcon = ({ width = 25, height = 25 }) => {
