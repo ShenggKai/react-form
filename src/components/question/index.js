@@ -5,7 +5,7 @@ import "./style.css";
 
 const Question = ({ questionContent }) => {
   return (
-    <div className="Form-container">
+    <div className="Question-container">
       {questionContent.map((field) => {
         return (
           <div className="Question" key={field.name}>

@@ -158,7 +158,7 @@ const LoginPage = () => {
             <Space height={28} />
           </div>
 
-          <div className="Form-container">
+          <div className="Login-container">
             <Input value={values} isError={isError} onChangeEmail={handleEmailInputChange} />
             <Input
               isPassword={true}
