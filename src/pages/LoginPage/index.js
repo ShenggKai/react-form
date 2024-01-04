@@ -23,8 +23,7 @@ import { userLogin } from "../../actions/userActions";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const clientId =
-    "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
+  const clientId = "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -160,11 +159,7 @@ const LoginPage = () => {
           </div>
 
           <div className="Form-container">
-            <Input
-              value={values}
-              isError={isError}
-              onChangeEmail={handleEmailInputChange}
-            />
+            <Input value={values} isError={isError} onChangeEmail={handleEmailInputChange} />
             <Input
               isPassword={true}
               value={values}
