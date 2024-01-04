@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../actions/userActions";
+import { userLogin } from "../../actions";
 
 const LoginPage = () => {
   const dispatch = useDispatch();

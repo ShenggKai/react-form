@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Layout } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogout } from "../../actions/userActions";
+import { userLogout } from "../../actions";
 import "./style.css";
 
 const UserPage = () => {
