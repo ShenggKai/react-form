@@ -3,6 +3,7 @@ import React from "react";
 import { Text, Dropdown } from "../../components";
 import { useDispatch } from "react-redux";
 import { changeTypeQuestion } from "../../actions";
+import { CircleIcon, CloseIcon } from "../../assets/icons";
 import "./style.css";
 
 const Question = ({ questionContent }) => {
@@ -29,13 +30,22 @@ const Question = ({ questionContent }) => {
                 <textarea rows={4} placeholder="your answer" className="Input-text" />
               )}
               {field.type === "mt-choice" && (
-                <select>
+                <div className="Multiple-input-container">
                   {field.listAnswer.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
+                    <div key={item} className="Multiple-input">
+                      <CircleIcon />
+                      <input
+                        type="text"
+                        title="Your option"
+                        defaultValue={item}
+                        className="Multiple-input-text"
+                      />
+                      <div className="Remove-icon" title="Remove">
+                        <CloseIcon />
+                      </div>
+                    </div>
                   ))}
-                </select>
+                </div>
               )}
             </div>
           </div>

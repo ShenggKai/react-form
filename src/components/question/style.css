@@ -42,6 +42,45 @@
   background-color: transparent;
 }
 
+.Multiple-input-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Multiple-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.Multiple-input-text {
+  margin-left: 5px;
+  height: 30px;
+  width: 88%;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  color: #495057;
+  font-size: 14px;
+  outline: none;
+}
+
+.Remove-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9ecf0;
+  }
+}
+
 /* scrollbar */
 /* width */
 ::-webkit-scrollbar {

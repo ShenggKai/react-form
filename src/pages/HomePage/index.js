@@ -22,7 +22,7 @@ const HomePage = () => {
             Untitled form
           </Text>
 
-          <div className="Add-icon" onClick={() => handleAdd()}>
+          <div className="Add-icon" title="Add question" onClick={() => handleAdd()}>
             <AddIcon />
           </div>
 
