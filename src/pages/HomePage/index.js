@@ -1,27 +1,17 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React from "react";
 import { Text, Layout, Button, Question } from "../../components";
 import { AddIcon } from "../../assets/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addQuestion } from "../../actions";
 import "./style.css";
 
 const HomePage = () => {
-  const [questionContent, setQuestionContent] = useState([
-    {
-      name: "question_0",
-      label: "Untitled question",
-      type: "paragraph",
-      list: ["a", "b"],
-    },
-  ]);
+  const dispatch = useDispatch();
+  const questions = useSelector((state) => state.question);
 
-  const addQuestion = () => {
-    const field = {
-      name: `question_${questionContent.length}`,
-      label: "Untitled question",
-      type: "paragraph",
-      list: ["a", "b"],
-    };
-    setQuestionContent([...questionContent, field]);
+  const handleAdd = () => {
+    dispatch(addQuestion("Untitled", "paragraph", ["a", "b"]));
   };
 
   return (
@@ -32,7 +22,7 @@ const HomePage = () => {
             Untitled form
           </Text>
 
-          <div className="Add-icon" onClick={() => addQuestion()}>
+          <div className="Add-icon" onClick={() => handleAdd()}>
             <AddIcon />
           </div>
 
@@ -40,7 +30,7 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question questionContent={questionContent} />
+        <Question questionContent={questions} />
       </main>
     </Layout>
   );

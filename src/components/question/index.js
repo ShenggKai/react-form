@@ -1,19 +1,27 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Text, Dropdown } from "../../components";
+import { useDispatch } from "react-redux";
+import { changeTypeQuestion } from "../../actions";
 import "./style.css";
 
 const Question = ({ questionContent }) => {
+  const dispatch = useDispatch();
+
+  const handleTypeChange = (id, selectedOption) => {
+    dispatch(changeTypeQuestion(id, selectedOption));
+  };
+
   return (
     <div className="Question-container">
       {questionContent.map((field) => {
         return (
-          <div className="Question" key={field.name}>
+          <div className="Question" key={field.id}>
             <div className="Question-header">
-              <Text size={18}>{field.label}</Text>
+              <Text size={18}>{field.title}</Text>
               <Dropdown
                 options={questionContent}
-                onChange={(selectedOption) => console.log(selectedOption)}
+                onChange={(selectedOption) => handleTypeChange(field.id, selectedOption)}
               />
             </div>
             <div className="Answer">
@@ -22,7 +30,7 @@ const Question = ({ questionContent }) => {
               )}
               {field.type === "mt-choice" && (
                 <select>
-                  {field.list.map((item) => (
+                  {field.listAnswer.map((item) => (
                     <option key={item} value={item}>
                       {item}
                     </option>

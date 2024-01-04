@@ -1,24 +1,10 @@
-import * as actions from "../actions/actionTypes";
+import { combineReducers } from "@reduxjs/toolkit";
+import userReducer from "../reducers/userReducer";
+import questionReducer from "../reducers/questionReducer";
 
-const initialState = {
-  isLoggedIn: localStorage.getItem("isLoggedIn") || "false",
-};
+const rootReducer = combineReducers({
+  user: userReducer,
+  question: questionReducer,
+});
 
-const reducers = (state = initialState, action) => {
-  switch (action.type) {
-    case actions.LOGIN:
-      return {
-        ...state,
-        isLoggedIn: "true",
-      };
-    case actions.LOGOUT:
-      return {
-        ...state,
-        isLoggedIn: "false",
-      };
-    default:
-      return state;
-  }
-};
-
-export default reducers;
+export default rootReducer;
