@@ -1,36 +1,36 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Button, Text, Space, Layout } from "../../components";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { userLogout } from "../../actions/userActions";
+import { Text, Layout, Button, Question } from "../../components";
+import { AddIcon } from "../../assets/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addQuestion } from "../../actions";
 import "./style.css";
 
 const HomePage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const questions = useSelector((state) => state.question);
 
-  const handleLogout = () => {
-    dispatch(userLogout());
-    navigate("/login");
+  const handleAdd = () => {
+    dispatch(addQuestion("Untitled", "paragraph", ["a", "b"]));
   };
 
   return (
     <Layout>
       <main className="Home-main">
-        <section className="Home-section">
-          <Text size={24} fontWeight={600}>
-            Welcome to my homepage!
+        <div className="Form-header">
+          <Text size={30} fontWeight={600}>
+            Untitled form
           </Text>
-          <Space height={10} />
 
-          <Text size={16} fontWeight={400}>
-            Đăng nhập thành công
-          </Text>
-          <Space height={50} />
+          <div className="Add-icon" onClick={() => handleAdd()}>
+            <AddIcon />
+          </div>
 
-          <Button onClick={handleLogout}>Đăng xuất</Button>
-        </section>
+          <div className="Button-send">
+            <Button>Send</Button>
+          </div>
+        </div>
+        <Question questionContent={questions} />
       </main>
     </Layout>
   );

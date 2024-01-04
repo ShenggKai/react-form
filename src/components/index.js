@@ -10,3 +10,5 @@ export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as AutoLogout } from "./AutoLogout";
 export { default as Menu } from "./menu";
 export { default as Layout } from "./layout";
+export { default as Dropdown } from "./dropdown";
+export { default as Question } from "./question";

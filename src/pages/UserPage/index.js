@@ -1,8 +1,19 @@
 import React from "react";
-import { Layout } from "../../components";
+import { Button, Layout } from "../../components";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../actions";
 import "./style.css";
 
 const UserPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(userLogout());
+    navigate("/login");
+  };
+
   return (
     <Layout>
       <div className="user-page">
@@ -15,6 +26,10 @@ const UserPage = () => {
             <strong>Email:</strong> user1@gmail.com
           </p>
         </div>
+      </div>
+
+      <div className="logout-button">
+        <Button onClick={handleLogout}>Đăng xuất</Button>
       </div>
     </Layout>
   );

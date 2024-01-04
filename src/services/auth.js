@@ -1,4 +1,4 @@
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const TOKEN_KEY = "access_token";
 
@@ -21,7 +21,7 @@ export const isTokenExpired = () => {
     const decodedToken = jwtDecode(token);
     const currentTime = Date.now() / 1000;
 
-    return decodedToken.exp  < currentTime; // correct is <
+    return decodedToken.exp < currentTime; // correct is <
   }
 
   return true;

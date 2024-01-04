@@ -4,7 +4,7 @@ import reducers from "./rootReducer";
 const store = configureStore({ reducer: reducers });
 
 store.subscribe(() => {
-  localStorage.setItem("isLoggedIn", store.getState().isLoggedIn);
+  localStorage.setItem("isLoggedIn", store.getState().user.isLoggedIn);
 
   //log
   console.log("Store changed!", store.getState());
