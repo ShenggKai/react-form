@@ -4,7 +4,7 @@ const initialState = [
   {
     id: 0,
     title: "Untitled question first",
-    type: "paragraph",
+    type: "mt-choice",
     listAnswer: ["answer 1", "answer 2"],
   },
 ];
