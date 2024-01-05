@@ -14,6 +14,8 @@ import { ReactComponent as Paragraph } from "./paragraph.svg";
 import { ReactComponent as Radio } from "./radio.svg";
 import { ReactComponent as Checkbox } from "./checkbox.svg";
 import { ReactComponent as Dropdown } from "./dropdown.svg";
+import { ReactComponent as Circle } from "./circle.svg";
+import { ReactComponent as Bin } from "./bin.svg";
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
   return <Hide width={width} height={height} />;
@@ -69,4 +71,12 @@ export const CheckboxIcon = ({ width = 25, height = 25 }) => {
 
 export const DropdownIcon = ({ width = 25, height = 25 }) => {
   return <Dropdown width={width} height={height} />;
+};
+
+export const CircleIcon = ({ width = 20, height = 20 }) => {
+  return <Circle width={width} height={height} />;
+};
+
+export const BinIcon = ({ width = 24, height = 24 }) => {
+  return <Bin width={width} height={height} />;
 };
