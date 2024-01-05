@@ -5,7 +5,7 @@ const initialState = [
     id: 0,
     title: "Untitled question first",
     type: "mt-choice",
-    listAnswer: ["answer 1", "answer 2"],
+    listOption: ["answer 1", "answer 2"],
   },
 ];
 
@@ -20,7 +20,7 @@ const questionReducer = (state = initialState, action) => {
           id: lastID++,
           title: action.payload.title,
           type: action.payload.type,
-          listAnswer: action.payload.listAnswer,
+          listOption: action.payload.listOption,
         },
       ];
 
@@ -32,6 +32,23 @@ const questionReducer = (state = initialState, action) => {
         if (question.id === action.payload.id) return { ...question, type: action.payload.type };
         else return question;
       });
+
+    case actions.ADD_OPTION:
+      let id = action.payload.id;
+      let index = state.findIndex((item) => item.id === id);
+
+      if (index !== -1) {
+        return [
+          ...state.slice(0, index),
+          {
+            ...state[index],
+            listOption: [...state[index].listOption, "your option"],
+          },
+          ...state.slice(index + 1),
+        ];
+      }
+
+      return state;
 
     default:
       return state;

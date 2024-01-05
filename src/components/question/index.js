@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, Dropdown, Line, Switch } from "../../components";
 import { useDispatch } from "react-redux";
-import { changeTypeQuestion } from "../../actions";
+import { changeTypeQuestion, addOption } from "../../actions";
 import { CircleIcon, CloseIcon, BinIcon } from "../../assets/icons";
 import "./style.css";
 
@@ -11,6 +11,10 @@ const Question = ({ questionContent }) => {
 
   const handleTypeChange = (id, selectedOption) => {
     dispatch(changeTypeQuestion(id, selectedOption));
+  };
+
+  const handleAddOption = (id) => {
+    dispatch(addOption(id));
   };
 
   return (
@@ -31,7 +35,7 @@ const Question = ({ questionContent }) => {
               )}
               {field.type === "mt-choice" && (
                 <div className="Multiple-input-container">
-                  {field.listAnswer.map((item) => (
+                  {field.listOption.map((item) => (
                     <div key={item} className="Multiple-input">
                       <CircleIcon />
                       <input
@@ -45,6 +49,17 @@ const Question = ({ questionContent }) => {
                       </div>
                     </div>
                   ))}
+
+                  <div className="Add-option">
+                    <CircleIcon />
+                    <input
+                      type="text"
+                      title="Add option"
+                      placeholder="Add option"
+                      className="Add-option-text"
+                      onClick={() => handleAddOption(field.id)}
+                    />
+                  </div>
                 </div>
               )}
             </div>

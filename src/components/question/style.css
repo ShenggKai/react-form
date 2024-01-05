@@ -62,10 +62,36 @@
   height: 30px;
   width: 88%;
   border: none;
-  border-bottom: 1px solid #ced4da;
+  border-bottom: 1px solid transparent;
   color: #495057;
   font-size: 14px;
   outline: none;
+}
+
+.Add-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Add-option-text {
+  margin-left: 20px;
+  height: 30px;
+  width: 9%;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: #495057;
+  font-size: 14px;
+  outline: none;
+}
+
+.Multiple-input-text:hover,
+.Add-option-text:hover {
+  border-bottom: 1px solid #ced4da;
+}
+
+.Multiple-input-text:focus {
+  border-bottom: 2px solid #475b6a;
 }
 
 .Remove-icon {

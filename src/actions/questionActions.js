@@ -1,11 +1,11 @@
 import * as actions from "./actionTypes";
 
-export const addQuestion = (title, type, listAnswer) => ({
+export const addQuestion = (title, type, listOption) => ({
   type: actions.ADD_QUESTION,
   payload: {
     title: title,
     type: type,
-    listAnswer: listAnswer,
+    listOption: listOption,
   },
 });
 
@@ -24,10 +24,9 @@ export const changeTypeQuestion = (id, type) => ({
   },
 });
 
-export const addAnswer = (id, listAnswer) => ({
-  type: actions.ADD_ANSWER,
+export const addOption = (id) => ({
+  type: actions.ADD_OPTION,
   payload: {
     id: id,
-    listAnswer: listAnswer,
   },
 });
