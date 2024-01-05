@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Dropdown, Line } from "../../components";
+import { Text, Dropdown, Line, Switch } from "../../components";
 import { useDispatch } from "react-redux";
 import { changeTypeQuestion } from "../../actions";
 import { CircleIcon, CloseIcon, BinIcon } from "../../assets/icons";
@@ -50,8 +50,11 @@ const Question = ({ questionContent }) => {
             </div>
             <Line />
             <div className="Question-footer">
-              <BinIcon />
-              <Line height={50} width={1}/>
+              <div className="Delete-icon">
+                <BinIcon />
+              </div>
+              <Line height={50} width={1} />
+              <Switch label="Required" />
             </div>
           </div>
         );

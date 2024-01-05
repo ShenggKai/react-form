@@ -83,10 +83,24 @@
 }
 
 .Question-footer {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   justify-content: end;
   align-items: center;
+}
+
+.Delete-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9ecf0;
+  }
 }
 
 /* scrollbar */
