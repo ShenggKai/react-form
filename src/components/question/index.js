@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Dropdown } from "../../components";
+import { Text, Dropdown, Line } from "../../components";
 import { useDispatch } from "react-redux";
 import { changeTypeQuestion } from "../../actions";
-import { CircleIcon, CloseIcon } from "../../assets/icons";
+import { CircleIcon, CloseIcon, BinIcon } from "../../assets/icons";
 import "./style.css";
 
 const Question = ({ questionContent }) => {
@@ -47,6 +47,11 @@ const Question = ({ questionContent }) => {
                   ))}
                 </div>
               )}
+            </div>
+            <Line />
+            <div className="Question-footer">
+              <BinIcon />
+              <Line height={50} width={1}/>
             </div>
           </div>
         );
