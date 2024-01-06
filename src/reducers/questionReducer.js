@@ -2,14 +2,16 @@ import * as actions from "../actions/actionTypes";
 
 const initialState = [
   {
-    id: 0,
+    questionID: 0,
     title: "Untitled question first",
     type: "mt-choice",
-    listOption: ["answer 1", "answer 2"],
+    listOption: [{ optionID: 0, content: "Option 1" }],
   },
 ];
 
-let lastID = 1;
+let lastQuestionID = 1;
+let lastOptionID = 1;
+let optionLength = 2; // for default option's content
 
 const questionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,7 +19,7 @@ const questionReducer = (state = initialState, action) => {
       return [
         ...state,
         {
-          id: lastID++,
+          questionID: lastQuestionID++,
           title: action.payload.title,
           type: action.payload.type,
           listOption: action.payload.listOption,
@@ -25,30 +27,50 @@ const questionReducer = (state = initialState, action) => {
       ];
 
     case actions.REMOVE_QUESTION:
-      return state.filter((question) => question.id !== action.payload.id);
+      return state.filter((question) => question.questionID !== action.payload.questionID);
 
     case actions.CHANGE_TYPE_QUESTION:
       return state.map((question) => {
-        if (question.id === action.payload.id) return { ...question, type: action.payload.type };
+        if (question.questionID === action.payload.questionID)
+          return { ...question, type: action.payload.type };
         else return question;
       });
 
     case actions.ADD_OPTION:
-      let id = action.payload.id;
-      let index = state.findIndex((item) => item.id === id);
+      let questionID = action.payload.questionID;
+      let index = state.findIndex((item) => item.questionID === questionID);
 
       if (index !== -1) {
         return [
           ...state.slice(0, index),
           {
             ...state[index],
-            listOption: [...state[index].listOption, "your option"],
+            listOption: [
+              ...state[index].listOption,
+              { optionID: lastOptionID++, content: `Option ${optionLength++}` },
+            ],
           },
           ...state.slice(index + 1),
         ];
       }
 
       return state;
+
+    case actions.REMOVE_OPTION:
+      let questionId_temp = action.payload.questionID;
+      let optionID = action.payload.optionID;
+      let index_d = state.findIndex((item) => item.questionID === questionId_temp);
+
+      return state.map((question) => {
+        if (question.questionID === index_d) {
+          optionLength--;
+          return {
+            ...question,
+            listOption: question.listOption.filter((item) => item.optionID !== optionID),
+          };
+        }
+        return question;
+      });
 
     default:
       return state;

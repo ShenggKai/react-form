@@ -8,8 +8,6 @@ import "./style.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const questions = useSelector((state) => state.question);
-
   const handleAdd = () => {
     dispatch(addQuestion("Untitled", "paragraph", ["a", "b"]));
   };
@@ -30,7 +28,7 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question questionContent={questions} />
+        <Question/>
       </main>
     </Layout>
   );
