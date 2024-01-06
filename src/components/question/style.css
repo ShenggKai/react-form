@@ -106,6 +106,12 @@
   }
 }
 
+.Placeholder-icon {
+  display: flex;
+  padding: 17px;
+  margin-top: 10px;
+}
+
 .Question-footer {
   margin-top: 10px;
   display: flex;

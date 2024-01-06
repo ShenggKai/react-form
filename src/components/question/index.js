@@ -45,17 +45,21 @@ const Question = () => {
                       <CircleIcon />
                       <input
                         type="text"
-                        title="Your option"
+                        placeholder="your option"
                         defaultValue={item.content}
                         className="Multiple-input-text"
                       />
-                      <div
-                        className="Remove-icon"
-                        title="Remove"
-                        onClick={() => handleRemoveOption(field.questionID, item.optionID)}
-                      >
-                        <CloseIcon />
-                      </div>
+                      {field.listOption.length > 1 ? (
+                        <div
+                          className="Remove-icon"
+                          title="Remove"
+                          onClick={() => handleRemoveOption(field.questionID, item.optionID)}
+                        >
+                          <CloseIcon />
+                        </div>
+                      ) : (
+                        <div className="Placeholder-icon" />
+                      )}
                     </div>
                   ))}
 

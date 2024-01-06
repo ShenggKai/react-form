@@ -1,6 +1,7 @@
 .Dropdown-container {
   display: flex;
   width: 25%;
+  user-select: none;
 }
 
 .Dropdown-container select {
