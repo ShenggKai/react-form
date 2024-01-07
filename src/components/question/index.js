@@ -16,20 +16,14 @@ const Question = () => {
 
   const handleAddOption = (questionID) => {
     dispatch(addOption(questionID));
-
-    console.log("Add option for question:", questionID);
   };
 
   const handleRemoveOption = (questionID, optionID) => {
     dispatch(removeOption(questionID, optionID));
-
-    console.log("remove question, id:", questionID, optionID);
   };
 
   const handleRemoveQuestion = (questionID) => {
     dispatch(removeQuestion(questionID));
-
-    console.log("remove:", questionID);
   };
   return (
     <div className="Question-container">

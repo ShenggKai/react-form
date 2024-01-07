@@ -1,12 +1,7 @@
 import * as actions from "./actionTypes";
 
-export const addQuestion = (title, type, listOption) => ({
+export const addQuestion = () => ({
   type: actions.ADD_QUESTION,
-  payload: {
-    title: title,
-    type: type,
-    listOption: listOption,
-  },
 });
 
 export const removeQuestion = (questionID) => ({

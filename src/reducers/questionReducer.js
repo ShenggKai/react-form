@@ -1,28 +1,40 @@
 import * as actions from "../actions/actionTypes";
 
+let questionLength = 0;
+let optionLength = 0;
+
+function generateQuestionID(number) {
+  return String(number).padStart(4, "0").slice(-4);
+}
+
+function generateOptionID(questionID, optionLength) {
+  return `${questionID}_${String(optionLength).padStart(4, "0")}`;
+}
+
 const initialState = [
   {
-    questionID: 0,
+    questionID: "0000",
     title: "Untitled question first",
-    type: "mt-choice",
-    listOption: [{ optionID: 0, content: "Option 1" }],
+    type: "paragraph",
+    listOption: [{ optionID: "0000_0000", content: "Option 1" }],
   },
 ];
-
-let lastQuestionID = 1;
-let lastOptionID = 1;
-let optionLength = 2; // for default option's content
 
 const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_QUESTION:
+      questionLength++;
+      optionLength = 0;
+
+      let qID = generateQuestionID(questionLength);
+
       return [
         ...state,
         {
-          questionID: lastQuestionID++,
-          title: action.payload.title,
-          type: action.payload.type,
-          listOption: action.payload.listOption,
+          questionID: qID,
+          title: "Untitled",
+          type: "paragraph",
+          listOption: [{ optionID: generateOptionID(qID, optionLength), content: "Option 1" }],
         },
       ];
 
@@ -37,8 +49,12 @@ const questionReducer = (state = initialState, action) => {
       });
 
     case actions.ADD_OPTION:
+      optionLength++;
       let questionID = action.payload.questionID;
       let index = state.findIndex((item) => item.questionID === questionID);
+
+      // use for default option's label
+      let option_number = state[index].listOption.length + 1;
 
       if (index !== -1) {
         return [
@@ -47,7 +63,10 @@ const questionReducer = (state = initialState, action) => {
             ...state[index],
             listOption: [
               ...state[index].listOption,
-              { optionID: lastOptionID++, content: `Option ${optionLength++}` },
+              {
+                optionID: generateOptionID(questionID, optionLength),
+                content: `Option ${option_number}`,
+              },
             ],
           },
           ...state.slice(index + 1),
@@ -59,11 +78,9 @@ const questionReducer = (state = initialState, action) => {
     case actions.REMOVE_OPTION:
       let questionId_temp = action.payload.questionID;
       let optionID = action.payload.optionID;
-      let index_d = state.findIndex((item) => item.questionID === questionId_temp);
 
       return state.map((question) => {
-        if (question.questionID === index_d) {
-          optionLength--;
+        if (question.questionID === questionId_temp) {
           return {
             ...question,
             listOption: question.listOption.filter((item) => item.optionID !== optionID),

@@ -2,14 +2,14 @@
 import React from "react";
 import { Text, Layout, Button, Question } from "../../components";
 import { AddIcon } from "../../assets/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addQuestion } from "../../actions";
 import "./style.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const handleAdd = () => {
-    dispatch(addQuestion("Untitled", "paragraph", [{ optionID: 0, content: "Option 1" }]));
+  const handleAddQuestion = () => {
+    dispatch(addQuestion());
   };
 
   return (
@@ -20,7 +20,7 @@ const HomePage = () => {
             Untitled form
           </Text>
 
-          <div className="Add-icon" title="Add question" onClick={() => handleAdd()}>
+          <div className="Add-icon" title="Add question" onClick={handleAddQuestion}>
             <AddIcon />
           </div>
 
