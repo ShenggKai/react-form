@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, Dropdown, Line, Switch } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changeTypeQuestion, addOption, removeOption } from "../../actions";
+import { changeTypeQuestion, removeQuestion, addOption, removeOption } from "../../actions";
 import { CircleIcon, CloseIcon, BinIcon } from "../../assets/icons";
 import "./style.css";
 
@@ -16,12 +16,21 @@ const Question = () => {
 
   const handleAddOption = (questionID) => {
     dispatch(addOption(questionID));
+
+    console.log("Add option for question:", questionID);
   };
 
   const handleRemoveOption = (questionID, optionID) => {
     dispatch(removeOption(questionID, optionID));
+
+    console.log("remove question, id:", questionID, optionID);
   };
 
+  const handleRemoveQuestion = (questionID) => {
+    dispatch(removeQuestion(questionID));
+
+    console.log("remove:", questionID);
+  };
   return (
     <div className="Question-container">
       {questionContent.map((field) => {
@@ -78,7 +87,7 @@ const Question = () => {
             </div>
             <Line />
             <div className="Question-footer">
-              <div className="Delete-icon">
+              <div className="Delete-icon" onClick={() => handleRemoveQuestion(field.questionID)}>
                 <BinIcon />
               </div>
               <Line height={32} width={1} />

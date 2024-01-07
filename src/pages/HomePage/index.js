@@ -9,7 +9,7 @@ import "./style.css";
 const HomePage = () => {
   const dispatch = useDispatch();
   const handleAdd = () => {
-    dispatch(addQuestion("Untitled", "paragraph", ["a", "b"]));
+    dispatch(addQuestion("Untitled", "paragraph", [{ optionID: 0, content: "Option 1" }]));
   };
 
   return (
@@ -28,7 +28,7 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question/>
+        <Question />
       </main>
     </Layout>
   );
