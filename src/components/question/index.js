@@ -39,7 +39,12 @@ const Question = () => {
             </div>
             <div className="Question-main">
               {field.type === "paragraph" && (
-                <textarea rows={4} placeholder="your answer" className="Input-text" />
+                <textarea
+                  rows={4}
+                  placeholder="Long answer text"
+                  disabled
+                  className="Paragraph-input"
+                />
               )}
               {field.type === "mt-choice" && (
                 <div className="Multiple-input-container">

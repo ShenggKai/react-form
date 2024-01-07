@@ -25,14 +25,12 @@
   align-items: center;
 }
 
-.Input-text {
+.Paragraph-input {
   margin-top: 15px;
-  padding-inline: 10px;
   height: 30px;
   width: 98%;
   border: none;
   border-bottom: 1px solid #ced4da;
-  border-radius: 0;
   background-color: transparent;
   color: #495057;
   font-size: 14px;
