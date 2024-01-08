@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Dropdown, Line, Switch } from "../../components";
+import { Text, Dropdown, Line, Switch, OptionInput } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changeTypeQuestion, removeQuestion, addOption, removeOption } from "../../actions";
-import { CircleIcon, CloseIcon, BinIcon, RectangleIcon } from "../../assets/icons";
+import { changeTypeQuestion, removeQuestion } from "../../actions";
+import { BinIcon } from "../../assets/icons";
 import "./style.css";
 
 const Question = () => {
@@ -12,14 +12,6 @@ const Question = () => {
 
   const handleTypeChange = (questionID, selectedOption) => {
     dispatch(changeTypeQuestion(questionID, selectedOption));
-  };
-
-  const handleAddOption = (questionID) => {
-    dispatch(addOption(questionID));
-  };
-
-  const handleRemoveOption = (questionID, optionID) => {
-    dispatch(removeOption(questionID, optionID));
   };
 
   const handleRemoveQuestion = (questionID) => {
@@ -38,125 +30,7 @@ const Question = () => {
               />
             </div>
             <div className="Question-main">
-              {field.type === "paragraph" && (
-                <textarea
-                  rows={4}
-                  placeholder="Long answer text"
-                  disabled
-                  className="Paragraph-input"
-                />
-              )}
-              {field.type === "mt-choice" && (
-                <div className="Multiple-input-container">
-                  {field.listOption.map((item) => (
-                    <div key={item.optionID} className="Multiple-input">
-                      <CircleIcon />
-                      <input
-                        type="text"
-                        placeholder="your option"
-                        defaultValue={item.content}
-                        className="Multiple-input-text"
-                      />
-                      {field.listOption.length > 1 ? (
-                        <div
-                          className="Remove-icon"
-                          title="Remove"
-                          onClick={() => handleRemoveOption(field.questionID, item.optionID)}
-                        >
-                          <CloseIcon />
-                        </div>
-                      ) : (
-                        <div className="Placeholder-icon" />
-                      )}
-                    </div>
-                  ))}
-
-                  <div className="Add-option">
-                    <CircleIcon />
-                    <input
-                      type="text"
-                      title="Add option"
-                      placeholder="Add option"
-                      className="Add-option-text"
-                      onClick={() => handleAddOption(field.questionID)}
-                    />
-                  </div>
-                </div>
-              )}
-              {field.type === "checkbox" && (
-                <div className="Multiple-input-container">
-                  {field.listOption.map((item) => (
-                    <div key={item.optionID} className="Multiple-input">
-                      <RectangleIcon />
-
-                      <input
-                        type="text"
-                        placeholder="your option"
-                        defaultValue={item.content}
-                        className="Multiple-input-text"
-                      />
-                      {field.listOption.length > 1 ? (
-                        <div
-                          className="Remove-icon"
-                          title="Remove"
-                          onClick={() => handleRemoveOption(field.questionID, item.optionID)}
-                        >
-                          <CloseIcon />
-                        </div>
-                      ) : (
-                        <div className="Placeholder-icon" />
-                      )}
-                    </div>
-                  ))}
-
-                  <div className="Add-option">
-                    <RectangleIcon />
-                    <input
-                      type="text"
-                      title="Add option"
-                      placeholder="Add option"
-                      className="Add-option-text"
-                      onClick={() => handleAddOption(field.questionID)}
-                    />
-                  </div>
-                </div>
-              )}
-              {field.type === "dropdown" && (
-                <div className="Multiple-input-container">
-                  {field.listOption.map((item, index) => (
-                    <div key={item.optionID} className="Multiple-input">
-                      <div className="Dropdown-text-index">{index + 1}.</div>
-                      <input
-                        type="text"
-                        placeholder="your option"
-                        defaultValue={item.content}
-                        className="Multiple-input-text"
-                      />
-                      {field.listOption.length > 1 ? (
-                        <div
-                          className="Remove-icon"
-                          title="Remove"
-                          onClick={() => handleRemoveOption(field.questionID, item.optionID)}
-                        >
-                          <CloseIcon />
-                        </div>
-                      ) : (
-                        <div className="Placeholder-icon" />
-                      )}
-                    </div>
-                  ))}
-
-                  <div className="Add-option">
-                    <div className="Dropdown-text-index">{field.listOption.length + 1}.</div>
-                    <input
-                      type="text"
-                      placeholder="Add option"
-                      className="Add-option-text"
-                      onClick={() => handleAddOption(field.questionID)}
-                    />
-                  </div>
-                </div>
-              )}
+              <OptionInput field={field} />
             </div>
             <Line />
             <div className="Question-footer">
