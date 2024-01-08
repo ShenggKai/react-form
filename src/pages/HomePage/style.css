@@ -25,4 +25,5 @@
   display: flex;
   width: 110px;
   height: 40px;
+  user-select: none;
 }

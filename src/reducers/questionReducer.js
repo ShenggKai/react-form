@@ -1,36 +1,92 @@
 import * as actions from "../actions/actionTypes";
 
+let questionLength = 0;
+let optionLength = 0;
+
+function generateQuestionID(number) {
+  return String(number).padStart(4, "0").slice(-4);
+}
+
+function generateOptionID(questionID, optionLength) {
+  return `${questionID}_${String(optionLength).padStart(4, "0")}`;
+}
+
 const initialState = [
   {
-    id: 0,
+    questionID: "0000",
     title: "Untitled question first",
     type: "paragraph",
-    listAnswer: ["answer 1", "answer 2"],
+    listOption: [{ optionID: "0000_0000", content: "Option 1" }],
   },
 ];
-
-let lastID = 1;
 
 const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_QUESTION:
+      questionLength++;
+      optionLength = 0;
+
+      let qID = generateQuestionID(questionLength);
+
       return [
         ...state,
         {
-          id: lastID++,
-          title: action.payload.title,
-          type: action.payload.type,
-          listAnswer: action.payload.listAnswer,
+          questionID: qID,
+          title: "Untitled",
+          type: "paragraph",
+          listOption: [{ optionID: generateOptionID(qID, optionLength), content: "Option 1" }],
         },
       ];
 
     case actions.REMOVE_QUESTION:
-      return state.filter((question) => question.id !== action.payload.id);
+      return state.filter((question) => question.questionID !== action.payload.questionID);
 
     case actions.CHANGE_TYPE_QUESTION:
       return state.map((question) => {
-        if (question.id === action.payload.id) return { ...question, type: action.payload.type };
+        if (question.questionID === action.payload.questionID)
+          return { ...question, type: action.payload.type };
         else return question;
+      });
+
+    case actions.ADD_OPTION:
+      optionLength++;
+      let questionID = action.payload.questionID;
+      let index = state.findIndex((item) => item.questionID === questionID);
+
+      // use for default option's label
+      let option_number = state[index].listOption.length + 1;
+
+      if (index !== -1) {
+        return [
+          ...state.slice(0, index),
+          {
+            ...state[index],
+            listOption: [
+              ...state[index].listOption,
+              {
+                optionID: generateOptionID(questionID, optionLength),
+                content: `Option ${option_number}`,
+              },
+            ],
+          },
+          ...state.slice(index + 1),
+        ];
+      }
+
+      return state;
+
+    case actions.REMOVE_OPTION:
+      let questionId_temp = action.payload.questionID;
+      let optionID = action.payload.optionID;
+
+      return state.map((question) => {
+        if (question.questionID === questionId_temp) {
+          return {
+            ...question,
+            listOption: question.listOption.filter((item) => item.optionID !== optionID),
+          };
+        }
+        return question;
       });
 
     default:

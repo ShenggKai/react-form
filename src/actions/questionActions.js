@@ -1,33 +1,35 @@
 import * as actions from "./actionTypes";
 
-export const addQuestion = (title, type, listAnswer) => ({
+export const addQuestion = () => ({
   type: actions.ADD_QUESTION,
-  payload: {
-    title: title,
-    type: type,
-    listAnswer: listAnswer,
-  },
 });
 
-export const removeQuestion = (id) => ({
+export const removeQuestion = (questionID) => ({
   type: actions.REMOVE_QUESTION,
   payload: {
-    id: id,
+    questionID: questionID,
   },
 });
 
-export const changeTypeQuestion = (id, type) => ({
+export const changeTypeQuestion = (questionID, type) => ({
   type: actions.CHANGE_TYPE_QUESTION,
   payload: {
-    id: id,
+    questionID: questionID,
     type: type,
   },
 });
 
-export const addAnswer = (id, listAnswer) => ({
-  type: actions.ADD_ANSWER,
+export const addOption = (questionID) => ({
+  type: actions.ADD_OPTION,
   payload: {
-    id: id,
-    listAnswer: listAnswer,
+    questionID: questionID,
+  },
+});
+
+export const removeOption = (questionID, optionID) => ({
+  type: actions.REMOVE_OPTION,
+  payload: {
+    questionID: questionID,
+    optionID: optionID,
   },
 });

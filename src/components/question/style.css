@@ -15,6 +15,7 @@
   min-height: 90px;
   border-radius: 10px;
   padding: 20px;
+  flex-shrink: 0;
 }
 
 .Question-header {
@@ -24,22 +25,112 @@
   align-items: center;
 }
 
-.Input-text {
+.Paragraph-input {
   margin-top: 15px;
-  padding-inline: 10px;
   height: 30px;
   width: 98%;
   border: none;
   border-bottom: 1px solid #ced4da;
-  border-radius: 0;
   background-color: transparent;
+  color: #495057;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  user-select: none;
+}
+
+.Question-main {
+  background-color: transparent;
+  margin-bottom: 20px;
+}
+
+.Multiple-input-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Multiple-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.Multiple-input-text {
+  margin-left: 10px;
+  height: 30px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid transparent;
   color: #495057;
   font-size: 14px;
   outline: none;
 }
 
-.Answer {
-  background-color: transparent;
+.Add-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Add-option-text {
+  margin-left: 10px;
+  height: 30px;
+  width: 70px;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: #495057;
+  font-size: 14px;
+  outline: none;
+}
+
+.Multiple-input-text:hover,
+.Add-option-text:hover {
+  border-bottom: 1px solid #ced4da;
+}
+
+.Multiple-input-text:focus {
+  border-bottom: 2px solid #475b6a;
+}
+
+.Remove-icon {
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9ecf0;
+  }
+}
+
+.Placeholder-icon {
+  display: flex;
+  padding: 17px;
+  margin-top: 10px;
+}
+
+.Question-footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.Delete-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9ecf0;
+  }
 }
 
 /* scrollbar */
