@@ -63,7 +63,7 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid transparent;
-  color: #495057;
+  color: #202124;
   font-size: 14px;
   outline: none;
 }
@@ -110,6 +110,14 @@
   display: flex;
   padding: 17px;
   margin-top: 10px;
+}
+
+.Dropdown-text-index {
+  font-size: 16px;
+  color: #202124;
+  padding-bottom: 4px;
+  margin-right: 6px;
+  user-select: none;
 }
 
 .Question-footer {
