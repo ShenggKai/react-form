@@ -16,6 +16,7 @@ import { ReactComponent as Checkbox } from "./checkbox.svg";
 import { ReactComponent as Dropdown } from "./dropdown.svg";
 import { ReactComponent as Circle } from "./circle.svg";
 import { ReactComponent as Bin } from "./bin.svg";
+import { ReactComponent as Triangle } from "./triangle.svg";
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
   return <Hide width={width} height={height} />;
@@ -57,19 +58,19 @@ export const AddIcon = ({ width = 35, height = 35 }) => {
   return <Add width={width} height={height} />;
 };
 
-export const ParagraphIcon = ({ width = 25, height = 25 }) => {
+export const ParagraphIcon = ({ width = 24, height = 24 }) => {
   return <Paragraph width={width} height={height} />;
 };
 
-export const RadioIcon = ({ width = 25, height = 25 }) => {
+export const RadioIcon = ({ width = 24, height = 24 }) => {
   return <Radio width={width} height={height} />;
 };
 
-export const CheckboxIcon = ({ width = 25, height = 25 }) => {
+export const CheckboxIcon = ({ width = 24, height = 24 }) => {
   return <Checkbox width={width} height={height} />;
 };
 
-export const DropdownIcon = ({ width = 25, height = 25 }) => {
+export const DropdownIcon = ({ width = 24, height = 24 }) => {
   return <Dropdown width={width} height={height} />;
 };
 
@@ -79,4 +80,8 @@ export const CircleIcon = ({ width = 20, height = 20 }) => {
 
 export const BinIcon = ({ width = 24, height = 24 }) => {
   return <Bin width={width} height={height} />;
+};
+
+export const TriangleIcon = ({ width = 8, height = 8 }) => {
+  return <Triangle width={width} height={height} />;
 };
