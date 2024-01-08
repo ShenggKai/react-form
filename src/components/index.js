@@ -7,7 +7,6 @@ export { default as Space } from "./Space";
 export { default as GoogleLoginButton } from "./GoogleLoginButton";
 export { default as Modal } from "./Modal";
 export { default as ProtectedRoute } from "./ProtectedRoute";
-export { default as AutoLogout } from "./AutoLogout";
 export { default as Menu } from "./Menu";
 export { default as Layout } from "./Layout";
 export { default as Dropdown } from "./Dropdown";

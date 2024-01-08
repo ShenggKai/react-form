@@ -12,7 +12,7 @@ import {
   GoogleLoginButton,
   Modal,
 } from "../../components";
-import { UserIcon } from "../../assets/icons";
+import { UserIcon } from "../../assets";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
@@ -28,7 +28,6 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const [submitted, setSubmitted] = useState(false);
   const [isError, setIsError] = useState({
     invalidEmail: false,
     emptyEmail: false,
@@ -90,7 +89,6 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
 
     let error = false;
     let wrongPass = false;
