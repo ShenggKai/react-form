@@ -35,6 +35,8 @@
   color: #495057;
   font-size: 14px;
   outline: none;
+  resize: none;
+  user-select: none;
 }
 
 .Question-main {
