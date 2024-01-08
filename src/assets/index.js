@@ -1,23 +1,28 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { ReactComponent as Hide } from "./eye_hide.svg";
-import { ReactComponent as Show } from "./eye_show.svg";
-import { ReactComponent as Check } from "./check.svg";
-import { ReactComponent as Google } from "./google.svg";
-import { ReactComponent as Close } from "./close.svg";
-import { ReactComponent as Home } from "./home.svg";
-import { ReactComponent as User } from "./user.svg";
-import { ReactComponent as About } from "./about.svg";
-import { ReactComponent as Blog } from "./blog.svg";
-import { ReactComponent as Add } from "./add.svg";
-import { ReactComponent as Paragraph } from "./paragraph.svg";
-import { ReactComponent as Radio } from "./radio.svg";
-import { ReactComponent as Checkbox } from "./checkbox.svg";
-import { ReactComponent as Dropdown } from "./dropdown.svg";
-import { ReactComponent as Circle } from "./circle.svg";
-import { ReactComponent as Bin } from "./bin.svg";
-import { ReactComponent as Triangle } from "./triangle.svg";
-import { ReactComponent as Rectangle } from "./rectangle.svg";
+import { ReactComponent as Hide } from "./icons/eye_hide.svg";
+import { ReactComponent as Show } from "./icons/eye_show.svg";
+import { ReactComponent as Check } from "./icons/check.svg";
+import { ReactComponent as Google } from "./icons/google.svg";
+import { ReactComponent as Close } from "./icons/close.svg";
+import { ReactComponent as Home } from "./icons/home.svg";
+import { ReactComponent as User } from "./icons/user.svg";
+import { ReactComponent as About } from "./icons/about.svg";
+import { ReactComponent as Blog } from "./icons/blog.svg";
+import { ReactComponent as Add } from "./icons/add.svg";
+import { ReactComponent as Paragraph } from "./icons/paragraph.svg";
+import { ReactComponent as Radio } from "./icons/radio.svg";
+import { ReactComponent as Checkbox } from "./icons/checkbox.svg";
+import { ReactComponent as Dropdown } from "./icons/dropdown.svg";
+import { ReactComponent as Circle } from "./icons/circle.svg";
+import { ReactComponent as Bin } from "./icons/bin.svg";
+import { ReactComponent as Triangle } from "./icons/triangle.svg";
+import { ReactComponent as Rectangle } from "./icons/rectangle.svg";
+import Runner from "./images/logo_runner.png";
+import NotFound from "./images/404.jpg";
+
+export const RunnerLogo = Runner;
+export const NotFoundImage = NotFound;
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
   return <Hide width={width} height={height} />;

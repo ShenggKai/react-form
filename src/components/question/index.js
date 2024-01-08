@@ -3,7 +3,7 @@ import React from "react";
 import { Text, Dropdown, Line, Switch, OptionInput } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTypeQuestion, removeQuestion } from "../../actions";
-import { BinIcon } from "../../assets/icons";
+import { BinIcon } from "../../assets";
 import "./style.css";
 
 const Question = () => {

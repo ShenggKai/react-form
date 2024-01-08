@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Text } from "../../components";
-import { HomeIcon, UserIcon, AboutIcon, BlogIcon } from "../../assets/icons";
+import { HomeIcon, UserIcon, AboutIcon, BlogIcon } from "../../assets";
 import "./style.css";
 
 const Menu = () => {

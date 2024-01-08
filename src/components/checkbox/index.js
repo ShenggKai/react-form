@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { CheckIcon } from "../../assets/icons";
+import { CheckIcon } from "../../assets";
 import { Text } from "../../components";
 import "./style.css";
 

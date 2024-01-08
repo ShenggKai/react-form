@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import logo from "../../assets/images/logo_runner.png";
 import "./style.css";
 import {
   Input,
@@ -12,7 +11,7 @@ import {
   GoogleLoginButton,
   Modal,
 } from "../../components";
-import { UserIcon } from "../../assets";
+import { UserIcon, RunnerLogo } from "../../assets";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
@@ -148,7 +147,7 @@ const LoginPage = () => {
       <div className="Gradient-border">
         <div className="Box-Container">
           <div className="Header-container">
-            <img src={logo} className="App-logo" alt="logo" />
+            <img src={RunnerLogo} className="App-logo" alt="Runner logo" />
             <Space height={14} />
             <Text size={24.5}>Chào mừng bạn đến với Login Page</Text>
             <Space height={14} />

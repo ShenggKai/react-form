@@ -2,7 +2,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addOption, removeOption } from "../../../actions";
-import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets/icons";
+import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets";
 import "./style.css";
 
 const OptionInput = ({ field }) => {
