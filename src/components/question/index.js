@@ -25,6 +25,7 @@ const Question = () => {
   const handleRemoveQuestion = (questionID) => {
     dispatch(removeQuestion(questionID));
   };
+
   return (
     <div className="Question-container">
       {questionContent.map((field) => {
@@ -163,7 +164,7 @@ const Question = () => {
                 <BinIcon />
               </div>
               <Line height={32} width={1} />
-              <Switch label="Required" />
+              <Switch label="Required" questionID={field.questionID} />
             </div>
           </div>
         );
