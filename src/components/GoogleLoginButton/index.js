@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { Text } from "../../components";
+import { Text } from "..";
 import { GoogleIcon } from "../../assets/icons";
 import { saveToken } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
