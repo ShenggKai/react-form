@@ -33,7 +33,6 @@ const Question = () => {
             <div className="Question-header">
               <Text size={18}>{field.title}</Text>
               <Dropdown
-                // options={questionContent}
                 onChange={(selectedOption) => handleTypeChange(field.questionID, selectedOption)}
               />
             </div>
@@ -43,7 +42,6 @@ const Question = () => {
                   rows={4}
                   placeholder="Long answer text"
                   disabled
-                  
                   className="Paragraph-input"
                 />
               )}
