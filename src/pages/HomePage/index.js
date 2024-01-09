@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Layout, Button, Question } from "../../components";
+import { Layout, Button, Question } from "../../components";
 import { AddIcon } from "../../assets/";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../actions";
