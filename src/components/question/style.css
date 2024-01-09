@@ -25,6 +25,41 @@
   align-items: center;
 }
 
+.Question-title {
+  height: 20px;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  outline: none;
+  background-color: #f8f9fb;
+  border-bottom: 1px solid #80868d;
+  color: #202124;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #f1f3f5;
+  }
+}
+
+.Question-title:focus {
+  border-bottom: 1px solid #475b6a; /* Keep the original border */
+  box-shadow: 0 -1px 0 #475b6a inset;
+}
+
+.Add-image-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-inline: 15px;
+
+  &:hover {
+    background-color: #e9ecf0;
+  }
+}
+
 .Question-main {
   background-color: transparent;
   margin-bottom: 20px;
