@@ -17,6 +17,7 @@ const initialState = [
     title: "Untitled question first",
     type: "paragraph",
     listOption: [{ optionID: "0000_0000", content: "Option 1" }],
+    required: false,
   },
 ];
 
@@ -35,6 +36,7 @@ const questionReducer = (state = initialState, action) => {
           title: "Untitled",
           type: "paragraph",
           listOption: [{ optionID: generateOptionID(qID, optionLength), content: "Option 1" }],
+          required: false,
         },
       ];
 
@@ -45,6 +47,13 @@ const questionReducer = (state = initialState, action) => {
       return state.map((question) => {
         if (question.questionID === action.payload.questionID)
           return { ...question, type: action.payload.type };
+        else return question;
+      });
+
+    case actions.CHANGE_REQUIRED:
+      return state.map((question) => {
+        if (question.questionID === action.payload.questionID)
+          return { ...question, required: !question.required };
         else return question;
       });
 

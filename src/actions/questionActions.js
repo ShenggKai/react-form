@@ -19,6 +19,13 @@ export const changeTypeQuestion = (questionID, type) => ({
   },
 });
 
+export const changeRequired = (questionID) => ({
+  type: actions.CHANGE_REQUIRED,
+  payload: {
+    questionID: questionID,
+  },
+});
+
 export const addOption = (questionID) => ({
   type: actions.ADD_OPTION,
   payload: {

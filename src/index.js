@@ -13,5 +13,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-console.log("Initial state", store.getState());

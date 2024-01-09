@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import { Text } from "../../components";
-import { HideIcon, ShowIcon } from "../../assets/icons";
+import { HideIcon, ShowIcon } from "../../assets";
 
 const Input = ({ isPassword = false, value, onChangeEmail, OnchangePassword, isError }) => {
   const [showPass, setShowPass] = useState(true);

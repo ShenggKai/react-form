@@ -7,7 +7,7 @@ import {
   CheckboxIcon,
   DropdownIcon,
   TriangleIcon,
-} from "../../assets/icons";
+} from "../../assets";
 import "./style.css";
 
 const Dropdown = ({ onChange }) => {

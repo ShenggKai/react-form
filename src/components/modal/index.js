@@ -3,7 +3,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import "./style.css";
 import { Text, Input, Button } from "../../components";
-import { CloseIcon } from "../../assets/icons";
+import { CloseIcon } from "../../assets";
 
 const customStyles = {
   overlay: {

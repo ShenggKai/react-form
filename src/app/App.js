@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginPage, HomePage, UserPage, BlogPage, AboutPage, NotFound } from "../pages";
-import { ProtectedRoute, AutoLogout } from "../components";
+import { ProtectedRoute } from "../components";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <AutoLogout /> */}
       <Routes>
         {/* Public Routes*/}
         <Route path="/login" element={<LoginPage />} />
