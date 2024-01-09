@@ -40,3 +40,12 @@ export const removeOption = (questionID, optionID) => ({
     optionID: optionID,
   },
 });
+
+export const changeTextOption = (questionID, optionID, text) => ({
+  type: actions.CHANGE_TEXT_OPTION,
+  payload: {
+    questionID: questionID,
+    optionID: optionID,
+    text: text,
+  },
+});

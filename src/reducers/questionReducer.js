@@ -98,6 +98,20 @@ const questionReducer = (state = initialState, action) => {
         return question;
       });
 
+    case actions.CHANGE_TEXT_OPTION:
+      return state.map((question) => {
+        if (question.questionID === action.payload.questionID)
+          return {
+            ...question,
+            listOption: question.listOption.map((item) => {
+              if (item.optionID === action.payload.optionID)
+                return { ...item, content: action.payload.text };
+              return item;
+            }),
+          };
+        return question;
+      });
+
     default:
       return state;
   }

@@ -9,3 +9,4 @@ export const CHANGE_TYPE_QUESTION = "changeTypeQuestion";
 export const ADD_OPTION = "addOption";
 export const REMOVE_OPTION = "removeOption";
 export const CHANGE_REQUIRED = "changeRequired";
+export const CHANGE_TEXT_OPTION = "changeTextOption";

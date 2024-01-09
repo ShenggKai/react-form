@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addOption, removeOption } from "../../../actions";
+import { addOption, removeOption, changeTextOption } from "../../../actions";
 import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets";
 import "./style.css";
 
@@ -15,6 +15,11 @@ const OptionInput = ({ field }) => {
 
   const handleRemoveOption = (questionID, optionID) => {
     dispatch(removeOption(questionID, optionID));
+  };
+
+  const handleOptionTextChange = (event, questionID, optionID) => {
+    // console.log(questionID, optionID, event.target.value);
+    dispatch(changeTextOption(questionID, optionID, event.target.value));
   };
 
   return (
@@ -37,6 +42,9 @@ const OptionInput = ({ field }) => {
                 placeholder="your option"
                 defaultValue={item.content}
                 className="Multiple-input-text"
+                autoFocus
+                onFocus={(event) => event.target.select()}
+                onChange={(event) => handleOptionTextChange(event, questionID, item.optionID)}
               />
 
               {listOption.length > 1 ? (

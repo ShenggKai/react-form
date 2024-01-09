@@ -6,4 +6,5 @@ export {
   changeRequired,
   addOption,
   removeOption,
+  changeTextOption,
 } from "./questionActions";
