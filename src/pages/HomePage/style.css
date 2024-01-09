@@ -14,6 +14,21 @@
   align-items: center;
 }
 
+.Form-title {
+  width: 300px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  font-size: 30px;
+  font-weight: 500;
+  color: #202125;
+
+  &:focus {
+    border-bottom: 1px solid #202125;
+  }
+}
+
 .Add-icon {
   display: flex;
   justify-content: center;

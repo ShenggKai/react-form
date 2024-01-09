@@ -16,9 +16,7 @@ const HomePage = () => {
     <Layout>
       <main className="Home-main">
         <div className="Form-header">
-          <Text size={30} fontWeight={600}>
-            Untitled form
-          </Text>
+          <input defaultValue={"Untitled form"} className="Form-title" />
 
           <div className="Add-icon" title="Add question" onClick={handleAddQuestion}>
             <AddIcon />
