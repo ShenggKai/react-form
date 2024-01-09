@@ -14,7 +14,7 @@ function generateOptionID(questionID, optionLength) {
 const initialState = [
   {
     questionID: "0000",
-    title: "Untitled question first",
+    title: "Question 1",
     type: "paragraph",
     listOption: [{ optionID: "0000_0000", content: "Option 1" }],
     required: false,
@@ -26,14 +26,13 @@ const questionReducer = (state = initialState, action) => {
     case actions.ADD_QUESTION:
       questionLength++;
       optionLength = 0;
-
       let qID = generateQuestionID(questionLength);
 
       return [
         ...state,
         {
           questionID: qID,
-          title: "Untitled",
+          title: `Question ${state.length + 1}`,
           type: "paragraph",
           listOption: [{ optionID: generateOptionID(qID, optionLength), content: "Option 1" }],
           required: false,
@@ -57,11 +56,17 @@ const questionReducer = (state = initialState, action) => {
         else return question;
       });
 
+    case actions.CHANGE_TEXT_QUESTION:
+      return state.map((question) => {
+        if (question.questionID === action.payload.questionID)
+          return { ...question, title: action.payload.text };
+        else return question;
+      });
+
     case actions.ADD_OPTION:
       optionLength++;
       let questionID = action.payload.questionID;
       let index = state.findIndex((item) => item.questionID === questionID);
-
       // use for default option's label
       let option_number = state[index].listOption.length + 1;
 
@@ -81,7 +86,6 @@ const questionReducer = (state = initialState, action) => {
           ...state.slice(index + 1),
         ];
       }
-
       return state;
 
     case actions.REMOVE_OPTION:
@@ -95,6 +99,20 @@ const questionReducer = (state = initialState, action) => {
             listOption: question.listOption.filter((item) => item.optionID !== optionID),
           };
         }
+        return question;
+      });
+
+    case actions.CHANGE_TEXT_OPTION:
+      return state.map((question) => {
+        if (question.questionID === action.payload.questionID)
+          return {
+            ...question,
+            listOption: question.listOption.map((item) => {
+              if (item.optionID === action.payload.optionID)
+                return { ...item, content: action.payload.text };
+              return item;
+            }),
+          };
         return question;
       });
 

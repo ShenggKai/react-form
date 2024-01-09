@@ -1,13 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import Select from "react-select";
-import {
-  ParagraphIcon,
-  RadioIcon,
-  CheckboxIcon,
-  DropdownIcon,
-  TriangleIcon,
-} from "../../assets";
+import { ParagraphIcon, RadioIcon, CheckboxIcon, DropdownIcon, TriangleIcon } from "../../assets";
 import "./style.css";
 
 const Dropdown = ({ onChange }) => {
@@ -42,6 +36,7 @@ const Dropdown = ({ onChange }) => {
           width: 180,
           height: 45,
           cursor: "pointer",
+          userSelect: "none",
         }),
       }}
     />

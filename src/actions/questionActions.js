@@ -26,6 +26,14 @@ export const changeRequired = (questionID) => ({
   },
 });
 
+export const changeTextQuestion = (questionID, text) => ({
+  type: actions.CHANGE_TEXT_QUESTION,
+  payload: {
+    questionID: questionID,
+    text: text,
+  },
+});
+
 export const addOption = (questionID) => ({
   type: actions.ADD_OPTION,
   payload: {
@@ -38,5 +46,14 @@ export const removeOption = (questionID, optionID) => ({
   payload: {
     questionID: questionID,
     optionID: optionID,
+  },
+});
+
+export const changeTextOption = (questionID, optionID, text) => ({
+  type: actions.CHANGE_TEXT_OPTION,
+  payload: {
+    questionID: questionID,
+    optionID: optionID,
+    text: text,
   },
 });

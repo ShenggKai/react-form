@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Layout, Button, Question } from "../../components";
+import { Layout, Button, Question } from "../../components";
 import { AddIcon } from "../../assets/";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../actions";
@@ -16,9 +16,7 @@ const HomePage = () => {
     <Layout>
       <main className="Home-main">
         <div className="Form-header">
-          <Text size={30} fontWeight={600}>
-            Untitled form
-          </Text>
+          <input defaultValue={"Untitled form"} className="Form-title" />
 
           <div className="Add-icon" title="Add question" onClick={handleAddQuestion}>
             <AddIcon />
