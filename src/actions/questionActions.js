@@ -26,6 +26,14 @@ export const changeRequired = (questionID) => ({
   },
 });
 
+export const changeTextQuestion = (questionID, text) => ({
+  type: actions.CHANGE_TEXT_QUESTION,
+  payload: {
+    questionID: questionID,
+    text: text,
+  },
+});
+
 export const addOption = (questionID) => ({
   type: actions.ADD_OPTION,
   payload: {

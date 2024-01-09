@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, Dropdown, Line, Switch, OptionInput } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { changeTypeQuestion, removeQuestion } from "../../actions";
+import { changeTypeQuestion, removeQuestion, changeTextQuestion } from "../../actions";
 import { BinIcon, ImageIcon } from "../../assets";
 import "./style.css";
 
@@ -18,6 +18,10 @@ const Question = () => {
     dispatch(removeQuestion(questionID));
   };
 
+  const handleTitleChange = (event, questionID) => {
+    dispatch(changeTextQuestion(questionID, event.target.value));
+  };
+
   return (
     <div className="Question-container">
       {questionContent.map((field) => {
@@ -25,7 +29,13 @@ const Question = () => {
           <div className="Question" key={field.questionID}>
             <div className="Question-header">
               {/* <Text size={18}>{field.title}</Text> */}
-              <input placeholder="Question" defaultValue={field.title} className="Question-title" />
+              <input
+                placeholder="Question"
+                defaultValue={field.title}
+                className="Question-title"
+                onChange={(event) => handleTitleChange(event, field.questionID)}
+                onFocus={(event) => event.target.select()}
+              />
               <div className="Add-image-icon">
                 <ImageIcon />
               </div>

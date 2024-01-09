@@ -4,6 +4,7 @@ export {
   removeQuestion,
   changeTypeQuestion,
   changeRequired,
+  changeTextQuestion,
   addOption,
   removeOption,
   changeTextOption,
