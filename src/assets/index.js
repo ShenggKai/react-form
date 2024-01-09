@@ -18,6 +18,7 @@ import { ReactComponent as Circle } from "./icons/circle.svg";
 import { ReactComponent as Bin } from "./icons/bin.svg";
 import { ReactComponent as Triangle } from "./icons/triangle.svg";
 import { ReactComponent as Rectangle } from "./icons/rectangle.svg";
+import { ReactComponent as Image } from "./icons/image.svg";
 import Runner from "./images/logo_runner.png";
 import NotFound from "./images/404.jpg";
 
@@ -94,4 +95,8 @@ export const TriangleIcon = ({ width = 8, height = 8 }) => {
 
 export const RectangleIcon = ({ width = 20, height = 20 }) => {
   return <Rectangle width={width} height={height} />;
+};
+
+export const ImageIcon = ({ width = 22, height = 22 }) => {
+  return <Image width={width} height={height} />;
 };
