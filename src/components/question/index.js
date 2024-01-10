@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Dropdown, Line, Switch, OptionInput } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeTypeQuestion, removeQuestion, changeTitle, changeDescription } from "../../actions";
 import { BinIcon, ImageIcon } from "../../assets";
 import "./style.css";
 
-const Question = () => {
+const Question = ({ formContent }) => {
   const dispatch = useDispatch();
-  const formContent = useSelector((state) => state.question);
 
   const handleTypeChange = (itemID, selectedOption) => {
     dispatch(changeTypeQuestion(itemID, selectedOption));
@@ -34,13 +33,13 @@ const Question = () => {
             {field.type === "form-title" ? (
               <div className="Title-container">
                 <input
-                  defaultValue={field.title}
+                  value={field.title}
                   placeholder="Form title"
                   className="Title-container-title"
                   onChange={(event) => handleTitleChange(event, field.itemID)}
                 />
                 <input
-                  defaultValue={field.description}
+                  value={field.description}
                   placeholder="Form description"
                   className="Title-container-description"
                   onChange={(event) => handleDescriptionChange(event, field.itemID)}
@@ -52,7 +51,7 @@ const Question = () => {
                   {/* <Text size={18}>{field.title}</Text> */}
                   <input
                     placeholder="Question"
-                    defaultValue={field.title}
+                    value={field.title}
                     className="Question-title"
                     onChange={(event) => handleTitleChange(event, field.itemID)}
                     onFocus={(event) => event.target.select()}

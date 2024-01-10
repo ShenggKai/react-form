@@ -2,19 +2,20 @@
 import React from "react";
 import { Layout, Button, Question } from "../../components";
 import { AddIcon } from "../../assets/";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addQuestion, changeTitle } from "../../actions";
 import "./style.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const formContent = useSelector((state) => state.question);
+
   const handleAddQuestion = () => {
     dispatch(addQuestion());
   };
 
-  const handleTitleChange = (event, itemID) => {
-    // dispatch(changeTitle(itemID, event.target.value));
-    console.log(event.target.value);
+  const handleTitleChange = (event) => {
+    dispatch(changeTitle("0000", event.target.value));
   };
 
   return (
@@ -22,9 +23,9 @@ const HomePage = () => {
       <main className="Home-main">
         <div className="Form-header">
           <input
-            defaultValue={"Form title"}
             className="Form-title"
-            onChange={(event) => handleTitleChange(event, 1)}
+            value={formContent[0].title}
+            onChange={handleTitleChange}
           />
 
           <div className="Add-icon" title="Add question" onClick={handleAddQuestion}>
@@ -35,7 +36,7 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question />
+        <Question formContent={formContent} />
       </main>
     </Layout>
   );

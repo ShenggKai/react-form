@@ -39,7 +39,7 @@ const OptionInput = ({ field }) => {
               <input
                 type="text"
                 placeholder="your option"
-                defaultValue={option.content}
+                value={option.content}
                 className="Multiple-input-text"
                 autoFocus
                 onFocus={(event) => event.target.select()}
