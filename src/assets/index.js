@@ -19,6 +19,7 @@ import { ReactComponent as Bin } from "./icons/bin.svg";
 import { ReactComponent as Triangle } from "./icons/triangle.svg";
 import { ReactComponent as Rectangle } from "./icons/rectangle.svg";
 import { ReactComponent as Image } from "./icons/image.svg";
+import { ReactComponent as Copy } from "./icons/copy.svg";
 import Runner from "./images/logo_runner.png";
 import NotFound from "./images/404.jpg";
 
@@ -61,7 +62,7 @@ export const BlogIcon = ({ width = 18, height = 18 }) => {
   return <Blog width={width} height={height} />;
 };
 
-export const AddIcon = ({ width = 35, height = 35 }) => {
+export const AddIcon = ({ width = 22, height = 22 }) => {
   return <Add width={width} height={height} />;
 };
 
@@ -99,4 +100,8 @@ export const RectangleIcon = ({ width = 20, height = 20 }) => {
 
 export const ImageIcon = ({ width = 22, height = 22 }) => {
   return <Image width={width} height={height} />;
+};
+
+export const CopyIcon = ({ width = 22, height = 22 }) => {
+  return <Copy width={width} height={height} />;
 };

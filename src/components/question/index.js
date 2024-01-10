@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Dropdown, Line, Switch, OptionInput } from "../../components";
+import { Dropdown, Line, Switch, OptionInput, FloatButton } from "../../components";
 import { useDispatch } from "react-redux";
 import { changeTypeQuestion, removeQuestion, changeTitle, changeDescription } from "../../actions";
 import { BinIcon, ImageIcon } from "../../assets";
@@ -29,7 +29,7 @@ const Question = ({ formContent }) => {
     <div className="Form-container">
       {formContent.map((field) => {
         return (
-          <div key={field.itemID}>
+          <div key={field.itemID} className="Item-container">
             {field.type === "form-title" ? (
               <div className="Title-container">
                 <input
@@ -76,6 +76,7 @@ const Question = ({ formContent }) => {
                 </div>
               </div>
             )}
+            <FloatButton />
           </div>
         );
       })}
