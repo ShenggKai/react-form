@@ -7,19 +7,18 @@ import "./style.css";
 
 const OptionInput = ({ field }) => {
   const dispatch = useDispatch();
-  const [type, listOption, questionID] = [field.type, field.listOption, field.questionID];
+  const [type, listOption, itemID] = [field.type, field.listOption, field.itemID];
 
-  const handleAddOption = (questionID) => {
-    dispatch(addOption(questionID));
+  const handleAddOption = (itemID) => {
+    dispatch(addOption(itemID));
   };
 
-  const handleRemoveOption = (questionID, optionID) => {
-    dispatch(removeOption(questionID, optionID));
+  const handleRemoveOption = (itemID, optionID) => {
+    dispatch(removeOption(itemID, optionID));
   };
 
-  const handleOptionTextChange = (event, questionID, optionID) => {
-    // console.log(questionID, optionID, event.target.value);
-    dispatch(changeTextOption(questionID, optionID, event.target.value));
+  const handleOptionTextChange = (event, itemID, optionID) => {
+    dispatch(changeTextOption(itemID, optionID, event.target.value));
   };
 
   return (
@@ -28,8 +27,8 @@ const OptionInput = ({ field }) => {
         <textarea rows={4} placeholder="Long answer text" disabled className="Paragraph-input" />
       ) : (
         <div className="Multiple-input-container">
-          {listOption.map((item, index) => (
-            <div key={item.optionID} className="Multiple-input">
+          {listOption.map((option, index) => (
+            <div key={option.optionID} className="Multiple-input">
               {type === "mt-choice" ? (
                 <CircleIcon />
               ) : type === "checkbox" ? (
@@ -40,18 +39,18 @@ const OptionInput = ({ field }) => {
               <input
                 type="text"
                 placeholder="your option"
-                defaultValue={item.content}
+                defaultValue={option.content}
                 className="Multiple-input-text"
                 autoFocus
                 onFocus={(event) => event.target.select()}
-                onChange={(event) => handleOptionTextChange(event, questionID, item.optionID)}
+                onChange={(event) => handleOptionTextChange(event, itemID, option.optionID)}
               />
 
               {listOption.length > 1 ? (
                 <div
                   className="Remove-icon"
                   title="Remove"
-                  onClick={() => handleRemoveOption(questionID, item.optionID)}
+                  onClick={() => handleRemoveOption(itemID, option.optionID)}
                 >
                   <CloseIcon />
                 </div>
@@ -74,7 +73,7 @@ const OptionInput = ({ field }) => {
               title="Add option"
               placeholder="Add option"
               className="Add-option-text"
-              onClick={() => handleAddOption(questionID)}
+              onClick={() => handleAddOption(itemID)}
             />
           </div>
         </div>

@@ -4,55 +4,63 @@ export const addQuestion = () => ({
   type: actions.ADD_QUESTION,
 });
 
-export const removeQuestion = (questionID) => ({
+export const removeQuestion = (itemID) => ({
   type: actions.REMOVE_QUESTION,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
   },
 });
 
-export const changeTypeQuestion = (questionID, type) => ({
+export const changeTypeQuestion = (itemID, type) => ({
   type: actions.CHANGE_TYPE_QUESTION,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
     type: type,
   },
 });
 
-export const changeRequired = (questionID) => ({
+export const changeRequired = (itemID) => ({
   type: actions.CHANGE_REQUIRED,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
   },
 });
 
-export const changeTextQuestion = (questionID, text) => ({
-  type: actions.CHANGE_TEXT_QUESTION,
+export const changeTitle = (itemID, text) => ({
+  type: actions.CHANGE_TITLE,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
     text: text,
   },
 });
 
-export const addOption = (questionID) => ({
+export const changeDescription = (itemID, text) => ({
+  type: actions.CHANGE_DESCRIPTION,
+  payload: {
+    itemID: itemID,
+    text: text
+  }
+})
+
+export const addOption = (itemID) => ({
   type: actions.ADD_OPTION,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
   },
 });
 
-export const removeOption = (questionID, optionID) => ({
+export const removeOption = (itemID, optionID) => ({
   type: actions.REMOVE_OPTION,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
     optionID: optionID,
   },
 });
 
-export const changeTextOption = (questionID, optionID, text) => ({
+export const changeTextOption = (itemID, optionID, text) => ({
   type: actions.CHANGE_TEXT_OPTION,
   payload: {
-    questionID: questionID,
+    itemID: itemID,
     optionID: optionID,
     text: text,
   },

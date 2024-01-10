@@ -1,22 +1,28 @@
 import * as actions from "../actions/actionTypes";
 
-let questionLength = 0;
-let optionLength = 0;
+let itemIndex = 1;
+let optionIndex = 0;
 
 function generateQuestionID(number) {
   return String(number).padStart(4, "0").slice(-4);
 }
 
-function generateOptionID(questionID, optionLength) {
-  return `${questionID}_${String(optionLength).padStart(4, "0")}`;
+function generateOptionID(itemID, optionIndex) {
+  return `${itemID}_${String(optionIndex).padStart(4, "0")}`;
 }
 
 const initialState = [
   {
-    questionID: "0000",
+    itemID: "0000",
+    title: "Form title",
+    description: "",
+    type: "form-title",
+  },
+  {
+    itemID: "0001",
     title: "Question 1",
     type: "paragraph",
-    listOption: [{ optionID: "0000_0000", content: "Option 1" }],
+    listOption: [{ optionID: "0001_0000", content: "Option 1" }],
     required: false,
   },
 ];
@@ -24,49 +30,56 @@ const initialState = [
 const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_QUESTION:
-      questionLength++;
-      optionLength = 0;
-      let qID = generateQuestionID(questionLength);
+      itemIndex++;
+      optionIndex = 0;
+      let qID = generateQuestionID(itemIndex);
 
       return [
         ...state,
         {
-          questionID: qID,
-          title: `Question ${state.length + 1}`,
+          itemID: qID,
+          title: `Question ${state.length}`,
           type: "paragraph",
-          listOption: [{ optionID: generateOptionID(qID, optionLength), content: "Option 1" }],
+          listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
           required: false,
         },
       ];
 
     case actions.REMOVE_QUESTION:
-      return state.filter((question) => question.questionID !== action.payload.questionID);
+      return state.filter((question) => question.itemID !== action.payload.itemID);
 
     case actions.CHANGE_TYPE_QUESTION:
       return state.map((question) => {
-        if (question.questionID === action.payload.questionID)
+        if (question.itemID === action.payload.itemID)
           return { ...question, type: action.payload.type };
         else return question;
       });
 
     case actions.CHANGE_REQUIRED:
       return state.map((question) => {
-        if (question.questionID === action.payload.questionID)
+        if (question.itemID === action.payload.itemID)
           return { ...question, required: !question.required };
         else return question;
       });
 
-    case actions.CHANGE_TEXT_QUESTION:
+    case actions.CHANGE_TITLE:
       return state.map((question) => {
-        if (question.questionID === action.payload.questionID)
+        if (question.itemID === action.payload.itemID)
           return { ...question, title: action.payload.text };
         else return question;
       });
 
+    case actions.CHANGE_DESCRIPTION:
+      return state.map((question) => {
+        if (question.itemID === action.payload.itemID)
+          return { ...question, description: action.payload.text };
+        else return question;
+      });
+
     case actions.ADD_OPTION:
-      optionLength++;
-      let questionID = action.payload.questionID;
-      let index = state.findIndex((item) => item.questionID === questionID);
+      optionIndex++;
+      let itemID = action.payload.itemID;
+      let index = state.findIndex((item) => item.itemID === itemID);
       // use for default option's label
       let option_number = state[index].listOption.length + 1;
 
@@ -78,7 +91,7 @@ const questionReducer = (state = initialState, action) => {
             listOption: [
               ...state[index].listOption,
               {
-                optionID: generateOptionID(questionID, optionLength),
+                optionID: generateOptionID(itemID, optionIndex),
                 content: `Option ${option_number}`,
               },
             ],
@@ -89,14 +102,14 @@ const questionReducer = (state = initialState, action) => {
       return state;
 
     case actions.REMOVE_OPTION:
-      let questionId_temp = action.payload.questionID;
+      let questionId_temp = action.payload.itemID;
       let optionID = action.payload.optionID;
 
       return state.map((question) => {
-        if (question.questionID === questionId_temp) {
+        if (question.itemID === questionId_temp) {
           return {
             ...question,
-            listOption: question.listOption.filter((item) => item.optionID !== optionID),
+            listOption: question.listOption.filter((option) => option.optionID !== optionID),
           };
         }
         return question;
@@ -104,13 +117,13 @@ const questionReducer = (state = initialState, action) => {
 
     case actions.CHANGE_TEXT_OPTION:
       return state.map((question) => {
-        if (question.questionID === action.payload.questionID)
+        if (question.itemID === action.payload.itemID)
           return {
             ...question,
-            listOption: question.listOption.map((item) => {
-              if (item.optionID === action.payload.optionID)
-                return { ...item, content: action.payload.text };
-              return item;
+            listOption: question.listOption.map((option) => {
+              if (option.optionID === action.payload.optionID)
+                return { ...option, content: action.payload.text };
+              return option;
             }),
           };
         return question;

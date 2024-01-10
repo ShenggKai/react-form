@@ -15,12 +15,12 @@ const Menu = () => {
   return (
     <div className="menu-container">
       <ul className="horizontal-menu">
-        {menuItems.map((item, index) => (
+        {menuItems.map((menuItem, index) => (
           <li key={index} className="menu-item">
-            <Link to={item.path} className="menu-link">
-              {item.icon}
+            <Link to={menuItem.path} className="menu-link">
+              {menuItem.icon}
               <Text size={18} color={"white"} fontWeight={400} cursor={"pointer"}>
-                {item.label}
+                {menuItem.label}
               </Text>
             </Link>
           </li>
