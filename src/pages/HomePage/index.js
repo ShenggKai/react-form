@@ -23,6 +23,7 @@ const HomePage = () => {
       <main className="Home-main">
         <div className="Form-header">
           <input
+            placeholder=""
             className="Form-title"
             value={formContent[0].title}
             onChange={handleTitleChange}

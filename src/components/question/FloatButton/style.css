@@ -1,0 +1,26 @@
+.Float-button-container {
+  width: 40px;
+  height: 140px;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Icon-add,
+.Icon-image,
+.Icon-copy {
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #e9ecf1;
+  }
+}

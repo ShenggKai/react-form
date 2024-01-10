@@ -13,3 +13,4 @@ export { default as Dropdown } from "./Dropdown";
 export { default as Question } from "./question";
 export { default as Switch } from "./Switch";
 export { default as OptionInput } from "./question/OptionInput";
+export { default as FloatButton } from "./question/FloatButton";
