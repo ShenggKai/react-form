@@ -31,7 +31,6 @@ const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_QUESTION:
       itemIndex++;
-      optionIndex = 0;
       let qID = generateQuestionID(itemIndex);
 
       return [
