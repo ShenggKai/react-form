@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Dropdown, Line, Switch, OptionInput, FloatButton } from "../../components";
+import React, { useState } from "react";
+import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
 import { useDispatch } from "react-redux";
 import { changeTypeQuestion, removeQuestion, changeTitle, changeDescription } from "../../actions";
 import { BinIcon, ImageIcon } from "../../assets";
@@ -8,6 +8,11 @@ import "./style.css";
 
 const Question = ({ formContent }) => {
   const dispatch = useDispatch();
+  const [isActive, setIsActive] = useState(null);
+
+  const handleItemClick = (itemID) => {
+    setIsActive(itemID);
+  };
 
   const handleTypeChange = (itemID, selectedOption) => {
     dispatch(changeTypeQuestion(itemID, selectedOption));
@@ -31,52 +36,84 @@ const Question = ({ formContent }) => {
         return (
           <div key={field.itemID} className="Item-container">
             {field.type === "form-title" ? (
-              <div className="Title-container">
+              <div
+                className={`Title-container ${isActive === field.itemID ? "active" : ""}`}
+                onClick={() => handleItemClick(field.itemID)}
+              >
                 <input
                   value={field.title}
                   placeholder="Form title"
-                  className="Title-container-title"
+                  className={
+                    isActive === field.itemID
+                      ? "Active-title-container Title-container-title"
+                      : "Title-container-title"
+                  }
                   onChange={(event) => handleTitleChange(event, field.itemID)}
                 />
                 <input
                   value={field.description}
                   placeholder="Form description"
-                  className="Title-container-description"
+                  className={
+                    isActive === field.itemID
+                      ? "Active-title-container Title-container-description"
+                      : "Title-container-description"
+                  }
                   onChange={(event) => handleDescriptionChange(event, field.itemID)}
                 />
               </div>
             ) : (
-              <div className="Question">
-                <div className="Question-header">
-                  {/* <Text size={18}>{field.title}</Text> */}
-                  <input
-                    placeholder="Question"
-                    value={field.title}
-                    className="Question-title"
-                    onChange={(event) => handleTitleChange(event, field.itemID)}
-                    onFocus={(event) => event.target.select()}
-                  />
-                  <div className="Add-image-icon">
-                    <ImageIcon />
+              <div
+                className={`Question ${isActive === field.itemID ? "active" : ""}`}
+                onClick={() => handleItemClick(field.itemID)}
+              >
+                {isActive !== field.itemID ? (
+                  <Text size={18} color="#202124" fontWeight={400}>
+                    {field.title}
+                  </Text>
+                ) : (
+                  <div className="Question-header">
+                    <input
+                      placeholder="Question"
+                      value={field.title}
+                      className="Question-title"
+                      onChange={(event) => handleTitleChange(event, field.itemID)}
+                      onFocus={(event) => event.target.select()}
+                    />
+                    <div className="Add-image-icon">
+                      <ImageIcon />
+                    </div>
+                    <Dropdown
+                      onChange={(selectedOption) => handleTypeChange(field.itemID, selectedOption)}
+                    />
                   </div>
-                  <Dropdown
-                    onChange={(selectedOption) => handleTypeChange(field.itemID, selectedOption)}
-                  />
+                )}
+                <div
+                  className={isActive === field.itemID ? "Question-main" : "Inactive-question-main"}
+                >
+                  <OptionInput field={field} isActive={isActive} />
                 </div>
-                <div className="Question-main">
-                  <OptionInput field={field} />
-                </div>
-                <Line />
-                <div className="Question-footer">
-                  <div className="Delete-icon" onClick={() => handleRemoveQuestion(field.itemID)}>
-                    <BinIcon />
-                  </div>
-                  <Line height={32} width={1} />
-                  <Switch label="Required" itemID={field.itemID} />
-                </div>
+                {isActive === field.itemID && (
+                  <>
+                    <Line />
+                    <div className="Question-footer">
+                      <div
+                        className="Delete-icon"
+                        onClick={() => handleRemoveQuestion(field.itemID)}
+                      >
+                        <BinIcon />
+                      </div>
+                      <Line height={32} width={1} />
+                      <Switch label="Required" itemID={field.itemID} />
+                    </div>
+                  </>
+                )}
               </div>
             )}
-            <FloatButton />
+            {isActive === field.itemID ? (
+              <FloatButton />
+            ) : (
+              <div className="Placeholder-button"></div>
+            )}
           </div>
         );
       })}
