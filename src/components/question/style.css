@@ -23,10 +23,12 @@
   border-radius: 10px;
   padding: 20px;
   flex-shrink: 0;
+  transition: min-height 0.5s ease-in-out;
 }
 
 .active {
   box-shadow: 6px 0 0 #4285f4 inset;
+  min-height: 120px;
 }
 
 .Title-container {
