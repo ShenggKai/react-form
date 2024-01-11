@@ -27,7 +27,7 @@
 }
 
 .active {
-  box-shadow: 6px 0 0 #4285f4 inset;
+  box-shadow: 6px 0 0 #4285f4 inset, 0 2px 4px rgba(0, 0, 0, 0.2);
   min-height: 120px;
 }
 
