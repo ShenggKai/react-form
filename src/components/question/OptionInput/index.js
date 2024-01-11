@@ -6,6 +6,44 @@ import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets";
 import { Text, Line, Space } from "../../../components";
 import "./style.css";
 
+const ActiveParagraph = () => {
+  return <textarea rows={4} placeholder="Long answer text" disabled className="Paragraph-input" />;
+};
+
+const InactiveParagraph = () => {
+  return (
+    <>
+      <Space height={15} />
+      <Text size={16} fontWeight={400} color="#757575">
+        Long answer text
+      </Text>
+      <Space height={5} />
+      <Line />
+    </>
+  );
+};
+
+const AddOption = ({ type, listOption, handleAddOption, itemID }) => {
+  return (
+    <div className="Add-option">
+      {type === "mt-choice" ? (
+        <CircleIcon />
+      ) : type === "checkbox" ? (
+        <RectangleIcon />
+      ) : (
+        <div className="Dropdown-text-index">{listOption.length + 1}.</div>
+      )}
+      <input
+        type="text"
+        title="Add option"
+        placeholder="Add option"
+        className="Add-option-text"
+        onClick={() => handleAddOption(itemID)}
+      />
+    </div>
+  );
+};
+
 const OptionInput = ({ field, isActive }) => {
   const dispatch = useDispatch();
   const [type, listOption, itemID] = [field.type, field.listOption, field.itemID];
@@ -26,16 +64,9 @@ const OptionInput = ({ field, isActive }) => {
     <>
       {type === "paragraph" ? (
         isActive === itemID ? (
-          <textarea rows={4} placeholder="Long answer text" disabled className="Paragraph-input" />
+          <ActiveParagraph />
         ) : (
-          <>
-            <Space height={15} />
-            <Text size={16} fontWeight={400} color="#757575">
-              Long answer text
-            </Text>
-            <Space height={5} />
-            <Line />
-          </>
+          <InactiveParagraph />
         )
       ) : (
         <div className="Multiple-input-container">
@@ -74,22 +105,12 @@ const OptionInput = ({ field, isActive }) => {
             </div>
           ))}
           {isActive === itemID && (
-            <div className="Add-option">
-              {type === "mt-choice" ? (
-                <CircleIcon />
-              ) : type === "checkbox" ? (
-                <RectangleIcon />
-              ) : (
-                <div className="Dropdown-text-index">{listOption.length + 1}.</div>
-              )}
-              <input
-                type="text"
-                title="Add option"
-                placeholder="Add option"
-                className="Add-option-text"
-                onClick={() => handleAddOption(itemID)}
-              />
-            </div>
+            <AddOption
+              type={type}
+              listOption={listOption}
+              handleAddOption={handleAddOption}
+              itemID={itemID}
+            />
           )}
         </div>
       )}
