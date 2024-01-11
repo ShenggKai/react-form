@@ -7,6 +7,17 @@ export const addQuestion = (itemID) => ({
   },
 });
 
+export const duplicateQuestion = (itemID, title, type, listOption, required) => ({
+  type: actions.DUPLICATE_QUESTION,
+  payload: {
+    itemID: itemID,
+    title: title,
+    type: type,
+    listOption: listOption,
+    required: required,
+  },
+});
+
 export const removeQuestion = (itemID) => ({
   type: actions.REMOVE_QUESTION,
   payload: {

@@ -130,7 +130,8 @@
   align-items: center;
 }
 
-.Delete-icon {
+.Delete-icon,
+.Duplicate-icon {
   display: flex;
   justify-content: center;
   align-items: center;

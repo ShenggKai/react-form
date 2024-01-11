@@ -28,15 +28,18 @@ const initialState = [
 ];
 
 const questionReducer = (state = initialState, action) => {
+  let index = null;
+  let qID = null;
+
   switch (action.type) {
     case actions.ADD_QUESTION:
       itemIndex++;
-      let qID = generateQuestionID(itemIndex);
-      let index_to_add = state.findIndex((item) => item.itemID === action.payload.itemID);
+      qID = generateQuestionID(itemIndex);
+      index = state.findIndex((item) => item.itemID === action.payload.itemID);
 
-      if (index_to_add !== -1) {
+      if (index !== -1) {
         return [
-          ...state.slice(0, index_to_add + 1),
+          ...state.slice(0, index + 1),
           {
             itemID: qID,
             title: `Question ${state.length}`,
@@ -44,7 +47,27 @@ const questionReducer = (state = initialState, action) => {
             listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
             required: false,
           },
-          ...state.slice(index_to_add + 1),
+          ...state.slice(index + 1),
+        ];
+      }
+      return state;
+
+    case actions.DUPLICATE_QUESTION:
+      itemIndex++;
+      qID = generateQuestionID(itemIndex);
+      index = state.findIndex((item) => item.itemID === action.payload.itemID);
+
+      if (index !== -1) {
+        return [
+          ...state.slice(0, index + 1),
+          {
+            itemID: qID,
+            title: action.payload.title,
+            type: action.payload.type,
+            listOption: action.payload.listOption,
+            required: action.payload.required,
+          },
+          ...state.slice(index + 1),
         ];
       }
       return state;
@@ -83,7 +106,7 @@ const questionReducer = (state = initialState, action) => {
     case actions.ADD_OPTION:
       optionIndex++;
       let itemID = action.payload.itemID;
-      let index = state.findIndex((item) => item.itemID === itemID);
+      index = state.findIndex((item) => item.itemID === itemID);
       // use for default option's label
       let option_number = state[index].listOption.length + 1;
 

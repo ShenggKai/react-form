@@ -2,13 +2,19 @@
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
 import { useDispatch } from "react-redux";
-import { changeTypeQuestion, removeQuestion, changeTitle, changeDescription } from "../../actions";
-import { BinIcon, ImageIcon } from "../../assets";
+import {
+  changeTypeQuestion,
+  removeQuestion,
+  changeTitle,
+  changeDescription,
+  duplicateQuestion,
+} from "../../actions";
+import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
 const Question = ({ formContent }) => {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState(null);
+  const [isActive, setIsActive] = useState("0000");
 
   const handleItemClick = (itemID) => {
     setIsActive(itemID);
@@ -28,6 +34,12 @@ const Question = ({ formContent }) => {
 
   const handleDescriptionChange = (event, itemID) => {
     dispatch(changeDescription(itemID, event.target.value));
+  };
+
+  const handleDuplicate = (field) => {
+    dispatch(
+      duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required)
+    );
   };
 
   return (
@@ -96,6 +108,9 @@ const Question = ({ formContent }) => {
                   <>
                     <Line />
                     <div className="Question-footer">
+                      <div className="Duplicate-icon" onClick={() => handleDuplicate(field)}>
+                        <CopyIcon />
+                      </div>
                       <div
                         className="Delete-icon"
                         onClick={() => handleRemoveQuestion(field.itemID)}
@@ -110,7 +125,7 @@ const Question = ({ formContent }) => {
               </div>
             )}
             {isActive === field.itemID ? (
-              <FloatButton itemID={field.itemID} />
+              <FloatButton field={field} />
             ) : (
               <div className="Placeholder-button"></div>
             )}

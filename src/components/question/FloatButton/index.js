@@ -2,22 +2,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addQuestion } from "../../../actions";
-import { AddIcon, CopyIcon, ImageIcon } from "../../../assets";
+import { AddIcon, ImageIcon } from "../../../assets";
 import "./style.css";
 
-const FloatButton = ({ itemID }) => {
+const FloatButton = ({ field }) => {
   const dispatch = useDispatch();
 
   const handleAddQuestion = () => {
-    dispatch(addQuestion(itemID));
+    dispatch(addQuestion(field.itemID));
   };
 
   const handleAddImage = () => {
     console.log("Add image");
-  };
-
-  const handleDuplicate = () => {
-    console.log("Duplicate");
   };
 
   return (
@@ -27,9 +23,6 @@ const FloatButton = ({ itemID }) => {
       </div>
       <div className="Icon-image" title="Add image" onClick={handleAddImage}>
         <ImageIcon />
-      </div>
-      <div className="Icon-copy" title="Duplicate" onClick={handleDuplicate}>
-        <CopyIcon />
       </div>
     </div>
   );
