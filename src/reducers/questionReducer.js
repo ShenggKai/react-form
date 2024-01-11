@@ -32,17 +32,22 @@ const questionReducer = (state = initialState, action) => {
     case actions.ADD_QUESTION:
       itemIndex++;
       let qID = generateQuestionID(itemIndex);
+      let index_to_add = state.findIndex((item) => item.itemID === action.payload.itemID);
 
-      return [
-        ...state,
-        {
-          itemID: qID,
-          title: `Question ${state.length}`,
-          type: "paragraph",
-          listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
-          required: false,
-        },
-      ];
+      if (index_to_add !== -1) {
+        return [
+          ...state.slice(0, index_to_add + 1),
+          {
+            itemID: qID,
+            title: `Question ${state.length}`,
+            type: "paragraph",
+            listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
+            required: false,
+          },
+          ...state.slice(index_to_add + 1),
+        ];
+      }
+      return state;
 
     case actions.REMOVE_QUESTION:
       return state.filter((question) => question.itemID !== action.payload.itemID);

@@ -10,8 +10,9 @@
   margin-bottom: 25px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding-inline: 150px;
 }
 
 .Form-title {
@@ -27,13 +28,6 @@
   &:focus {
     border-bottom: 1px solid #202125;
   }
-}
-
-.Add-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
 
 .Button-send {

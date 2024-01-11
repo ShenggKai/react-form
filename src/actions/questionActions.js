@@ -1,7 +1,10 @@
 import * as actions from "./actionTypes";
 
-export const addQuestion = () => ({
+export const addQuestion = (itemID) => ({
   type: actions.ADD_QUESTION,
+  payload: {
+    itemID: itemID,
+  },
 });
 
 export const removeQuestion = (itemID) => ({
@@ -38,9 +41,9 @@ export const changeDescription = (itemID, text) => ({
   type: actions.CHANGE_DESCRIPTION,
   payload: {
     itemID: itemID,
-    text: text
-  }
-})
+    text: text,
+  },
+});
 
 export const addOption = (itemID) => ({
   type: actions.ADD_OPTION,

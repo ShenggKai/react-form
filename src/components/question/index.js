@@ -110,7 +110,7 @@ const Question = ({ formContent }) => {
               </div>
             )}
             {isActive === field.itemID ? (
-              <FloatButton />
+              <FloatButton itemID={field.itemID} />
             ) : (
               <div className="Placeholder-button"></div>
             )}
