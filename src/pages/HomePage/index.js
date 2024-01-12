@@ -1,16 +1,37 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Button, Question } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
-import { changeTitle } from "../../actions";
 import "./style.css";
 
+// initial state for form content
+const initialState = [
+  {
+    itemID: "0000",
+    title: "Form title",
+    description: "",
+    type: "form-title",
+  },
+  {
+    itemID: "0001",
+    title: "Question 1",
+    type: "paragraph",
+    listOption: [{ optionID: "0001_0000", content: "Option 1" }],
+    required: false,
+  },
+];
+
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const formContent = useSelector((state) => state.question);
+  const [formContent, setFormContent] = useState(initialState);
+  const [formTitle, setFormTitle] = useState(formContent[0].title);
+
+  // set formContent when formTitle change
+  useEffect(() => {
+    setFormContent(
+      formContent.map((item) => (item.itemID === "0000" ? { ...item, title: formTitle } : item))
+    );
+  }, [formTitle]);
 
   const handleTitleChange = (event) => {
-    dispatch(changeTitle("0000", event.target.value));
+    setFormTitle(event.target.value);
   };
 
   return (
@@ -20,7 +41,7 @@ const HomePage = () => {
           <input
             placeholder=""
             className="Form-title"
-            value={formContent[0].title}
+            value={formTitle}
             onChange={handleTitleChange}
           />
 
