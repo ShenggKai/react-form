@@ -1,6 +1,6 @@
 .Float-button-container {
   width: 40px;
-  height: 140px;
+  height: 94px;
   border-radius: 8px;
   padding: 5px;
   background-color: white;
@@ -11,8 +11,7 @@
 }
 
 .Icon-add,
-.Icon-image,
-.Icon-copy {
+.Icon-image {
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;

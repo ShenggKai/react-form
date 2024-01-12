@@ -29,6 +29,7 @@ const Dropdown = ({ onChange }) => {
       defaultValue={options[0]}
       onChange={(event) => onChange(event.value)}
       isSearchable={false}
+      menuPlacement="auto"
       styles={{
         control: (baseStyles) => ({
           ...baseStyles,

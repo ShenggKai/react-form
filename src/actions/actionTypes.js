@@ -4,6 +4,7 @@ export const LOGOUT = "LOGOUT";
 
 // question actions
 export const ADD_QUESTION = "addQuestion";
+export const DUPLICATE_QUESTION = "duplicateQuestion";
 export const REMOVE_QUESTION = "removeQuestion";
 export const CHANGE_TYPE_QUESTION = "changeTypeQuestion";
 export const CHANGE_TITLE = "changeTitle";

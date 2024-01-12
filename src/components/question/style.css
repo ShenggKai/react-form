@@ -23,6 +23,12 @@
   border-radius: 10px;
   padding: 20px;
   flex-shrink: 0;
+  transition: min-height 0.5s ease-in-out;
+}
+
+.active {
+  box-shadow: 6px 0 0 #4285f4 inset, 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-height: 120px;
 }
 
 .Title-container {
@@ -31,6 +37,15 @@
 
 .Title-container-title,
 .Title-container-description {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  color: #202124;
+}
+
+.Active-title-container {
   width: 100%;
   border: none;
   outline: none;
@@ -50,6 +65,11 @@
 
 .Title-container-description {
   font-size: 15px;
+}
+
+.Placeholder-button {
+  width: 50px;
+  height: 150px;
 }
 
 .Question-header {
@@ -94,8 +114,12 @@
   }
 }
 
-.Question-main {
+.Question-main,
+.Inactive-question-main {
   background-color: transparent;
+}
+
+.Question-main {
   margin-bottom: 20px;
 }
 
@@ -106,7 +130,8 @@
   align-items: center;
 }
 
-.Delete-icon {
+.Delete-icon,
+.Duplicate-icon {
   display: flex;
   justify-content: center;
   align-items: center;

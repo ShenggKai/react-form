@@ -1,7 +1,21 @@
 import * as actions from "./actionTypes";
 
-export const addQuestion = () => ({
+export const addQuestion = (itemID) => ({
   type: actions.ADD_QUESTION,
+  payload: {
+    itemID: itemID,
+  },
+});
+
+export const duplicateQuestion = (itemID, title, type, listOption, required) => ({
+  type: actions.DUPLICATE_QUESTION,
+  payload: {
+    itemID: itemID,
+    title: title,
+    type: type,
+    listOption: listOption,
+    required: required,
+  },
 });
 
 export const removeQuestion = (itemID) => ({
@@ -38,9 +52,9 @@ export const changeDescription = (itemID, text) => ({
   type: actions.CHANGE_DESCRIPTION,
   payload: {
     itemID: itemID,
-    text: text
-  }
-})
+    text: text,
+  },
+});
 
 export const addOption = (itemID) => ({
   type: actions.ADD_OPTION,

@@ -1,6 +1,7 @@
 export { userLogin, userLogout } from "./userActions";
 export {
   addQuestion,
+  duplicateQuestion,
   removeQuestion,
   changeTypeQuestion,
   changeRequired,

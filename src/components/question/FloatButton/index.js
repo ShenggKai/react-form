@@ -1,18 +1,19 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { AddIcon, CopyIcon, ImageIcon } from "../../../assets";
+import { useDispatch } from "react-redux";
+import { addQuestion } from "../../../actions";
+import { AddIcon, ImageIcon } from "../../../assets";
 import "./style.css";
 
-const FloatButton = () => {
+const FloatButton = ({ field }) => {
+  const dispatch = useDispatch();
+
   const handleAddQuestion = () => {
-    console.log("Add question");
+    dispatch(addQuestion(field.itemID));
   };
 
   const handleAddImage = () => {
     console.log("Add image");
-  };
-
-  const handleDuplicate = () => {
-    console.log("Duplicate");
   };
 
   return (
@@ -22,9 +23,6 @@ const FloatButton = () => {
       </div>
       <div className="Icon-image" title="Add image" onClick={handleAddImage}>
         <ImageIcon />
-      </div>
-      <div className="Icon-copy" title="Duplicate" onClick={handleDuplicate}>
-        <CopyIcon />
       </div>
     </div>
   );
