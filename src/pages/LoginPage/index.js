@@ -149,7 +149,7 @@ const LoginPage = () => {
           <div className="Header-container">
             <img src={RunnerLogo} className="App-logo" alt="Runner logo" />
             <Space height={14} />
-            <Text size={24.5}>Chào mừng bạn đến với Login Page</Text>
+            <Text size={24.5}>Chào mừng bạn đến với React form</Text>
             <Space height={14} />
             <Text color={"#495057"}>Đăng nhập để tiếp tục</Text>
             <Space height={28} />
