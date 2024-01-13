@@ -19,6 +19,17 @@ const initialState = [
   },
 ];
 
+let itemIndex = 1;
+let optionIndex = 0;
+
+function generateQuestionID(number) {
+  return String(number).padStart(4, "0").slice(-4);
+}
+
+function generateOptionID(itemID, optionIndex) {
+  return `${itemID}_${String(optionIndex).padStart(4, "0")}`;
+}
+
 const HomePage = () => {
   const [formContent, setFormContent] = useState(initialState);
   const [formTitle, setFormTitle] = useState(formContent[0].title);
@@ -58,6 +69,29 @@ const HomePage = () => {
     });
   };
 
+  const addQuestion = (itemID) => {
+    itemIndex++;
+    let qID = generateQuestionID(itemIndex);
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index + 1),
+          {
+            itemID: qID,
+            title: `Question ${formContent.length}`,
+            type: "paragraph",
+            listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
+            required: false,
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return state;
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -77,6 +111,7 @@ const HomePage = () => {
           formContent={formContent}
           changeQuestionType={changeQuestionType}
           changeRequired={changeRequired}
+          addQuestion={addQuestion}
         />
       </main>
     </Layout>

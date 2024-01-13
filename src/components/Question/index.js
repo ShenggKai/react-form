@@ -6,7 +6,7 @@ import { removeQuestion, changeTitle, changeDescription, duplicateQuestion } fro
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
-const Question = ({ formContent, changeQuestionType, changeRequired }) => {
+const Question = ({ formContent, changeQuestionType, changeRequired, addQuestion }) => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
 
@@ -123,7 +123,7 @@ const Question = ({ formContent, changeQuestionType, changeRequired }) => {
               </div>
             )}
             {isActive === field.itemID ? (
-              <FloatButton field={field} />
+              <FloatButton field={field} addQuestion={addQuestion}/>
             ) : (
               <div className="Placeholder-button"></div>
             )}
