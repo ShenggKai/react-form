@@ -30,8 +30,20 @@ const HomePage = () => {
     );
   }, [formTitle]);
 
-  const handleTitleChange = (event) => {
+  const changeFormTitle = (event) => {
     setFormTitle(event.target.value);
+  };
+
+  const changeQuestionType = (itemID, selectedOption) => {
+    setFormContent((prevFormContent) => {
+      return prevFormContent.map((question) => {
+        if (question.itemID === itemID) {
+          return { ...question, type: selectedOption };
+        } else {
+          return question;
+        }
+      });
+    });
   };
 
   return (
@@ -42,14 +54,14 @@ const HomePage = () => {
             placeholder=""
             className="Form-title"
             value={formTitle}
-            onChange={handleTitleChange}
+            onChange={changeFormTitle}
           />
 
           <div className="Button-send">
             <Button>Send</Button>
           </div>
         </div>
-        <Question formContent={formContent} />
+        <Question formContent={formContent} changeQuestionType={changeQuestionType} />
       </main>
     </Layout>
   );

@@ -2,17 +2,11 @@
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
 import { useDispatch } from "react-redux";
-import {
-  changeTypeQuestion,
-  removeQuestion,
-  changeTitle,
-  changeDescription,
-  duplicateQuestion,
-} from "../../actions";
+import { removeQuestion, changeTitle, changeDescription, duplicateQuestion } from "../../actions";
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
-const Question = ({ formContent }) => {
+const Question = ({ formContent, changeQuestionType }) => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
 
@@ -21,7 +15,7 @@ const Question = ({ formContent }) => {
   };
 
   const handleTypeChange = (itemID, selectedOption) => {
-    dispatch(changeTypeQuestion(itemID, selectedOption));
+    changeQuestionType(itemID, selectedOption);
   };
 
   const handleRemoveQuestion = (itemID) => {
