@@ -11,7 +11,7 @@ import {
   GoogleLoginButton,
   Modal,
 } from "../../components";
-import { UserIcon, RunnerLogo } from "../../assets";
+import { UserIcon, FormLogo } from "../../assets";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gapi } from "gapi-script";
@@ -147,7 +147,7 @@ const LoginPage = () => {
       <div className="Gradient-border">
         <div className="Box-Container">
           <div className="Header-container">
-            <img src={RunnerLogo} className="App-logo" alt="Runner logo" />
+            <img src={FormLogo} className="App-logo" alt="Form logo" />
             <Space height={14} />
             <Text size={24.5}>Chào mừng bạn đến với React form</Text>
             <Space height={14} />

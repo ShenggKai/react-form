@@ -20,10 +20,10 @@ import { ReactComponent as Triangle } from "./icons/triangle.svg";
 import { ReactComponent as Rectangle } from "./icons/rectangle.svg";
 import { ReactComponent as Image } from "./icons/image.svg";
 import { ReactComponent as Copy } from "./icons/copy.svg";
-import Runner from "./images/logo_runner.png";
+import Logo from "./images/logo.png";
 import NotFound from "./images/404.jpg";
 
-export const RunnerLogo = Runner;
+export const FormLogo = Logo;
 export const NotFoundImage = NotFound;
 
 export const HideIcon = ({ width = 20, height = 20 }) => {
