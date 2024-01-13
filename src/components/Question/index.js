@@ -2,11 +2,17 @@
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
 import { useDispatch } from "react-redux";
-import { removeQuestion, changeTitle, changeDescription, duplicateQuestion } from "../../actions";
+import { changeTitle, changeDescription, duplicateQuestion } from "../../actions";
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
-const Question = ({ formContent, changeQuestionType, changeRequired, addQuestion }) => {
+const Question = ({
+  formContent,
+  changeQuestionType,
+  changeRequired,
+  addQuestion,
+  removeQuestion,
+}) => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
 
@@ -19,7 +25,7 @@ const Question = ({ formContent, changeQuestionType, changeRequired, addQuestion
   };
 
   const handleRemoveQuestion = (itemID) => {
-    dispatch(removeQuestion(itemID));
+    removeQuestion(itemID);
   };
 
   const handleTitleChange = (event, itemID) => {
@@ -123,7 +129,7 @@ const Question = ({ formContent, changeQuestionType, changeRequired, addQuestion
               </div>
             )}
             {isActive === field.itemID ? (
-              <FloatButton field={field} addQuestion={addQuestion}/>
+              <FloatButton field={field} addQuestion={addQuestion} />
             ) : (
               <div className="Placeholder-button"></div>
             )}

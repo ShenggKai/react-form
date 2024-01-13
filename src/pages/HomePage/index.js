@@ -92,6 +92,12 @@ const HomePage = () => {
     });
   };
 
+  const removeQuestion = (itemID) => {
+    setFormContent(() => {
+      return formContent.filter((question) => question.itemID !== itemID);
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -112,6 +118,7 @@ const HomePage = () => {
           changeQuestionType={changeQuestionType}
           changeRequired={changeRequired}
           addQuestion={addQuestion}
+          removeQuestion={removeQuestion}
         />
       </main>
     </Layout>
