@@ -46,6 +46,18 @@ const HomePage = () => {
     });
   };
 
+  const changeRequired = (itemID) => {
+    setFormContent((prevFormContent) => {
+      return prevFormContent.map((question) => {
+        if (question.itemID === itemID) {
+          return { ...question, required: !question.required };
+        } else {
+          return question;
+        }
+      });
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -61,7 +73,11 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question formContent={formContent} changeQuestionType={changeQuestionType} />
+        <Question
+          formContent={formContent}
+          changeQuestionType={changeQuestionType}
+          changeRequired={changeRequired}
+        />
       </main>
     </Layout>
   );

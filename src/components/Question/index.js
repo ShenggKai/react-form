@@ -6,7 +6,7 @@ import { removeQuestion, changeTitle, changeDescription, duplicateQuestion } fro
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
-const Question = ({ formContent, changeQuestionType }) => {
+const Question = ({ formContent, changeQuestionType, changeRequired }) => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
 
@@ -112,7 +112,11 @@ const Question = ({ formContent, changeQuestionType }) => {
                         <BinIcon />
                       </div>
                       <Line height={32} width={1} />
-                      <Switch label="Required" itemID={field.itemID} />
+                      <Switch
+                        label="Required"
+                        itemID={field.itemID}
+                        changeRequired={changeRequired}
+                      />
                     </div>
                   </>
                 )}
