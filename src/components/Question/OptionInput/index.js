@@ -21,15 +21,15 @@ const InactiveParagraph = () => {
   );
 };
 
-const AddOption = ({ type, listOption, handleAddOption, itemID }) => {
+const AddOption = ({ type, options, handleAddOption, itemID }) => {
   return (
     <div className="Add-option">
-      {type === "mt-choice" ? (
+      {type === "multiple-choice" ? (
         <CircleIcon />
       ) : type === "checkbox" ? (
         <RectangleIcon />
       ) : (
-        <div className="Dropdown-text-index">{listOption.length + 1}.</div>
+        <div className="Dropdown-text-index">{options.length + 1}.</div>
       )}
       <input
         type="text"
@@ -43,7 +43,7 @@ const AddOption = ({ type, listOption, handleAddOption, itemID }) => {
 };
 
 const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOption }) => {
-  const [type, listOption, itemID] = [field.type, field.listOption, field.itemID];
+  const [type, options, itemID] = [field.type, field.options, field.itemID];
 
   const handleAddOption = (itemID) => {
     addOption(itemID);
@@ -67,9 +67,9 @@ const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOptio
         )
       ) : (
         <div className="Multiple-input-container">
-          {listOption.map((option, index) => (
+          {options.map((option, index) => (
             <div key={option.optionID} className="Multiple-input">
-              {type === "mt-choice" ? (
+              {type === "multiple-choice" ? (
                 <CircleIcon />
               ) : type === "checkbox" ? (
                 <RectangleIcon />
@@ -88,7 +88,7 @@ const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOptio
                 onChange={(event) => handleOptionTextChange(event, itemID, option.optionID)}
               />
 
-              {listOption.length > 1 && isActive === itemID ? (
+              {options.length > 1 && isActive === itemID ? (
                 <div
                   className="Remove-icon"
                   title="Remove"
@@ -104,7 +104,7 @@ const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOptio
           {isActive === itemID && (
             <AddOption
               type={type}
-              listOption={listOption}
+              options={options}
               handleAddOption={handleAddOption}
               itemID={itemID}
             />
