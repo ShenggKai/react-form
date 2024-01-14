@@ -7,7 +7,7 @@ import "./style.css";
 const Dropdown = ({ onChange }) => {
   const options = [
     { value: "paragraph", label: "Paragraph", icon: <ParagraphIcon /> },
-    { value: "mt-choice", label: "Multiple choice", icon: <RadioIcon /> },
+    { value: "multiple-choice", label: "Multiple choice", icon: <RadioIcon /> },
     { value: "checkbox", label: "Checkboxes", icon: <CheckboxIcon /> },
     { value: "dropdown", label: "Dropdown", icon: <DropdownIcon /> },
   ];

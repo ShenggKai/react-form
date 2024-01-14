@@ -40,7 +40,7 @@ const Question = ({
   };
 
   const handleDuplicate = (field) => {
-    duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required);
+    duplicateQuestion(field.itemID, field.title, field.type, field.options, field.required);
   };
 
   return (

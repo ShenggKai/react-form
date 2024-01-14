@@ -14,7 +14,7 @@ const initialState = [
     itemID: "0001",
     title: "Question 1",
     type: "paragraph",
-    listOption: [{ optionID: "0001_0000", content: "Option 1" }],
+    options: [{ optionID: "0001_0000", content: "Option 1" }],
     required: false,
   },
 ];
@@ -70,7 +70,7 @@ const HomePage = () => {
             itemID: qID,
             title: `Question ${formContent.length}`,
             type: "paragraph",
-            listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
+            options: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
             required: false,
           },
           ...formContent.slice(index + 1),
@@ -104,7 +104,7 @@ const HomePage = () => {
     });
   };
 
-  const duplicateQuestion = (itemID, title, type, listOption, required) => {
+  const duplicateQuestion = (itemID, title, type, options, required) => {
     itemIndex++;
     let qID = generateQuestionID(itemIndex);
     let index = formContent.findIndex((item) => item.itemID === itemID);
@@ -117,7 +117,7 @@ const HomePage = () => {
             itemID: qID,
             title: title,
             type: type,
-            listOption: listOption,
+            options: options,
             required: required,
           },
           ...formContent.slice(index + 1),
@@ -131,7 +131,7 @@ const HomePage = () => {
     optionIndex++;
     let index = formContent.findIndex((item) => item.itemID === itemID);
     // use for default option's label
-    let option_number = formContent[index].listOption.length + 1;
+    let option_number = formContent[index].options.length + 1;
 
     setFormContent(() => {
       if (index !== -1) {
@@ -139,8 +139,8 @@ const HomePage = () => {
           ...formContent.slice(0, index),
           {
             ...formContent[index],
-            listOption: [
-              ...formContent[index].listOption,
+            options: [
+              ...formContent[index].options,
               {
                 optionID: generateOptionID(itemID, optionIndex),
                 content: `Option ${option_number}`,
@@ -160,7 +160,7 @@ const HomePage = () => {
         if (question.itemID === itemID) {
           return {
             ...question,
-            listOption: question.listOption.filter((option) => option.optionID !== optionID),
+            options: question.options.filter((option) => option.optionID !== optionID),
           };
         }
         return question;
@@ -174,7 +174,7 @@ const HomePage = () => {
         if (question.itemID === itemID)
           return {
             ...question,
-            listOption: question.listOption.map((option) => {
+            options: question.options.map((option) => {
               if (option.optionID === optionID) return { ...option, content: text };
               return option;
             }),
