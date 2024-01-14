@@ -36,19 +36,29 @@ This project leverages a modern technology stack to provide a seamless user expe
 Follow these steps to clone and start the project on your local machine:
 
 1. **Clone the repository:**
+
    ```bash
-   git clone [repository_url]
-   cd [project_directory]
+   git clone https://github.com/ShenggKai/react-form.git
+   cd react-form
+   ```
+
 2. **Install dependencies:**
-    ```bash
-    yarn install // or simply, yarn
+
+   ```bash
+   yarn install // or simply, yarn
+   ```
+
 3. **Start the development server:**
-    ```bash
-    yarn start
-The application should now be running locally at http://localhost:3000.
+
+   ```bash
+   yarn start
+   The application should now be running locally at http://localhost:3000.
+   ```
 
 ## Demo
-[YouTube Link]("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+
+[YouTube Link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## License
-This project is licensed under the [GPL-3.0 license]()
+
+This project is licensed under the [GPL-3.0 license](https://github.com/ShenggKai/react-form/blob/develop/LICENSE)
