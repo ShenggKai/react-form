@@ -3,7 +3,7 @@ import React from "react";
 import { AddIcon, ImageIcon } from "../../../assets";
 import "./style.css";
 
-const FloatButton = ({ field, addQuestion }) => {
+const FloatButton = ({ field, addQuestion, style }) => {
   const handleAddQuestion = () => {
     addQuestion(field.itemID);
   };
@@ -13,7 +13,7 @@ const FloatButton = ({ field, addQuestion }) => {
   };
 
   return (
-    <div className="Float-button-container">
+    <div className="Float-button-container" style={style}>
       <div className="Icon-add" title="Add question" onClick={handleAddQuestion}>
         <AddIcon />
       </div>

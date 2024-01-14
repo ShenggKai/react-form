@@ -20,6 +20,7 @@ import { ReactComponent as Triangle } from "./icons/triangle.svg";
 import { ReactComponent as Rectangle } from "./icons/rectangle.svg";
 import { ReactComponent as Image } from "./icons/image.svg";
 import { ReactComponent as Copy } from "./icons/copy.svg";
+import { ReactComponent as Drag } from "./icons/drag.svg";
 import Logo from "./images/logo.png";
 import NotFound from "./images/404.jpg";
 
@@ -104,4 +105,8 @@ export const ImageIcon = ({ width = 22, height = 22 }) => {
 
 export const CopyIcon = ({ width = 22, height = 22 }) => {
   return <Copy width={width} height={height} />;
+};
+
+export const DragIcon = ({ width = 18, height = 18 }) => {
+  return <Drag width={width} height={height} />;
 };

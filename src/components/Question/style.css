@@ -21,9 +21,27 @@
   width: 70vw;
   min-height: 90px;
   border-radius: 10px;
-  padding: 20px;
   flex-shrink: 0;
   transition: min-height 0.5s ease-in-out;
+}
+
+.Question {
+  padding: 0px 20px 20px 20px;
+}
+
+.Drag-icon {
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: move;
+  }
+}
+
+.Inactive-drag-icon {
+  height: 24px;
 }
 
 .active {
@@ -33,6 +51,7 @@
 
 .Title-container {
   border-top: 10px solid #627c90;
+  padding: 20px;
 }
 
 .Title-container-title,
@@ -65,11 +84,6 @@
 
 .Title-container-description {
   font-size: 15px;
-}
-
-.Placeholder-button {
-  width: 50px;
-  height: 150px;
 }
 
 .Question-header {
