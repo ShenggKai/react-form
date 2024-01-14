@@ -76,7 +76,7 @@ const HomePage = () => {
           ...formContent.slice(index + 1),
         ];
       }
-      return state;
+      return formContent;
     });
   };
 
@@ -127,6 +127,33 @@ const HomePage = () => {
     });
   };
 
+  const addOption = (itemID) => {
+    optionIndex++;
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+    // use for default option's label
+    let option_number = formContent[index].listOption.length + 1;
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index),
+          {
+            ...formContent[index],
+            listOption: [
+              ...formContent[index].listOption,
+              {
+                optionID: generateOptionID(itemID, optionIndex),
+                content: `Option ${option_number}`,
+              },
+            ],
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return formContent;
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -151,6 +178,7 @@ const HomePage = () => {
           changeTitle={changeTitle}
           changeDescription={changeDescription}
           duplicateQuestion={duplicateQuestion}
+          addOption={addOption}
         />
       </main>
     </Layout>

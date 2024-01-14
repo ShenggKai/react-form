@@ -13,6 +13,7 @@ const Question = ({
   changeTitle,
   changeDescription,
   duplicateQuestion,
+  addOption,
 }) => {
   const [isActive, setIsActive] = useState("0000");
 
@@ -100,7 +101,7 @@ const Question = ({
                 <div
                   className={isActive === field.itemID ? "Question-main" : "Inactive-question-main"}
                 >
-                  <OptionInput field={field} isActive={isActive} />
+                  <OptionInput field={field} isActive={isActive} addOption={addOption} />
                 </div>
                 {isActive === field.itemID && (
                   <>
