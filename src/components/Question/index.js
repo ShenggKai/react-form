@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
 import { useDispatch } from "react-redux";
-import { changeDescription, duplicateQuestion } from "../../actions";
+import { duplicateQuestion } from "../../actions";
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
@@ -13,6 +13,7 @@ const Question = ({
   addQuestion,
   removeQuestion,
   changeTitle,
+  changeDescription,
 }) => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
@@ -34,7 +35,7 @@ const Question = ({
   };
 
   const handleDescriptionChange = (event, itemID) => {
-    dispatch(changeDescription(itemID, event.target.value));
+    changeDescription(itemID, event.target.value);
   };
 
   const handleDuplicate = (field) => {

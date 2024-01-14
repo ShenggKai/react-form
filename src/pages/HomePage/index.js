@@ -95,6 +95,15 @@ const HomePage = () => {
     });
   };
 
+  const changeDescription = (itemID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) return { ...question, description: text };
+        else return question;
+      });
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -117,6 +126,7 @@ const HomePage = () => {
           addQuestion={addQuestion}
           removeQuestion={removeQuestion}
           changeTitle={changeTitle}
+          changeDescription={changeDescription}
         />
       </main>
     </Layout>
