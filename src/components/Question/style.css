@@ -86,11 +86,6 @@
   font-size: 15px;
 }
 
-.Placeholder-button {
-  width: 50px;
-  height: 150px;
-}
-
 .Question-header {
   display: flex;
   flex-direction: row;

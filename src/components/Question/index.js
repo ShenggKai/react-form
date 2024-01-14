@@ -151,11 +151,7 @@ const Question = ({
                 )}
               </div>
             )}
-            {isActive === field.itemID ? (
-              <FloatButton field={field} addQuestion={addQuestion} />
-            ) : (
-              <div className="Placeholder-button"></div>
-            )}
+            {isActive === field.itemID && <FloatButton field={field} addQuestion={addQuestion} />}
           </div>
         );
       })}
