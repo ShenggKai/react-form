@@ -44,7 +44,7 @@ const AddOption = ({ type, listOption, handleAddOption, itemID }) => {
   );
 };
 
-const OptionInput = ({ field, isActive, addOption, removeOption }) => {
+const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOption }) => {
   const dispatch = useDispatch();
   const [type, listOption, itemID] = [field.type, field.listOption, field.itemID];
 
@@ -57,7 +57,7 @@ const OptionInput = ({ field, isActive, addOption, removeOption }) => {
   };
 
   const handleOptionTextChange = (event, itemID, optionID) => {
-    dispatch(changeTextOption(itemID, optionID, event.target.value));
+    changeTextOption(itemID, optionID, event.target.value);
   };
 
   return (

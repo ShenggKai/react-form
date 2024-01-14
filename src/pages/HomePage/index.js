@@ -168,6 +168,22 @@ const HomePage = () => {
     });
   };
 
+  const changeTextOption = (itemID, optionID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID)
+          return {
+            ...question,
+            listOption: question.listOption.map((option) => {
+              if (option.optionID === optionID) return { ...option, content: text };
+              return option;
+            }),
+          };
+        return question;
+      });
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -194,6 +210,7 @@ const HomePage = () => {
           duplicateQuestion={duplicateQuestion}
           addOption={addOption}
           removeOption={removeOption}
+          changeTextOption={changeTextOption}
         />
       </main>
     </Layout>
