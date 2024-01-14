@@ -154,6 +154,20 @@ const HomePage = () => {
     });
   };
 
+  const removeOption = (itemID, optionID) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) {
+          return {
+            ...question,
+            listOption: question.listOption.filter((option) => option.optionID !== optionID),
+          };
+        }
+        return question;
+      });
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -179,6 +193,7 @@ const HomePage = () => {
           changeDescription={changeDescription}
           duplicateQuestion={duplicateQuestion}
           addOption={addOption}
+          removeOption={removeOption}
         />
       </main>
     </Layout>
