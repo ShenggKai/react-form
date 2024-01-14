@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Button, Question } from "../../components";
 import "./style.css";
 
@@ -104,6 +104,29 @@ const HomePage = () => {
     });
   };
 
+  const duplicateQuestion = (itemID, title, type, listOption, required) => {
+    itemIndex++;
+    let qID = generateQuestionID(itemIndex);
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index + 1),
+          {
+            itemID: qID,
+            title: title,
+            type: type,
+            listOption: listOption,
+            required: required,
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return formContent;
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -127,6 +150,7 @@ const HomePage = () => {
           removeQuestion={removeQuestion}
           changeTitle={changeTitle}
           changeDescription={changeDescription}
+          duplicateQuestion={duplicateQuestion}
         />
       </main>
     </Layout>

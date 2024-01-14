@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
-import { useDispatch } from "react-redux";
-import { duplicateQuestion } from "../../actions";
 import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
 import "./style.css";
 
@@ -14,8 +12,8 @@ const Question = ({
   removeQuestion,
   changeTitle,
   changeDescription,
+  duplicateQuestion,
 }) => {
-  const dispatch = useDispatch();
   const [isActive, setIsActive] = useState("0000");
 
   const handleItemClick = (itemID) => {
@@ -39,9 +37,7 @@ const Question = ({
   };
 
   const handleDuplicate = (field) => {
-    dispatch(
-      duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required)
-    );
+    duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required);
   };
 
   return (
