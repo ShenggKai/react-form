@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
-import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
+import { BinIcon, ImageIcon, CopyIcon, DragIcon } from "../../assets";
 import "./style.css";
 
 const Question = ({
@@ -18,9 +18,14 @@ const Question = ({
   changeTextOption,
 }) => {
   const [isActive, setIsActive] = useState("0000");
+  const [isHover, setIsHover] = useState("0000");
 
   const handleItemClick = (itemID) => {
     setIsActive(itemID);
+  };
+
+  const handleItemHover = (itemID) => {
+    setIsHover(itemID);
   };
 
   const handleTypeChange = (itemID, selectedOption) => {
@@ -78,7 +83,18 @@ const Question = ({
               <div
                 className={`Question ${isActive === field.itemID ? "active" : ""}`}
                 onClick={() => handleItemClick(field.itemID)}
+                onMouseEnter={() => handleItemHover(field.itemID)}
+                onMouseLeave={() => handleItemHover(null)}
               >
+
+                {isActive === field.itemID || isHover === field.itemID ? (
+                  <div className="Drag-icon">
+                    <DragIcon />
+                  </div>
+                ) : (
+                  <div className="Inactive-drag-icon" />
+                )}
+
                 {isActive !== field.itemID ? (
                   <Text size={18} color="#202124" fontWeight={400}>
                     {field.title}
