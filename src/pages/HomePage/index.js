@@ -32,18 +32,6 @@ function generateOptionID(itemID, optionIndex) {
 
 const HomePage = () => {
   const [formContent, setFormContent] = useState(initialState);
-  const [formTitle, setFormTitle] = useState(formContent[0].title);
-
-  // set formContent when formTitle change
-  useEffect(() => {
-    setFormContent(
-      formContent.map((item) => (item.itemID === "0000" ? { ...item, title: formTitle } : item))
-    );
-  }, [formTitle]);
-
-  const changeFormTitle = (event) => {
-    setFormTitle(event.target.value);
-  };
 
   const changeQuestionType = (itemID, selectedOption) => {
     setFormContent((prevFormContent) => {
@@ -98,6 +86,15 @@ const HomePage = () => {
     });
   };
 
+  const changeTitle = (itemID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) return { ...question, title: text };
+        else return question;
+      });
+    });
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -105,8 +102,8 @@ const HomePage = () => {
           <input
             placeholder=""
             className="Form-title"
-            value={formTitle}
-            onChange={changeFormTitle}
+            value={formContent[0].title}
+            onChange={(event) => changeTitle("0000", event.target.value)}
           />
 
           <div className="Button-send">
@@ -119,6 +116,7 @@ const HomePage = () => {
           changeRequired={changeRequired}
           addQuestion={addQuestion}
           removeQuestion={removeQuestion}
+          changeTitle={changeTitle}
         />
       </main>
     </Layout>
