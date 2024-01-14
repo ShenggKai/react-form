@@ -1,19 +1,22 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
-import { useDispatch } from "react-redux";
-import {
-  changeTypeQuestion,
+import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
+import "./style.css";
+
+const Question = ({
+  formContent,
+  changeQuestionType,
+  changeRequired,
+  addQuestion,
   removeQuestion,
   changeTitle,
   changeDescription,
   duplicateQuestion,
-} from "../../actions";
-import { BinIcon, ImageIcon, CopyIcon } from "../../assets";
-import "./style.css";
-
-const Question = ({ formContent }) => {
-  const dispatch = useDispatch();
+  addOption,
+  removeOption,
+  changeTextOption,
+}) => {
   const [isActive, setIsActive] = useState("0000");
 
   const handleItemClick = (itemID) => {
@@ -21,25 +24,23 @@ const Question = ({ formContent }) => {
   };
 
   const handleTypeChange = (itemID, selectedOption) => {
-    dispatch(changeTypeQuestion(itemID, selectedOption));
+    changeQuestionType(itemID, selectedOption);
   };
 
   const handleRemoveQuestion = (itemID) => {
-    dispatch(removeQuestion(itemID));
+    removeQuestion(itemID);
   };
 
   const handleTitleChange = (event, itemID) => {
-    dispatch(changeTitle(itemID, event.target.value));
+    changeTitle(itemID, event.target.value);
   };
 
   const handleDescriptionChange = (event, itemID) => {
-    dispatch(changeDescription(itemID, event.target.value));
+    changeDescription(itemID, event.target.value);
   };
 
   const handleDuplicate = (field) => {
-    dispatch(
-      duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required)
-    );
+    duplicateQuestion(field.itemID, field.title, field.type, field.listOption, field.required);
   };
 
   return (
@@ -102,7 +103,13 @@ const Question = ({ formContent }) => {
                 <div
                   className={isActive === field.itemID ? "Question-main" : "Inactive-question-main"}
                 >
-                  <OptionInput field={field} isActive={isActive} />
+                  <OptionInput
+                    field={field}
+                    isActive={isActive}
+                    addOption={addOption}
+                    removeOption={removeOption}
+                    changeTextOption={changeTextOption}
+                  />
                 </div>
                 {isActive === field.itemID && (
                   <>
@@ -118,14 +125,18 @@ const Question = ({ formContent }) => {
                         <BinIcon />
                       </div>
                       <Line height={32} width={1} />
-                      <Switch label="Required" itemID={field.itemID} />
+                      <Switch
+                        label="Required"
+                        itemID={field.itemID}
+                        changeRequired={changeRequired}
+                      />
                     </div>
                   </>
                 )}
               </div>
             )}
             {isActive === field.itemID ? (
-              <FloatButton field={field} />
+              <FloatButton field={field} addQuestion={addQuestion} />
             ) : (
               <div className="Placeholder-button"></div>
             )}

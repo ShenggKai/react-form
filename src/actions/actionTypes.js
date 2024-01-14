@@ -1,15 +1,3 @@
 // user actions
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
-
-// question actions
-export const ADD_QUESTION = "addQuestion";
-export const DUPLICATE_QUESTION = "duplicateQuestion";
-export const REMOVE_QUESTION = "removeQuestion";
-export const CHANGE_TYPE_QUESTION = "changeTypeQuestion";
-export const CHANGE_TITLE = "changeTitle";
-export const CHANGE_DESCRIPTION = "changeDescription";
-export const ADD_OPTION = "addOption";
-export const REMOVE_OPTION = "removeOption";
-export const CHANGE_REQUIRED = "changeRequired";
-export const CHANGE_TEXT_OPTION = "changeTextOption";

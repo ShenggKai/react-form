@@ -1,15 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../../actions";
 import { AddIcon, ImageIcon } from "../../../assets";
 import "./style.css";
 
-const FloatButton = ({ field }) => {
-  const dispatch = useDispatch();
-
+const FloatButton = ({ field, addQuestion }) => {
   const handleAddQuestion = () => {
-    dispatch(addQuestion(field.itemID));
+    addQuestion(field.itemID);
   };
 
   const handleAddImage = () => {

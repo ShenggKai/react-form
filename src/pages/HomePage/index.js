@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Button, Question } from "../../components";
 import "./style.css";
 
@@ -19,19 +19,169 @@ const initialState = [
   },
 ];
 
+let itemIndex = 1;
+let optionIndex = 0;
+
+function generateQuestionID(number) {
+  return String(number).padStart(4, "0").slice(-4);
+}
+
+function generateOptionID(itemID, optionIndex) {
+  return `${itemID}_${String(optionIndex).padStart(4, "0")}`;
+}
+
 const HomePage = () => {
   const [formContent, setFormContent] = useState(initialState);
-  const [formTitle, setFormTitle] = useState(formContent[0].title);
 
-  // set formContent when formTitle change
-  useEffect(() => {
-    setFormContent(
-      formContent.map((item) => (item.itemID === "0000" ? { ...item, title: formTitle } : item))
-    );
-  }, [formTitle]);
+  const changeQuestionType = (itemID, selectedOption) => {
+    setFormContent((prevFormContent) => {
+      return prevFormContent.map((question) => {
+        if (question.itemID === itemID) {
+          return { ...question, type: selectedOption };
+        } else {
+          return question;
+        }
+      });
+    });
+  };
 
-  const handleTitleChange = (event) => {
-    setFormTitle(event.target.value);
+  const changeRequired = (itemID) => {
+    setFormContent((prevFormContent) => {
+      return prevFormContent.map((question) => {
+        if (question.itemID === itemID) {
+          return { ...question, required: !question.required };
+        } else {
+          return question;
+        }
+      });
+    });
+  };
+
+  const addQuestion = (itemID) => {
+    itemIndex++;
+    let qID = generateQuestionID(itemIndex);
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index + 1),
+          {
+            itemID: qID,
+            title: `Question ${formContent.length}`,
+            type: "paragraph",
+            listOption: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
+            required: false,
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return formContent;
+    });
+  };
+
+  const removeQuestion = (itemID) => {
+    setFormContent(() => {
+      return formContent.filter((question) => question.itemID !== itemID);
+    });
+  };
+
+  const changeTitle = (itemID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) return { ...question, title: text };
+        else return question;
+      });
+    });
+  };
+
+  const changeDescription = (itemID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) return { ...question, description: text };
+        else return question;
+      });
+    });
+  };
+
+  const duplicateQuestion = (itemID, title, type, listOption, required) => {
+    itemIndex++;
+    let qID = generateQuestionID(itemIndex);
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index + 1),
+          {
+            itemID: qID,
+            title: title,
+            type: type,
+            listOption: listOption,
+            required: required,
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return formContent;
+    });
+  };
+
+  const addOption = (itemID) => {
+    optionIndex++;
+    let index = formContent.findIndex((item) => item.itemID === itemID);
+    // use for default option's label
+    let option_number = formContent[index].listOption.length + 1;
+
+    setFormContent(() => {
+      if (index !== -1) {
+        return [
+          ...formContent.slice(0, index),
+          {
+            ...formContent[index],
+            listOption: [
+              ...formContent[index].listOption,
+              {
+                optionID: generateOptionID(itemID, optionIndex),
+                content: `Option ${option_number}`,
+              },
+            ],
+          },
+          ...formContent.slice(index + 1),
+        ];
+      }
+      return formContent;
+    });
+  };
+
+  const removeOption = (itemID, optionID) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID) {
+          return {
+            ...question,
+            listOption: question.listOption.filter((option) => option.optionID !== optionID),
+          };
+        }
+        return question;
+      });
+    });
+  };
+
+  const changeTextOption = (itemID, optionID, text) => {
+    setFormContent(() => {
+      return formContent.map((question) => {
+        if (question.itemID === itemID)
+          return {
+            ...question,
+            listOption: question.listOption.map((option) => {
+              if (option.optionID === optionID) return { ...option, content: text };
+              return option;
+            }),
+          };
+        return question;
+      });
+    });
   };
 
   return (
@@ -41,15 +191,27 @@ const HomePage = () => {
           <input
             placeholder=""
             className="Form-title"
-            value={formTitle}
-            onChange={handleTitleChange}
+            value={formContent[0].title}
+            onChange={(event) => changeTitle("0000", event.target.value)}
           />
 
           <div className="Button-send">
             <Button>Send</Button>
           </div>
         </div>
-        <Question formContent={formContent} />
+        <Question
+          formContent={formContent}
+          changeQuestionType={changeQuestionType}
+          changeRequired={changeRequired}
+          addQuestion={addQuestion}
+          removeQuestion={removeQuestion}
+          changeTitle={changeTitle}
+          changeDescription={changeDescription}
+          duplicateQuestion={duplicateQuestion}
+          addOption={addOption}
+          removeOption={removeOption}
+          changeTextOption={changeTextOption}
+        />
       </main>
     </Layout>
   );

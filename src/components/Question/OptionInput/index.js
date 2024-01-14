@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addOption, removeOption, changeTextOption } from "../../../actions";
 import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets";
 import { Text, Line, Space } from "../../../components";
 import "./style.css";
@@ -44,20 +42,19 @@ const AddOption = ({ type, listOption, handleAddOption, itemID }) => {
   );
 };
 
-const OptionInput = ({ field, isActive }) => {
-  const dispatch = useDispatch();
+const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOption }) => {
   const [type, listOption, itemID] = [field.type, field.listOption, field.itemID];
 
   const handleAddOption = (itemID) => {
-    dispatch(addOption(itemID));
+    addOption(itemID);
   };
 
   const handleRemoveOption = (itemID, optionID) => {
-    dispatch(removeOption(itemID, optionID));
+    removeOption(itemID, optionID);
   };
 
   const handleOptionTextChange = (event, itemID, optionID) => {
-    dispatch(changeTextOption(itemID, optionID, event.target.value));
+    changeTextOption(itemID, optionID, event.target.value);
   };
 
   return (

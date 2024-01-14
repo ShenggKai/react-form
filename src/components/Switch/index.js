@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useDispatch } from "react-redux";
-import { changeRequired } from "../../actions";
 import "./style.css";
 
-const Switch = ({ label, itemID }) => {
-  const dispatch = useDispatch();
-
+const Switch = ({ label, itemID, changeRequired }) => {
   const handleClick = (itemID) => {
-    dispatch(changeRequired(itemID));
+    changeRequired(itemID);
   };
 
   return (
