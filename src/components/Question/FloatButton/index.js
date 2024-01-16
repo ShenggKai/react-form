@@ -3,9 +3,9 @@ import React from "react";
 import { AddIcon, ImageIcon } from "../../../assets";
 import "./style.css";
 
-const FloatButton = ({ field, addQuestion, style }) => {
+const FloatButton = ({ itemID, addQuestion, style }) => {
   const handleAddQuestion = () => {
-    addQuestion(field.itemID);
+    addQuestion(itemID);
   };
 
   const handleAddImage = () => {

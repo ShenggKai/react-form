@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useRef } from "react";
-import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
+import {
+  Dropdown,
+  Line,
+  Switch,
+  OptionInput,
+  FloatButton,
+  Text,
+  TitleContainer,
+} from "../../components";
 import { BinIcon, ImageIcon, CopyIcon, DragIcon } from "../../assets";
 import "./style.css";
 
@@ -17,17 +25,16 @@ const Question = ({
   removeOption,
   changeTextOption,
 }) => {
-  const [isActive, setIsActive] = useState("0000");
-  const [isHover, setIsHover] = useState("0000");
+  const [activeID, setActiveID] = useState("0000");
+  const [hoverID, setHoverID] = useState("0000");
   const [buttonTop, setButtonTop] = useState(null); // initial value
   const questionRef = useRef(null);
 
   const handleItemClick = (itemID, event) => {
-    setIsActive(itemID);
+    setActiveID(itemID);
 
     const questionElement = event.currentTarget;
-    const rect = questionElement.getBoundingClientRect();
-    let absoluteTop = rect.top;
+    let absoluteTop = questionElement ? questionElement.getBoundingClientRect().top : 656;
 
     if (absoluteTop > 656) absoluteTop = 656;
     if (absoluteTop < 178) absoluteTop = 178;
@@ -37,8 +44,7 @@ const Question = ({
 
   const handleScroll = () => {
     const questionElement = questionRef.current;
-    const rect = questionElement.getBoundingClientRect();
-    let absoluteTop = rect.top;
+    let absoluteTop = questionElement ? questionElement.getBoundingClientRect().top : 600;
 
     if (absoluteTop > 656) absoluteTop = 656;
     if (absoluteTop < 178) absoluteTop = 178;
@@ -47,7 +53,7 @@ const Question = ({
   };
 
   const handleItemHover = (itemID) => {
-    setIsHover(itemID);
+    setHoverID(itemID);
   };
 
   const handleTypeChange = (itemID, selectedOption) => {
@@ -72,57 +78,34 @@ const Question = ({
 
   return (
     <div className="Form-container" onScroll={handleScroll}>
-      {formContent.map((field) => {
+      <TitleContainer
+        formContent={formContent}
+        isActive={activeID}
+        questionRef={questionRef}
+        handleItemClick={handleItemClick}
+        handleTitleChange={handleTitleChange}
+        handleDescriptionChange={handleDescriptionChange}
+      />
+      {formContent.map((field, index) => {
         return (
-          <div key={field.itemID} className="Item-container">
-            {field.type === "form-title" ? (
-              <div
-                className={`Title-container ${isActive === field.itemID ? "active" : ""}`}
-                onClick={(event) => handleItemClick(field.itemID, event)}
-                ref={isActive === field.itemID ? questionRef : null}
-              >
-                <input
-                  value={field.title}
-                  placeholder="Form title"
-                  className={
-                    isActive === field.itemID
-                      ? "Active-title-container Title-container-title"
-                      : "Title-container-title"
-                  }
-                  onChange={(event) => handleTitleChange(event, field.itemID)}
-                />
-                <input
-                  value={field.description}
-                  placeholder="Form description"
-                  className={
-                    isActive === field.itemID
-                      ? "Active-title-container Title-container-description"
-                      : "Title-container-description"
-                  }
-                  onChange={(event) => handleDescriptionChange(event, field.itemID)}
-                />
-              </div>
-            ) : (
-              <div
-                className={`Question ${isActive === field.itemID ? "active" : ""}`}
-                onClick={(event) => handleItemClick(field.itemID, event)}
-                onMouseEnter={() => handleItemHover(field.itemID)}
-                onMouseLeave={() => handleItemHover(null)}
-                ref={isActive === field.itemID ? questionRef : null}
-              >
-                {isActive === field.itemID || isHover === field.itemID ? (
-                  <div className="Drag-icon">
-                    <DragIcon />
-                  </div>
-                ) : (
-                  <div className="Inactive-drag-icon" />
-                )}
-
-                {isActive !== field.itemID ? (
-                  <Text size={18} color="#202124" fontWeight={400}>
-                    {field.title}
-                  </Text>
-                ) : (
+          index !== 0 && (
+            <div
+              key={field.itemID}
+              className={`Question ${activeID === field.itemID ? "active" : ""}`}
+              onClick={(event) => handleItemClick(field.itemID, event)}
+              onMouseEnter={() => handleItemHover(field.itemID)}
+              onMouseLeave={() => handleItemHover(null)}
+              ref={activeID === field.itemID ? questionRef : null}
+            >
+              {activeID === field.itemID ? (
+                <>
+                  {hoverID === field.itemID ? (
+                    <div className="Drag-icon">
+                      <DragIcon />
+                    </div>
+                  ) : (
+                    <div className="Inactive-drag-icon" />
+                  )}
                   <div className="Question-header">
                     <input
                       placeholder="Question"
@@ -138,48 +121,61 @@ const Question = ({
                       onChange={(selectedOption) => handleTypeChange(field.itemID, selectedOption)}
                     />
                   </div>
-                )}
-                <div
-                  className={isActive === field.itemID ? "Question-main" : "Inactive-question-main"}
-                >
-                  <OptionInput
-                    field={field}
-                    isActive={isActive}
-                    addOption={addOption}
-                    removeOption={removeOption}
-                    changeTextOption={changeTextOption}
-                  />
-                </div>
-                {isActive === field.itemID && (
-                  <>
-                    <Line />
-                    <div className="Question-footer">
-                      <div className="Duplicate-icon" onClick={() => handleDuplicate(field)}>
-                        <CopyIcon />
-                      </div>
-                      <div
-                        className="Delete-icon"
-                        onClick={() => handleRemoveQuestion(field.itemID)}
-                      >
-                        <BinIcon />
-                      </div>
-                      <Line height={32} width={1} />
-                      <Switch
-                        label="Required"
-                        itemID={field.itemID}
-                        changeRequired={changeRequired}
-                      />
+                  <div
+                    className={
+                      activeID === field.itemID ? "Question-main" : "Inactive-question-main"
+                    }
+                  >
+                    <OptionInput
+                      field={field}
+                      isActive={activeID}
+                      addOption={addOption}
+                      removeOption={removeOption}
+                      changeTextOption={changeTextOption}
+                    />
+                  </div>
+                  <Line />
+                  <div className="Question-footer">
+                    <div className="Duplicate-icon" onClick={() => handleDuplicate(field)}>
+                      <CopyIcon />
                     </div>
-                  </>
-                )}
-              </div>
-            )}
-            {isActive === field.itemID && (
-              <FloatButton field={field} addQuestion={addQuestion} style={{ top: buttonTop }} />
-            )}
-          </div>
+                    <div className="Delete-icon" onClick={() => handleRemoveQuestion(field.itemID)}>
+                      <BinIcon />
+                    </div>
+                    <Line height={32} width={1} />
+                    <Switch
+                      label="Required"
+                      itemID={field.itemID}
+                      changeRequired={changeRequired}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="Inactive-drag-icon" />
+                  <Text size={18} color="#202124" fontWeight={400}>
+                    {field.title}
+                  </Text>
+                  <div
+                    className={
+                      activeID === field.itemID ? "Question-main" : "Inactive-question-main"
+                    }
+                  >
+                    <OptionInput
+                      field={field}
+                      isActive={activeID}
+                      addOption={addOption}
+                      removeOption={removeOption}
+                      changeTextOption={changeTextOption}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+          )
         );
       })}
+      <FloatButton itemID={activeID} addQuestion={addQuestion} style={{ top: buttonTop }} />
     </div>
   );
 };
