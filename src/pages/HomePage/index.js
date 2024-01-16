@@ -211,6 +211,7 @@ const HomePage = () => {
           addOption={addOption}
           removeOption={removeOption}
           changeTextOption={changeTextOption}
+          setFormContent={setFormContent}
         />
       </main>
     </Layout>
