@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Dropdown,
   Line,
@@ -32,6 +32,14 @@ const Question = ({
   const [hoverID, setHoverID] = useState("0000");
   const [buttonTop, setButtonTop] = useState(null); // initial value
   const questionRef = useRef(null);
+
+  // use to fix the error "Cannot find droppable entry with id" when using react-beautiful-dnd
+  const [isMounted, setIsMounted] = useState(false);
+
+  // link solution: https://github.com/atlassian/react-beautiful-dnd/issues/2399#issuecomment-1503025577
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleItemClick = (itemID, event) => {
     setActiveID(itemID);
@@ -83,7 +91,6 @@ const Question = ({
   function handleOnDragEnd(result) {
     if (!result.destination) return;
     const items = Array.from(formContent);
-    console.log(items);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     setFormContent(items);
@@ -92,120 +99,122 @@ const Question = ({
   return (
     <div className="Form-container" onScroll={handleScroll}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="demo">
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              <TitleContainer
-                formContent={formContent}
-                isActive={activeID}
-                questionRef={questionRef}
-                handleItemClick={handleItemClick}
-                handleTitleChange={handleTitleChange}
-                handleDescriptionChange={handleDescriptionChange}
-              />
-              {formContent.map((field, index) => {
-                return (
-                  index !== 0 && (
-                    <Draggable key={field.itemID} draggableId={field.itemID} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
+        {isMounted && (
+          <Droppable droppableId="demo">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                <TitleContainer
+                  formContent={formContent}
+                  isActive={activeID}
+                  questionRef={questionRef}
+                  handleItemClick={handleItemClick}
+                  handleTitleChange={handleTitleChange}
+                  handleDescriptionChange={handleDescriptionChange}
+                />
+                {formContent.map((field, index) => {
+                  return (
+                    index !== 0 && (
+                      <Draggable key={field.itemID} draggableId={field.itemID} index={index}>
+                        {(provided) => (
                           <div
-                            className={`Question ${activeID === field.itemID ? "active" : ""}`}
-                            onClick={(event) => handleItemClick(field.itemID, event)}
-                            onMouseEnter={() => handleItemHover(field.itemID)}
-                            onMouseLeave={() => handleItemHover(null)}
-                            ref={activeID === field.itemID ? questionRef : null}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
                           >
-                            {activeID === field.itemID ? (
-                              <>
-                                {hoverID === field.itemID ? (
-                                  <div className="Drag-icon">
-                                    <DragIcon />
+                            <div
+                              className={`Question ${activeID === field.itemID ? "active" : ""}`}
+                              onClick={(event) => handleItemClick(field.itemID, event)}
+                              onMouseEnter={() => handleItemHover(field.itemID)}
+                              onMouseLeave={() => handleItemHover(null)}
+                              ref={activeID === field.itemID ? questionRef : null}
+                            >
+                              {activeID === field.itemID ? (
+                                <>
+                                  {hoverID === field.itemID ? (
+                                    <div className="Drag-icon">
+                                      <DragIcon />
+                                    </div>
+                                  ) : (
+                                    <div className="Inactive-drag-icon" />
+                                  )}
+                                  <div className="Question-header">
+                                    <input
+                                      placeholder="Question"
+                                      value={field.title}
+                                      className="Question-title"
+                                      onChange={(event) => handleTitleChange(event, field.itemID)}
+                                      onFocus={(event) => event.target.select()}
+                                    />
+                                    <div className="Add-image-icon">
+                                      <ImageIcon />
+                                    </div>
+                                    <Dropdown
+                                      selected={selected}
+                                      onChange={(selectedOption) =>
+                                        handleTypeChange(field.itemID, selectedOption)
+                                      }
+                                    />
                                   </div>
-                                ) : (
+                                  <div className="Question-main">
+                                    <OptionInput
+                                      field={field}
+                                      isActive={activeID}
+                                      addOption={addOption}
+                                      removeOption={removeOption}
+                                      changeTextOption={changeTextOption}
+                                    />
+                                  </div>
+                                  <Line />
+                                  <div className="Question-footer">
+                                    <div
+                                      className="Duplicate-icon"
+                                      onClick={() => handleDuplicate(field)}
+                                    >
+                                      <CopyIcon />
+                                    </div>
+                                    <div
+                                      className="Delete-icon"
+                                      onClick={() => handleRemoveQuestion(field.itemID)}
+                                    >
+                                      <BinIcon />
+                                    </div>
+                                    <Line height={32} width={1} />
+                                    <Switch
+                                      label="Required"
+                                      itemID={field.itemID}
+                                      changeRequired={changeRequired}
+                                    />
+                                  </div>
+                                </>
+                              ) : (
+                                <>
                                   <div className="Inactive-drag-icon" />
-                                )}
-                                <div className="Question-header">
-                                  <input
-                                    placeholder="Question"
-                                    value={field.title}
-                                    className="Question-title"
-                                    onChange={(event) => handleTitleChange(event, field.itemID)}
-                                    onFocus={(event) => event.target.select()}
-                                  />
-                                  <div className="Add-image-icon">
-                                    <ImageIcon />
+                                  <Text size={18} color="#202124" fontWeight={400}>
+                                    {field.title}
+                                  </Text>
+                                  <div className="Inactive-question-main">
+                                    <OptionInput
+                                      field={field}
+                                      isActive={activeID}
+                                      addOption={addOption}
+                                      removeOption={removeOption}
+                                      changeTextOption={changeTextOption}
+                                    />
                                   </div>
-                                  <Dropdown
-                                    selected={selected}
-                                    onChange={(selectedOption) =>
-                                      handleTypeChange(field.itemID, selectedOption)
-                                    }
-                                  />
-                                </div>
-                                <div className="Question-main">
-                                  <OptionInput
-                                    field={field}
-                                    isActive={activeID}
-                                    addOption={addOption}
-                                    removeOption={removeOption}
-                                    changeTextOption={changeTextOption}
-                                  />
-                                </div>
-                                <Line />
-                                <div className="Question-footer">
-                                  <div
-                                    className="Duplicate-icon"
-                                    onClick={() => handleDuplicate(field)}
-                                  >
-                                    <CopyIcon />
-                                  </div>
-                                  <div
-                                    className="Delete-icon"
-                                    onClick={() => handleRemoveQuestion(field.itemID)}
-                                  >
-                                    <BinIcon />
-                                  </div>
-                                  <Line height={32} width={1} />
-                                  <Switch
-                                    label="Required"
-                                    itemID={field.itemID}
-                                    changeRequired={changeRequired}
-                                  />
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div className="Inactive-drag-icon" />
-                                <Text size={18} color="#202124" fontWeight={400}>
-                                  {field.title}
-                                </Text>
-                                <div className="Inactive-question-main">
-                                  <OptionInput
-                                    field={field}
-                                    isActive={activeID}
-                                    addOption={addOption}
-                                    removeOption={removeOption}
-                                    changeTextOption={changeTextOption}
-                                  />
-                                </div>
-                              </>
-                            )}
+                                </>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  )
-                );
-              })}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+                        )}
+                      </Draggable>
+                    )
+                  );
+                })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        )}
       </DragDropContext>
 
       <FloatButton itemID={activeID} addQuestion={addQuestion} style={{ top: buttonTop }} />
