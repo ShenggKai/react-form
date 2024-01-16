@@ -25,6 +25,7 @@ const Question = ({
   removeOption,
   changeTextOption,
 }) => {
+  const [selected, setSelected] = useState("paragraph");
   const [activeID, setActiveID] = useState("0000");
   const [hoverID, setHoverID] = useState("0000");
   const [buttonTop, setButtonTop] = useState(null); // initial value
@@ -58,6 +59,7 @@ const Question = ({
 
   const handleTypeChange = (itemID, selectedOption) => {
     changeQuestionType(itemID, selectedOption);
+    setSelected(selectedOption);
   };
 
   const handleRemoveQuestion = (itemID) => {
@@ -118,14 +120,11 @@ const Question = ({
                       <ImageIcon />
                     </div>
                     <Dropdown
+                      selected={selected}
                       onChange={(selectedOption) => handleTypeChange(field.itemID, selectedOption)}
                     />
                   </div>
-                  <div
-                    className={
-                      activeID === field.itemID ? "Question-main" : "Inactive-question-main"
-                    }
-                  >
+                  <div className="Question-main">
                     <OptionInput
                       field={field}
                       isActive={activeID}
@@ -156,11 +155,7 @@ const Question = ({
                   <Text size={18} color="#202124" fontWeight={400}>
                     {field.title}
                   </Text>
-                  <div
-                    className={
-                      activeID === field.itemID ? "Question-main" : "Inactive-question-main"
-                    }
-                  >
+                  <div className="Inactive-question-main">
                     <OptionInput
                       field={field}
                       isActive={activeID}
