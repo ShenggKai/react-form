@@ -5,16 +5,16 @@ import "./style.css";
 // initial state for form content
 const initialState = [
   {
-    itemID: "0000",
+    itemID: "0",
     title: "Form title",
     description: "",
     type: "form-title",
   },
   {
-    itemID: "0001",
+    itemID: "1",
     title: "Question 1",
     type: "paragraph",
-    options: [{ optionID: "0001_0000", content: "Option 1" }],
+    options: [{ optionID: "0", content: "Option 1" }],
     required: false,
   },
 ];
@@ -22,12 +22,8 @@ const initialState = [
 let itemIndex = 1;
 let optionIndex = 0;
 
-function generateQuestionID(number) {
-  return String(number).padStart(4, "0").slice(-4);
-}
-
-function generateOptionID(itemID, optionIndex) {
-  return `${itemID}_${String(optionIndex).padStart(4, "0")}`;
+function generateID(number) {
+  return String(number);
 }
 
 const HomePage = () => {
@@ -59,7 +55,9 @@ const HomePage = () => {
 
   const addQuestion = (itemID) => {
     itemIndex++;
-    let qID = generateQuestionID(itemIndex);
+    optionIndex++;
+    let qID = generateID(itemIndex);
+    let oID = generateID(optionIndex);
     let index = formContent.findIndex((item) => item.itemID === itemID);
 
     setFormContent(() => {
@@ -70,7 +68,7 @@ const HomePage = () => {
             itemID: qID,
             title: `Question ${formContent.length}`,
             type: "paragraph",
-            options: [{ optionID: generateOptionID(qID, optionIndex), content: "Option 1" }],
+            options: [{ optionID: oID, content: "Option 1" }],
             required: false,
           },
           ...formContent.slice(index + 1),
@@ -106,7 +104,7 @@ const HomePage = () => {
 
   const duplicateQuestion = (itemID, title, type, options, required) => {
     itemIndex++;
-    let qID = generateQuestionID(itemIndex);
+    let qID = generateID(itemIndex);
     let index = formContent.findIndex((item) => item.itemID === itemID);
 
     setFormContent(() => {
@@ -117,7 +115,10 @@ const HomePage = () => {
             itemID: qID,
             title: title,
             type: type,
-            options: options,
+            options: options.map((option) => {
+              let oID = generateID(++optionIndex);
+              return { optionID: oID, content: option.content };
+            }),
             required: required,
           },
           ...formContent.slice(index + 1),
@@ -129,6 +130,7 @@ const HomePage = () => {
 
   const addOption = (itemID) => {
     optionIndex++;
+    let qID = generateID(optionIndex);
     let index = formContent.findIndex((item) => item.itemID === itemID);
     // use for default option's label
     let option_number = formContent[index].options.length + 1;
@@ -142,7 +144,7 @@ const HomePage = () => {
             options: [
               ...formContent[index].options,
               {
-                optionID: generateOptionID(itemID, optionIndex),
+                optionID: qID,
                 content: `Option ${option_number}`,
               },
             ],
@@ -192,7 +194,7 @@ const HomePage = () => {
             placeholder=""
             className="Form-title"
             value={formContent[0].title}
-            onChange={(event) => changeTitle("0000", event.target.value)}
+            onChange={(event) => changeTitle("0", event.target.value)}
           />
 
           <div className="Button-send">
