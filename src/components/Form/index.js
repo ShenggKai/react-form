@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import { FloatButton, TitleContainer, QuestionContainer } from "../../components";
 import "./style.css";
 
-const Question = ({
+const Form = ({
   formContent,
   changeQuestionType,
   changeRequired,
@@ -87,4 +87,4 @@ const Question = ({
   );
 };
 
-export default Question;
+export default Form;
