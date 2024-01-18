@@ -63,20 +63,22 @@ const Question = ({
       {formContent.map((field, index) => {
         return (
           index !== 0 && (
-            <QuestionContainer
-              activeID={activeID}
-              field={field}
-              questionRef={questionRef}
-              addOption={addOption}
-              removeOption={removeOption}
-              changeTextOption={changeTextOption}
-              changeQuestionType={changeQuestionType}
-              changeRequired={changeRequired}
-              removeQuestion={removeQuestion}
-              duplicateQuestion={duplicateQuestion}
-              handleItemClick={handleItemClick}
-              handleTitleChange={handleTitleChange}
-            />
+            <div key={index}>
+              <QuestionContainer
+                activeID={activeID}
+                field={field}
+                questionRef={questionRef}
+                addOption={addOption}
+                removeOption={removeOption}
+                changeTextOption={changeTextOption}
+                changeQuestionType={changeQuestionType}
+                changeRequired={changeRequired}
+                removeQuestion={removeQuestion}
+                duplicateQuestion={duplicateQuestion}
+                handleItemClick={handleItemClick}
+                handleTitleChange={handleTitleChange}
+              />
+            </div>
           )
         );
       })}

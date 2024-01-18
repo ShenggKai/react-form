@@ -1,23 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Button, Question } from "../../components";
+import { questionData } from "../../data/question";
 import "./style.css";
-
-// initial state for form content
-const initialState = [
-  {
-    itemID: "0",
-    title: "Form title",
-    description: "",
-    type: "form-title",
-  },
-  {
-    itemID: "1",
-    title: "Question 1",
-    type: "paragraph",
-    options: [{ optionID: "0", content: "Option 1" }],
-    required: false,
-  },
-];
 
 let itemIndex = 1;
 let optionIndex = 0;
@@ -27,7 +11,7 @@ function generateID(number) {
 }
 
 const HomePage = () => {
-  const [formContent, setFormContent] = useState(initialState);
+  const [formContent, setFormContent] = useState(questionData);
 
   const changeQuestionType = (itemID, selectedOption) => {
     setFormContent((prevFormContent) => {
