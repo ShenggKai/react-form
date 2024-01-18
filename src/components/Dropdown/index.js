@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import { ParagraphIcon, RadioIcon, CheckboxIcon, DropdownIcon, TriangleIcon } from "../../assets";
 import "./style.css";
