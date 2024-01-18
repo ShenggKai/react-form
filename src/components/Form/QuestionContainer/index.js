@@ -19,7 +19,7 @@ const QuestionContainer = ({
   handleTitleChange,
 }) => {
   const [selected, setSelected] = useState("paragraph");
-  const [hoverID, setHoverID] = useState("0000");
+  const [hoverID, setHoverID] = useState("0");
 
   const handleTypeChange = (itemID, selectedOption) => {
     changeQuestionType(itemID, selectedOption);
@@ -94,7 +94,13 @@ const QuestionContainer = ({
         </>
       ) : (
         <>
-          <div className="Inactive-drag-icon" />
+          {hoverID === field.itemID ? (
+            <div className="Drag-icon">
+              <DragIcon />
+            </div>
+          ) : (
+            <div className="Inactive-drag-icon" />
+          )}
           <Text size={18} color="#202124" fontWeight={400}>
             {field.title}
           </Text>

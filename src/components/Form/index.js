@@ -16,7 +16,7 @@ const Form = ({
   removeOption,
   changeTextOption,
 }) => {
-  const [activeID, setActiveID] = useState("0000");
+  const [activeID, setActiveID] = useState("0");
   const [buttonTop, setButtonTop] = useState(null); // initial value
   const questionRef = useRef(null);
 
