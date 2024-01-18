@@ -1,10 +1,21 @@
 .Form-container {
   padding-top: 5px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow: auto;
+  height: 75vh;
+}
+
+.Left-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75vh;
-  overflow: auto;
+}
+
+.Right-container {
+  display: flex;
+  position: relative;
 }
 
 /* scrollbar */

@@ -8,8 +8,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /* top: 190px; */
-  right: 130px;
+  left: 15px;
   position: absolute;
 }
 

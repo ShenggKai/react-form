@@ -51,38 +51,42 @@ const Form = ({
   };
 
   return (
-    <div className="Form-container" onScroll={handleScroll}>
-      <TitleContainer
-        formContent={formContent}
-        isActive={activeID}
-        questionRef={questionRef}
-        handleItemClick={handleItemClick}
-        handleTitleChange={handleTitleChange}
-        handleDescriptionChange={handleDescriptionChange}
-      />
-      {formContent.map((field, index) => {
-        return (
-          index !== 0 && (
-            <div key={index}>
-              <QuestionContainer
-                activeID={activeID}
-                field={field}
-                questionRef={questionRef}
-                addOption={addOption}
-                removeOption={removeOption}
-                changeTextOption={changeTextOption}
-                changeQuestionType={changeQuestionType}
-                changeRequired={changeRequired}
-                removeQuestion={removeQuestion}
-                duplicateQuestion={duplicateQuestion}
-                handleItemClick={handleItemClick}
-                handleTitleChange={handleTitleChange}
-              />
-            </div>
-          )
-        );
-      })}
-      <FloatButton itemID={activeID} addQuestion={addQuestion} style={{ top: buttonTop }} />
+    <div className="Form-container">
+      <div className="Left-container" onScroll={handleScroll}>
+        <TitleContainer
+          formContent={formContent}
+          isActive={activeID}
+          questionRef={questionRef}
+          handleItemClick={handleItemClick}
+          handleTitleChange={handleTitleChange}
+          handleDescriptionChange={handleDescriptionChange}
+        />
+        {formContent.map((field, index) => {
+          return (
+            index !== 0 && (
+              <div key={index}>
+                <QuestionContainer
+                  activeID={activeID}
+                  field={field}
+                  questionRef={questionRef}
+                  addOption={addOption}
+                  removeOption={removeOption}
+                  changeTextOption={changeTextOption}
+                  changeQuestionType={changeQuestionType}
+                  changeRequired={changeRequired}
+                  removeQuestion={removeQuestion}
+                  duplicateQuestion={duplicateQuestion}
+                  handleItemClick={handleItemClick}
+                  handleTitleChange={handleTitleChange}
+                />
+              </div>
+            )
+          );
+        })}
+      </div>
+      <div className="Right-container">
+        <FloatButton itemID={activeID} addQuestion={addQuestion} style={{ top: buttonTop }} />
+      </div>
     </div>
   );
 };
