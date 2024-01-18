@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Button, Question } from "../../components";
+import { Layout, Button, Form } from "../../components";
 import { questionData } from "../../data/question";
 import "./style.css";
 
@@ -185,7 +185,7 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
-        <Question
+        <Form
           formContent={formContent}
           changeQuestionType={changeQuestionType}
           changeRequired={changeRequired}
