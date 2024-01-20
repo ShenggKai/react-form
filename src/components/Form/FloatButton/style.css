@@ -10,6 +10,8 @@
   align-items: center;
   left: 15px;
   position: absolute;
+  /* make the float button move smoother */
+  transition: top 0.2s ease-in-out;
 }
 
 .Icon-add,
