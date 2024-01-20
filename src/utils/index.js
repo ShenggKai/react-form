@@ -1,5 +1,6 @@
 /**
- * This function calculates the top position of a floating button in relation to a form and a question element.
+ * This function calculates the top position of a floating button in relation to a form and a question element. For more information, view the demonstration here: "https://www.figma.com/file/fejMtzKVRrDz8un0wQkV4z/Demonstration%3A-Floating-button?type=whiteboard&node-id=0%3A1&t=dHLcp3rei6HB45th-1"
+ * 
  *
  * @param {Object} formRef - A reference to the form element.
  * @param {Object} leftRef - A reference to the left element.
