@@ -12,10 +12,32 @@
   user-select: none;
 }
 
-.Multiple-input-container {
+.Multiple-input-container,
+.Inactive-multiple-input-container {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+}
+
+.Multiple-input-container {
+  transform: translateX(-10px);
+}
+
+.Drag-vertical-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.2em;
+
+  &:hover {
+    cursor: move;
+  }
+}
+
+.Inactive-drag-vertical-icon {
+  padding-right: 0.3em;
+  width: 18px;
+  height: 18px;
 }
 
 .Multiple-input {
@@ -71,7 +93,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #e9ecf0;
+    background-color: #f9f9f9;
   }
 }
 
