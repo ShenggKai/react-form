@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { CircleIcon, CloseIcon, RectangleIcon } from "../../../assets";
+import { CircleIcon, CloseIcon, RectangleIcon, DragIconVertical } from "../../../assets";
 import { Text, Line, Space } from "../../../components";
 import "./style.css";
 
@@ -69,6 +69,7 @@ const OptionInput = ({ field, isActive, addOption, removeOption, changeTextOptio
         <div className="Multiple-input-container">
           {options.map((option, index) => (
             <div key={option.optionID} className="Multiple-input">
+              <DragIconVertical />
               {type === "multiple-choice" ? (
                 <CircleIcon />
               ) : type === "checkbox" ? (

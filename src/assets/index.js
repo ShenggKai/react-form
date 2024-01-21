@@ -110,3 +110,7 @@ export const CopyIcon = ({ width = 22, height = 22 }) => {
 export const DragIcon = ({ width = 18, height = 18 }) => {
   return <Drag width={width} height={height} />;
 };
+
+export const DragIconVertical = ({ width = 18, height = 18 }) => {
+  return <Drag width={width} height={height} transform="rotate(90)" />;
+};
