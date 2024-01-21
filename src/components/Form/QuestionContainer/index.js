@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Dropdown, Line, Switch, OptionInput, Text } from "../../../components";
+import { Line, Switch, OptionInput, Text, DropMenu } from "../../../components";
 import { BinIcon, ImageIcon, CopyIcon, DragIcon } from "../../../assets";
 import "./style.css";
 
@@ -18,13 +18,8 @@ const QuestionContainer = ({
   handleItemClick,
   handleTitleChange,
 }) => {
-  const [selected, setSelected] = useState("paragraph");
+  const [indexSelected, setIndexSelected] = useState(0);
   const [hoverID, setHoverID] = useState("0");
-
-  const handleTypeChange = (itemID, selectedOption) => {
-    changeQuestionType(itemID, selectedOption);
-    setSelected(selectedOption);
-  };
 
   const handleRemoveQuestion = (itemID) => {
     removeQuestion(itemID);
@@ -66,9 +61,11 @@ const QuestionContainer = ({
             <div className="Add-image-icon">
               <ImageIcon />
             </div>
-            <Dropdown
-              selected={selected}
-              onChange={(selectedOption) => handleTypeChange(field.itemID, selectedOption)}
+            <DropMenu
+              indexSelected={indexSelected}
+              setIndexSelected={setIndexSelected}
+              changeQuestionType={changeQuestionType}
+              ItemID={field.itemID}
             />
           </div>
           <div className="Question-main">
