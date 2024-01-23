@@ -1,13 +1,13 @@
 .Home-main {
   display: flex;
-  min-height: 88.8vh;
+  min-height: 91vh;
   flex-direction: column;
   background-color: #e7ecef;
 }
 
 .Form-header {
-  margin-top: 20px;
-  margin-bottom: 25px;
+  background-color: white;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -38,27 +38,18 @@
 }
 
 /* viet them  */
-.menuQA-container {
-  width: 25%;
-  margin: 0 auto;
-}
-
 .horizontal-menuQA {
+  background-color: white;
   list-style: none;
-  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: none;
+  column-gap: 100px;
 }
 
 .menuQA-item {
-  margin-right: 100px;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .menuQA-link {

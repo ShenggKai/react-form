@@ -200,23 +200,6 @@ const HomePage = () => {
   return (
     <Layout>
       <main className="Home-main">
-        <div className="menuQA-container">
-          <ul className="horizontal-menuQA">
-            {menuQAs.map((menuQA, index) => (
-              <li key={index} className="menuQA-item">
-                <Link
-                  to={menuQA.path}
-                  className={`menuQA-link ${selectedMenuItem === menuQA.label ? "selected" : ""}`}
-                  onClick={() => handleMenuItemClick(menuQA.label)}
-                >
-                  <Text size={18} color={"#374957"} fontWeight={700} cursor={"pointer"}>
-                    {menuQA.label}
-                  </Text>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
         <div className="Form-header">
           <input
             placeholder=""
@@ -229,6 +212,21 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
+        <ul className="horizontal-menuQA">
+          {menuQAs.map((menuQA, index) => (
+            <li key={index} className="menuQA-item">
+              <Link
+                to={menuQA.path}
+                className={`menuQA-link ${selectedMenuItem === menuQA.label ? "selected" : ""}`}
+                onClick={() => handleMenuItemClick(menuQA.label)}
+              >
+                <Text size={18} color={"#374957"} fontWeight={700} cursor={"pointer"}>
+                  {menuQA.label}
+                </Text>
+              </Link>
+            </li>
+          ))}
+        </ul>
         <Form
           formContent={formContent}
           changeQuestionType={changeQuestionType}
