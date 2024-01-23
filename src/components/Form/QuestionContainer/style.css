@@ -102,3 +102,8 @@
     background-color: #e9ecf0;
   }
 }
+
+.Image-uploaded {
+  max-height: 300px;
+  max-width: 300px;
+}

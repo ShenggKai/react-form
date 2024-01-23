@@ -15,6 +15,7 @@ const QuestionContainer = ({
   changeRequired,
   removeQuestion,
   duplicateQuestion,
+  addImage,
   handleItemClick,
   handleTitleChange,
 }) => {
@@ -31,6 +32,10 @@ const QuestionContainer = ({
 
   const handleDuplicate = (field) => {
     duplicateQuestion(field.itemID, field.title, field.type, field.options, field.required);
+  };
+
+  const handleAddImage = (event, itemID) => {
+    addImage(event, itemID);
   };
 
   return (
@@ -58,9 +63,15 @@ const QuestionContainer = ({
               onChange={(event) => handleTitleChange(event, field.itemID)}
               onFocus={(event) => event.target.select()}
             />
-            <div className="Add-image-icon">
+            <label className="Add-image-icon" htmlFor="imageUpload">
               <ImageIcon />
-            </div>
+              <input
+                id="imageUpload"
+                type="file"
+                onChange={(event) => handleAddImage(event, field.itemID)}
+                style={{ display: "none" }}
+              />
+            </label>
             <DropMenu
               indexSelected={indexSelected}
               setIndexSelected={setIndexSelected}
@@ -69,6 +80,9 @@ const QuestionContainer = ({
             />
           </div>
           <div className="Question-main">
+            {field.image && (
+              <img src={field.image} alt="Uploaded content" className="Image-uploaded" />
+            )}
             <OptionInput
               field={field}
               isActive={activeID}
@@ -98,10 +112,14 @@ const QuestionContainer = ({
           ) : (
             <div className="Inactive-drag-icon" />
           )}
+
           <Text size={18} color="#202124" fontWeight={400}>
             {field.title}
           </Text>
           <div className="Inactive-question-main">
+            {field.image && (
+              <img src={field.image} alt="Uploaded content" className="Image-uploaded" />
+            )}
             <OptionInput
               field={field}
               isActive={activeID}

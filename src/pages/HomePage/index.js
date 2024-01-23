@@ -55,6 +55,7 @@ const HomePage = () => {
             title: `Question ${formContent.length}`,
             type: "paragraph",
             options: [{ optionID: oID, content: "Option 1" }],
+            image: null,
             required: false,
           },
           ...formContent.slice(index + 1),
@@ -172,6 +173,20 @@ const HomePage = () => {
     });
   };
 
+  const addImage = (event, itemID) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormContent((prevState) =>
+          prevState.map((question) =>
+            question.itemID === itemID ? { ...question, image: reader.result } : question
+          )
+        );
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
   const menuQAs = [
     { label: "Câu hỏi", path: "/home" },
     { label: "Câu trả lời", path: "/response" },
@@ -226,6 +241,7 @@ const HomePage = () => {
           addOption={addOption}
           removeOption={removeOption}
           changeTextOption={changeTextOption}
+          addImage={addImage}
         />
       </main>
     </Layout>

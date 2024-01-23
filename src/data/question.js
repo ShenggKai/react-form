@@ -11,6 +11,7 @@ export const questionData = [
     title: "Question 1",
     type: "paragraph",
     options: [{ optionID: "0", content: "Option 1" }],
+    image: null,
     required: false,
   },
 ];
