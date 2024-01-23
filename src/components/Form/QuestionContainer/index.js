@@ -117,9 +117,9 @@ const QuestionContainer = ({
             {field.title}
           </Text>
           <div className="Inactive-question-main">
-            {field.image && (
-              <img src={field.image} alt="Uploaded content" className="Image-uploaded" />
-            )}
+            <div className="Image-uploaded">
+              {field.image && <img src={field.image} alt="Uploaded content" />}
+            </div>
             <OptionInput
               field={field}
               isActive={activeID}
