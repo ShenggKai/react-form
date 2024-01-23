@@ -17,7 +17,7 @@ export const getFloatButtonTop = (formRef, leftRef, floatButtonRef, questionElem
 
   const questionTop = questionElement ? questionElement.getBoundingClientRect().top : 0;
   // form top in start = left top
-  const formTop = formElement ? formElement.getBoundingClientRect().top + 5 : 0;
+  const formTop = formElement ? formElement.getBoundingClientRect().top + 15 : 0;
   const leftTop = leftElement ? leftElement.getBoundingClientRect().top : 0;
 
   const questionBottom = questionElement ? questionElement.getBoundingClientRect().bottom : 0;

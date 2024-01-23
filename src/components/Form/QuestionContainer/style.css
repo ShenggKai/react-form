@@ -102,3 +102,20 @@
     background-color: #e9ecf0;
   }
 }
+
+.Image-uploaded {
+  margin: 12px 0px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  background-color: red;
+}
+
+.Image-uploaded img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

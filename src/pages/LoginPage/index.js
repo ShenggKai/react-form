@@ -10,6 +10,7 @@ import {
   Space,
   GoogleLoginButton,
   Modal,
+  SignUp,
 } from "../../components";
 import { UserIcon, FormLogo } from "../../assets";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,6 +35,7 @@ const LoginPage = () => {
   });
   const [checked, setChecked] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [signUpIsOpen, setSignUpIsOpen] = useState(false);
 
   useEffect(() => {
     function start() {
@@ -54,6 +56,15 @@ const LoginPage = () => {
     setIsOpen(false);
   };
 
+  const openSignUpModal = () => {
+    setSignUpIsOpen(true);
+  };
+
+  const closeSignUpModal = () => {
+    setSignUpIsOpen(false);
+  };
+
+  //Hàm này dùng để xử lý sự kiện khi người dùng nhập vào các input email và password
   const handleEmailInputChange = (event) => {
     event.persist();
     setValues((values) => ({
@@ -213,12 +224,7 @@ const LoginPage = () => {
               {/* &nbsp; is the space*/}
               Bạn chưa có tài khoản? &nbsp;
             </Text>
-            <Text
-              color={"#6366F1"}
-              fontWeight={400}
-              cursor={"pointer"}
-              onClick={() => console.log("Sign")}
-            >
+            <Text color={"#6366F1"} fontWeight={400} cursor={"pointer"} onClick={openSignUpModal}>
               Đăng ký tại đây
             </Text>
           </div>
@@ -226,6 +232,7 @@ const LoginPage = () => {
       </div>
       <ToastContainer />
       <Modal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <SignUp signUpIsOpen={signUpIsOpen} closeSignUp={closeSignUpModal} />
     </div>
   );
 };
