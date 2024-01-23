@@ -1,0 +1,74 @@
+/* Viết thêm */
+.Image-container {
+  margin-top: 10px; /* điều chỉnh khoảng cách từ hình ảnh đến các phần khác */
+  text-align: center; /* căn giữa hình ảnh */
+}
+
+.Image-container img {
+  max-width: 50%; /* hình ảnh sẽ không vượt quá chiều rộng của container */
+  height: auto; /* giữ tỷ lệ khung hình khi thay đổi kích thước màn hình */
+}
+
+.Response-container {
+  position: relative;
+  width: 100%;
+  height: 120px; /* Đặt chiều cao của container */
+  background-color: #f0f0f0;
+}
+
+.Response-number {
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.menuA-container {
+  width: 25%;
+  margin: 0 auto;
+}
+
+.horizontal-menuA {
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+  white-space: nowrap;
+}
+
+.menuA-item {
+  margin-right: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.menuA-link {
+  text-decoration: none;
+  color: white;
+  min-width: 90px;
+  height: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menuA-link.selected {
+  border-bottom: 4px solid blue; /* Chọn màu và kiểu đường gạch chân mong muốn */
+}

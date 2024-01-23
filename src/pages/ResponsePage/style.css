@@ -1,4 +1,4 @@
-.Home-main {
+Home-main {
   display: flex;
   min-height: 88.8vh;
   flex-direction: column;
@@ -37,7 +37,6 @@
   user-select: none;
 }
 
-/* viet them  */
 .menuQA-container {
   width: 25%;
   margin: 0 auto;

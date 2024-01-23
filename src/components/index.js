@@ -17,3 +17,4 @@ export { default as TitleContainer } from "./Form/TitleContainer";
 export { default as QuestionContainer } from "./Form/QuestionContainer";
 export { default as DropMenu } from "./DropMenu";
 export { default as SignUp } from "./SignUp";
+export { default as Response } from "./Response";

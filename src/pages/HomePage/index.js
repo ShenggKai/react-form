@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Layout, Button, Form } from "../../components";
+import { Layout, Button, Form, Text } from "../../components";
 import { questionData } from "../../data/question";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 let itemIndex = 1;
@@ -12,6 +13,7 @@ function generateID(number) {
 
 const HomePage = () => {
   const [formContent, setFormContent] = useState(questionData);
+  const [selectedMenuItem, setSelectedMenuItem] = useState("Câu hỏi");
 
   const changeQuestionType = (itemID, selectedOption) => {
     setFormContent((prevFormContent) => {
@@ -170,9 +172,36 @@ const HomePage = () => {
     });
   };
 
+  const menuQAs = [
+    { label: "Câu hỏi", path: "/home" },
+    { label: "Câu trả lời", path: "/response" },
+  ];
+
+  // Các hàm xử lý thay đổi mục được chọn
+  const handleMenuItemClick = (label) => {
+    setSelectedMenuItem(label);
+  };
+
   return (
     <Layout>
       <main className="Home-main">
+        <div className="menuQA-container">
+          <ul className="horizontal-menuQA">
+            {menuQAs.map((menuQA, index) => (
+              <li key={index} className="menuQA-item">
+                <Link
+                  to={menuQA.path}
+                  className={`menuQA-link ${selectedMenuItem === menuQA.label ? "selected" : ""}`}
+                  onClick={() => handleMenuItemClick(menuQA.label)}
+                >
+                  <Text size={18} color={"#374957"} fontWeight={700} cursor={"pointer"}>
+                    {menuQA.label}
+                  </Text>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="Form-header">
           <input
             placeholder=""
