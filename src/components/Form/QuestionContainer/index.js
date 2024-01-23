@@ -80,9 +80,9 @@ const QuestionContainer = ({
             />
           </div>
           <div className="Question-main">
-            {field.image && (
-              <img src={field.image} alt="Uploaded content" className="Image-uploaded" />
-            )}
+            <div className="Image-uploaded">
+              {field.image && <img src={field.image} alt="Uploaded content" />}
+            </div>
             <OptionInput
               field={field}
               isActive={activeID}
