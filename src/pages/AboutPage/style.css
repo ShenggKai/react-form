@@ -13,3 +13,9 @@
 .about-container p {
   line-height: 1.5;
 }
+
+/* style.css */
+.pie-cell:hover {
+  stroke: #000000;
+  stroke-width: 2;
+}
