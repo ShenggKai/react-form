@@ -1,10 +1,10 @@
 .Form-container {
-  padding-top: 5px;
+  padding-top: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   overflow: auto;
-  height: 75vh;
+  height: 76vh;
 }
 
 .Left-container {

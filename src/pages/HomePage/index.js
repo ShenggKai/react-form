@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Layout, Button, Form } from "../../components";
+import { Layout, Button, Form, Text } from "../../components";
 import { questionData } from "../../data/question";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 let itemIndex = 1;
@@ -12,6 +13,7 @@ function generateID(number) {
 
 const HomePage = () => {
   const [formContent, setFormContent] = useState(questionData);
+  const [selectedMenuItem, setSelectedMenuItem] = useState("Câu hỏi");
 
   const changeQuestionType = (itemID, selectedOption) => {
     setFormContent((prevFormContent) => {
@@ -53,6 +55,7 @@ const HomePage = () => {
             title: `Question ${formContent.length}`,
             type: "paragraph",
             options: [{ optionID: oID, content: "Option 1" }],
+            image: null,
             required: false,
           },
           ...formContent.slice(index + 1),
@@ -170,6 +173,30 @@ const HomePage = () => {
     });
   };
 
+  const addImage = (event, itemID) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormContent((prevState) =>
+          prevState.map((question) =>
+            question.itemID === itemID ? { ...question, image: reader.result } : question
+          )
+        );
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
+  const menuQAs = [
+    { label: "Câu hỏi", path: "/home" },
+    { label: "Câu trả lời", path: "/response" },
+  ];
+
+  // Các hàm xử lý thay đổi mục được chọn
+  const handleMenuItemClick = (label) => {
+    setSelectedMenuItem(label);
+  };
+
   return (
     <Layout>
       <main className="Home-main">
@@ -185,6 +212,21 @@ const HomePage = () => {
             <Button>Send</Button>
           </div>
         </div>
+        <ul className="horizontal-menuQA">
+          {menuQAs.map((menuQA, index) => (
+            <li key={index} className="menuQA-item">
+              <Link
+                to={menuQA.path}
+                className={`menuQA-link ${selectedMenuItem === menuQA.label ? "selected" : ""}`}
+                onClick={() => handleMenuItemClick(menuQA.label)}
+              >
+                <Text size={18} color={"#374957"} fontWeight={700} cursor={"pointer"}>
+                  {menuQA.label}
+                </Text>
+              </Link>
+            </li>
+          ))}
+        </ul>
         <Form
           formContent={formContent}
           changeQuestionType={changeQuestionType}
@@ -197,6 +239,7 @@ const HomePage = () => {
           addOption={addOption}
           removeOption={removeOption}
           changeTextOption={changeTextOption}
+          addImage={addImage}
         />
       </main>
     </Layout>

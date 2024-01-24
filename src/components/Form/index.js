@@ -16,6 +16,7 @@ const Form = ({
   addOption,
   removeOption,
   changeTextOption,
+  addImage,
 }) => {
   const [activeID, setActiveID] = useState("0");
   const [buttonTop, setButtonTop] = useState(null); // initial value
@@ -75,6 +76,7 @@ const Form = ({
                   changeRequired={changeRequired}
                   removeQuestion={removeQuestion}
                   duplicateQuestion={duplicateQuestion}
+                  addImage={addImage}
                   handleItemClick={handleItemClick}
                   handleTitleChange={handleTitleChange}
                 />
