@@ -37,7 +37,6 @@
   user-select: none;
 }
 
-/* viet them  */
 .horizontal-menuQA {
   background-color: white;
   list-style: none;
@@ -66,5 +65,5 @@
 }
 
 .menuQA-link.selected {
-  border-bottom: 4px solid blue; /* Chọn màu và kiểu đường gạch chân mong muốn */
+  border-bottom: 4px solid blue; 
 }

@@ -64,7 +64,6 @@ const LoginPage = () => {
     setSignUpIsOpen(false);
   };
 
-  //Hàm này dùng để xử lý sự kiện khi người dùng nhập vào các input email và password
   const handleEmailInputChange = (event) => {
     event.persist();
     setValues((values) => ({

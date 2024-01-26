@@ -13,7 +13,7 @@ function generateID(number) {
 
 const HomePage = () => {
   const [formContent, setFormContent] = useState(questionData);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("Câu hỏi");
+  const [selectedMenuItem, setSelectedMenuItem] = useState("Question");
 
   const changeQuestionType = (itemID, selectedOption) => {
     setFormContent((prevFormContent) => {
@@ -188,11 +188,10 @@ const HomePage = () => {
   };
 
   const menuQAs = [
-    { label: "Câu hỏi", path: "/home" },
-    { label: "Câu trả lời", path: "/response" },
+    { label: "Question", path: "/home" },
+    { label: "Response", path: "/response" },
   ];
 
-  // Các hàm xử lý thay đổi mục được chọn
   const handleMenuItemClick = (label) => {
     setSelectedMenuItem(label);
   };

@@ -5,12 +5,9 @@ import "./style.css";
 import { Text, Input, Button } from "..";
 import { CloseIcon } from "../../assets";
 
-//Quên mật khẩu
-
 const customStyles = {
   overlay: {
-    //Màu xanh lá
-    backgroundColor: "rgba(0, 128, 0, 0.4)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
   content: {
     top: "50%",
@@ -20,8 +17,7 @@ const customStyles = {
     marginRight: "-50%",
     padding: "0px",
     transform: "translate(-50%, -50%)",
-    // Màu hồng
-    backgroundColor: "#f99",
+    backgroundColor: "#f8f9fa",
     borderRadius: "6px",
   },
 };
@@ -30,12 +26,14 @@ const SignUp = ({ signUpIsOpen, closeSignUp }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
+    confirm_password: "",
   });
 
   const [isError, setIsError] = useState({
     invalidEmail: false,
     emptyEmail: false,
     emptyPassword: false,
+    emptyConfirmPassword: false,
   });
 
   const handleEmailInputChange = (event) => {
@@ -65,20 +63,28 @@ const SignUp = ({ signUpIsOpen, closeSignUp }) => {
     }));
   };
 
+  const handleNameInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      name: event.target.value,
+    }));
+
+    setIsError((values) => ({
+      ...values,
+      emptyConfirmPassword: false,
+    }));
+  };
+
   return (
     <ReactModal
-      //Nếu modalIsOpen là true, modal sẽ được mở.
       isOpen={signUpIsOpen}
-      //Hàm này sẽ được gọi khi người dùng muốn đóng modal
       onRequestClose={closeSignUp}
       contentLabel="Sign Up Modal"
-      //Không cho phép user tương tác với các phần tử bên dưới modal
       ariaHideApp={false}
-      //Không đóng modal khi click vào overlay (phần xám bên ngoài modal)
       shouldCloseOnOverlayClick={false}
       style={customStyles}
     >
-      {/*Nội dung của modal */}
       <div className="Modal-container">
         <div className="Modal-Header">
           <Text size={17.5} color={"#343A40"} fontWeight={700}>
@@ -89,9 +95,6 @@ const SignUp = ({ signUpIsOpen, closeSignUp }) => {
           </div>
         </div>
 
-        {/* <Input value={2} isError={false} /> */}
-        {/* Nhập email và password của bạn để đăng ký */}
-
         <div className="SignUp-container">
           <Input value={values} isError={isError} onChangeEmail={handleEmailInputChange} />
           <Input
@@ -99,6 +102,13 @@ const SignUp = ({ signUpIsOpen, closeSignUp }) => {
             value={values}
             isError={isError}
             OnchangePassword={handlePasswordInputChange}
+          />
+          <Input
+            label= "Confirm password"
+            value={values}
+            isError={isError}
+            OnchangeConfirmPassword={handlePasswordInputChange}
+            isConfirmPassword={true}
           />
         </div>
 
@@ -111,3 +121,4 @@ const SignUp = ({ signUpIsOpen, closeSignUp }) => {
 };
 
 export default SignUp;
+
