@@ -1,3 +1,28 @@
 .Response-page-style {
   display: flex;
 }
+
+.Form-header {
+  background-color: white;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 150px;
+}
+
+.Form-title {
+  width: 300px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  font-size: 30px;
+  font-weight: 500;
+  color: #202125;
+
+  &:focus {
+    border-bottom: 1px solid #202125;
+  }
+}

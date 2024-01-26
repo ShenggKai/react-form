@@ -1,66 +1,58 @@
-import React, { useState, useRef, useEffect } from "react";
-// import { Dropdown, Line, Switch, OptionInput, FloatButton, Text } from "../../components";
-// import { BinIcon, ImageIcon, CopyIcon, DragIcon } from "../../assets";
+import React, { useState } from "react";
 import "./style.css";
 import { Switch, Text } from "../../components";
 import { Link } from "react-router-dom";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const Response = () => {
   const [isRequired, setIsRequired] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("Bản tóm tắt");
+  const [selectedMenuItem, setSelectedMenuItem] = useState("Summary");
 
-  // Hàm thay đổi thuộc tính "required"
   const changeRequired = () => {
     setIsRequired((prevIsRequired) => !prevIsRequired);
   };
 
   const menuAs = [
-    { label: "Bản tóm tắt", path: "/response" },
-    { label: "Cá nhân", path: "/response" },
+    { label: "Summary", path: "/response" },
+    { label: "Individual", path: "/individual" },
   ];
 
-  // Các hàm xử lý thay đổi mục được chọn
   const handleMenuItemClick = (label) => {
     setSelectedMenuItem(label);
   };
 
-  // useEffect(() => {
-  //   // Dữ liệu biểu đồ tròn
-  //   const data = {
-  //     labels: ['Dữ liệu 1', 'Dữ liệu 2', 'Dữ liệu 3'],
-  //     datasets: [{
-  //       data: [30, 50, 20],
-  //       backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)'],
-  //       borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-  //       borderWidth: 1
-  //     }]
-  //   };
+  const data = [
+    { name: 'Hồ Chí Minh', value: 35 },
+    { name: 'Tokyo', value: 25 },
+    { name: 'Paris', value: 20 },
+    { name: 'London', value: 20 },
+  ];
 
-  //   // Tùy chọn biểu đồ tròn
-  //   const options = {
-  //     responsive: true,
-  //     maintainAspectRatio: false
-  //   };
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-  //   // Lấy tham chiếu của canvas
-  //   const ctx = document.getElementById('myPieChart').getContext('2d');
-
-  //   // Vẽ biểu đồ tròn
-  //   new Chart(ctx, {
-  //     type: 'pie',
-  //     data: data,
-  //     options: options
-  //   });
-  // }, []);
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <>
-      <div className="Response-container">
-        <div className="Response-number">
-          <p>1 câu trả lời</p>
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+  return (
+    <div className="response-container">
+      <div className="response-header">
+
+        <div className="response-header-number">
+          <p>1 answer</p>
         </div>
+
         <div className="switch">
-          <Switch label="Chấp nhận phản hồi" itemID={""} changeRequired={changeRequired} />
+          <Switch label="Accept feedback" itemID={""} changeRequired={changeRequired} />
         </div>
 
         <div className="menuA-container">
@@ -82,11 +74,36 @@ const Response = () => {
         </div>
       </div>
 
-      {/* <div>
-        <h1>Biểu đồ Tròn React</h1>
-        <canvas id="myPieChart" width="400" height="200"></canvas>
-      </div> */}
-    </>
+      <div className="response-content">       
+        <text className="response-question" > Đây là thành phố nào?</text>
+        <text className="response-content-number"> 1 answer</text>
+        <div style={{ width: "100%", height: 300 }}>
+          <ResponsiveContainer>
+            <PieChart className="chart-container">
+              <Pie className="pie"
+                data={data}
+                cx="30%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} className="pie-cell" />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend
+                layout="vertical"
+                wrapperStyle={{ top: '110px', left: '675px', right: '0px', bottom: '200px' }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 
