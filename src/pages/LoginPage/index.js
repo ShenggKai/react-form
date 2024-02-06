@@ -1,21 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
-import {
-  Input,
-  Text,
-  CheckBox,
-  Line,
-  Button,
-  Space,
-  GoogleLoginButton,
-  Modal,
-  SignUp,
-} from "../../components";
-import { UserIcon, FormLogo } from "../../assets";
-import { ToastContainer, toast } from "react-toastify";
+import { Input, Text, Button, Space } from "../../components";
+import { FormLogo } from "../../assets";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../actions";
@@ -23,48 +12,21 @@ import { userLogin } from "../../actions";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const clientId = "96650021301-dsir3655p86a6gmkg40cdcihfjckg9v9.apps.googleusercontent.com";
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
+  const user = {
+    user_name: "user1@gmail.com",
+    password: "a",
+    role: "admin",
+  };
   const [isError, setIsError] = useState({
     invalidEmail: false,
     emptyEmail: false,
     emptyPassword: false,
   });
-  const [checked, setChecked] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [signUpIsOpen, setSignUpIsOpen] = useState(false);
 
-  useEffect(() => {
-    function start() {
-      gapi.auth2.init({
-        clientId: clientId,
-        scope: "",
-      });
-    }
-
-    gapi.load("client:auth2", start);
-  });
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const openSignUpModal = () => {
-    setSignUpIsOpen(true);
-  };
-
-  const closeSignUpModal = () => {
-    setSignUpIsOpen(false);
-  };
-
-  //Hàm này dùng để xử lý sự kiện khi người dùng nhập vào các input email và password
   const handleEmailInputChange = (event) => {
     event.persist();
     setValues((values) => ({
@@ -130,7 +92,7 @@ const LoginPage = () => {
       error = true;
     }
 
-    if (values.email !== "user1@gmail.com" || values.password !== "a") {
+    if (values.email !== user.user_name || values.password !== user.password) {
       wrongPass = true;
     }
 
@@ -148,8 +110,13 @@ const LoginPage = () => {
     } else if (error) {
       return;
     } else {
-      dispatch(userLogin());
-      navigate("/home");
+      if (user.role == "admin") {
+        dispatch(userLogin());
+        navigate("/admin-home");
+      } else if (user.role == "user") {
+        dispatch(userLogin());
+        navigate("/user-home");
+      }
     }
   };
 
@@ -160,14 +127,20 @@ const LoginPage = () => {
           <div className="Header-container">
             <img src={FormLogo} className="App-logo" alt="Form logo" />
             <Space height={14} />
-            <Text size={24.5}>Chào mừng bạn đến với React form</Text>
+            <Text size={24.5}>
+              Chào mừng bạn đến với Trổ tài dự đoán &nbsp;
+            </Text>
             <Space height={14} />
             <Text color={"#495057"}>Đăng nhập để tiếp tục</Text>
             <Space height={28} />
           </div>
 
           <div className="Login-container">
-            <Input value={values} isError={isError} onChangeEmail={handleEmailInputChange} />
+            <Input
+              value={values}
+              isError={isError}
+              onChangeEmail={handleEmailInputChange}
+            />
             <Input
               isPassword={true}
               value={values}
@@ -175,16 +148,6 @@ const LoginPage = () => {
               OnchangePassword={handlePasswordInputChange}
             />
 
-            <div className="Forget-password">
-              <CheckBox
-                label={"Ghi nhớ mật khẩu"}
-                onClick={() => setChecked(!checked)}
-                checked={checked}
-              />
-              <Text color={"#6366F1"} cursor={"pointer"} onClick={openModal}>
-                Quên mật khẩu
-              </Text>
-            </div>
             <Space height={20} />
 
             <div
@@ -198,41 +161,8 @@ const LoginPage = () => {
             </div>
           </div>
           <Space height={20} />
-
-          <div className="Divider">
-            <Line />
-            <Text color={"#495057"} fontWeight={400} width={"100%"}>
-              hoặc sử dụng
-            </Text>
-            <Line />
-          </div>
-          <Space height={20} />
-
-          <GoogleLoginButton>Đăng nhập bằng tài khoản Google</GoogleLoginButton>
-          <Space height={16} />
-          <Button
-            haveIcon={true}
-            Icon={<UserIcon />}
-            onClick={() => alert("Feature is under development")}
-          >
-            Đăng nhập bằng tài khoản MobiFone
-          </Button>
-          <Space height={30} />
-
-          <div>
-            <Text color={"#495057"} fontWeight={400}>
-              {/* &nbsp; is the space*/}
-              Bạn chưa có tài khoản? &nbsp;
-            </Text>
-            <Text color={"#6366F1"} fontWeight={400} cursor={"pointer"} onClick={openSignUpModal}>
-              Đăng ký tại đây
-            </Text>
-          </div>
         </div>
       </div>
-      <ToastContainer />
-      <Modal modalIsOpen={modalIsOpen} closeModal={closeModal} />
-      <SignUp signUpIsOpen={signUpIsOpen} closeSignUp={closeSignUpModal} />
     </div>
   );
 };

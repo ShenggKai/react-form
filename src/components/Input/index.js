@@ -4,7 +4,13 @@ import "./style.css";
 import { Text } from "../../components";
 import { HideIcon, ShowIcon } from "../../assets";
 
-const Input = ({ isPassword = false, value, onChangeEmail, OnchangePassword, isError }) => {
+const Input = ({
+  isPassword = false,
+  value,
+  onChangeEmail,
+  OnchangePassword,
+  isError,
+}) => {
   const [showPass, setShowPass] = useState(true);
 
   const handleShow = () => {
@@ -46,7 +52,7 @@ const Input = ({ isPassword = false, value, onChangeEmail, OnchangePassword, isE
             <input
               type="email"
               className="Input"
-              placeholder="Email"
+              placeholder="User name"
               name="email"
               value={value.email}
               onChange={onChangeEmail}

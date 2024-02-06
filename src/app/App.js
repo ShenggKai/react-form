@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LoginPage, HomePage, UserPage, BlogPage, AboutPage, NotFound, AnswerPage } from "../pages";
+import { LoginPage, UserHome, NotFound, AdminHome } from "../pages";
 import { ProtectedRoute } from "../components";
 
 function App() {
@@ -13,13 +13,9 @@ function App() {
 
         {/* Protected Routes*/}
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/user/1" element={<AnswerPage />} />
-
+          <Route path="/" element={<UserHome />} />
+          <Route path="/user-home" element={<UserHome />} />
+          <Route path="/admin-home" element={<AdminHome />} />
         </Route>
       </Routes>
     </BrowserRouter>
