@@ -1,0 +1,3 @@
+[submodule "mantis-sso"]
+	path = mantis-sso
+	url = https://gitlab.com/shengkkai/mantis-sso
